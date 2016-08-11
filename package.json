@@ -1,0 +1,41 @@
+{
+  "name": "paperspace-sdk",
+  "version": "0.0.0",
+  "description": "Paperspace SDK",
+  "main": "index.js",
+  "repository": "https://github.com/Paperspace/paperspace-sdk",
+  "author": "Paperspace <support@paperspace.com>",
+  "license": "ISC",
+  "bin": {
+    "paperspace": "./bin/paperspace"
+  },
+  "scripts": {
+    "test": "tape ./test/*.test.js | tap-spec",
+    "lint": "eslint .",
+    "docs": "jsdoc ./index.js -c jsdoc.json && open index.html"
+  },
+  "dependencies": {
+    "async": "1.5.2",
+    "commander": "2.9.0",
+    "json-stable-stringify": "1.0.1",
+    "lodash.assign": "4.0.6",
+    "lodash.clone": "4.3.2",
+    "lodash.defaultsdeep": "4.3.4",
+    "lodash.find": "4.5.0",
+    "lodash.isequal": "4.3.0",
+    "lodash.uniq": "4.4.0",
+    "lodash.uniqwith": "4.4.0",
+    "moment": "^2.13.0",
+    "qs": "^6.1.0",
+    "route-parser": "0.0.5",
+    "superagent": "1.8.3"
+  },
+  "devDependencies": {
+    "docdash": "^0.4.0",
+    "eslint": "3.2.2",
+    "jsdoc": "^3.4.0",
+    "repl": "0.1.3",
+    "tap-spec": "4.1.1",
+    "tape": "4.6.0"
+  }
+}
