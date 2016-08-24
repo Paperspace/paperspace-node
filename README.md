@@ -2,9 +2,9 @@
 
 The **Paperspace SDK** is the official devkit for automating your [Paperspace](https://paperspace.com) account. It's currently available in JavaScript, and we plan to offer other languages and integrations in the future. For v0, we are offering basic actions such as creating machines and managing team members. This repo includes:
 
-* [JavaScript API client](#) (for Node.js and the browser)
-* [CLI](#)
-* [API documentation](#)
+* [JavaScript API client](#programmatic) (for Node.js and the browser)
+* [CLI](#cli)
+* [API documentation](https://paperspace.github.io/paperspace-sdk)
 
 ## Getting started
 
@@ -63,7 +63,7 @@ All of the methods are namespaced by category ("machines.create" or "invoices.sh
 
 That is, the first argument is parameters object, and the second is a error-first callback function.
 
-For information on all the methods available, see the [API documentation](#).
+For information on all the methods available, see the [API documentation](https://paperspace.github.io/paperspace-sdk).
 
 ### CLI
 
@@ -84,13 +84,13 @@ The CLI provides all methods as subcommands. For example:
 
     $ paperspace machines create --name "My Machine" --size "50GB" # etc.
 
-For information on all the methods available, see the [API documentation](#).
+For information on all the methods available, see the [API documentation](https://paperspace.github.io/paperspace-sdk).
 
-## [API Documentation](#)
+## [API Documentation](https://paperspace.github.io/paperspace-sdk)
 
 ## HTTP endpoints
 
-If you'd prefer to interact with our HTTP API directly, and roll your own client instead of using ours, our HTTP endpoints are also described in our [API documentation](#). If you've created an API client in a language other than JavaScript, please [let us know](mailto:support@paperspace.com) and we will link to it here.
+If you'd prefer to interact with our HTTP API directly, and roll your own client instead of using ours, our HTTP endpoints are also described in our [API documentation](https://paperspace.github.io/paperspace-sdk). If you've created an API client in a language other than JavaScript, please [let us know](mailto:support@paperspace.com) and we will link to it here.
 
 ## Contributing
 
