@@ -16,7 +16,6 @@
   },
   "dependencies": {
     "async": "1.5.2",
-    "commander": "2.9.0",
     "json-stable-stringify": "1.0.1",
     "lodash.assign": "4.0.6",
     "lodash.clone": "4.3.2",
@@ -28,7 +27,8 @@
     "moment": "^2.13.0",
     "qs": "^6.1.0",
     "route-parser": "0.0.5",
-    "superagent": "1.8.3"
+    "superagent": "1.8.3",
+    "yargs": "^5.0.0"
   },
   "devDependencies": {
     "docdash": "^0.4.0",

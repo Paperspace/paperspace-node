@@ -37,8 +37,8 @@ Assuming you've installed the `paperspace-sdk` package, you can import the SDK w
 Then create an instance of the client, passing in your authentication credentials:
 
     var ps = paperspace({
-      email: 'mrrobot@example.com',
-      password: 'secret123'
+      authEmail: 'mrrobot@example.com',
+      authPassword: 'secret123'
     });
 
 If you already have an _access token_, you can pass that instead:
@@ -73,14 +73,8 @@ Assuming you've installed the `paperspace-sdk` package, you can call the Papersp
 
 For authenticated requests, the Paperspace CLI will look in three places:
 
-- CLI arguments: `--email` and `--password` (or `--token` if you have an access token)
-- Environment variables: `PAPERSPACE_EMAIL` and `PAPERSPACE_PASSWORD` (or `PAPERSPACE_TOKEN`)
-- Your home directory, for a `~/.paperspace.json` file with contents like so:
-
-    {
-      "email": "mrrobot@example.com",
-      "password": "secret123"
-    }
+- CLI arguments: `--authEmail` and `--authPassword` (or `--token` if you have an access token)
+- Environment variables: `PAPERSPACE_AUTH_EMAIL` and `PAPERSPACE_AUTH_PASSWORD` (or `PAPERSPACE_TOKEN`)
 
 We plan to provide a more robust auth system soon.
 
