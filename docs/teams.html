@@ -22,7 +22,7 @@
 <label for="nav-trigger" class="overlay"></label>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Namespaces</h3><ul><li><a href="accounts.html">accounts</a></li><li><a href="auth.html">auth</a><ul class='methods'><li data-type='method'><a href="auth.html#.signin">signin</a></li></ul></li><li><a href="invoices.html">invoices</a></li><li><a href="machines.html">machines</a><ul class='methods'><li data-type='method'><a href="machines.html#.autoshutdown">autoshutdown</a></li><li data-type='method'><a href="machines.html#.create">create</a></li></ul></li><li><a href="snapshots.html">snapshots</a></li><li><a href="teams.html">teams</a></li><li><a href="templates.html">templates</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Namespaces</h3><ul><li><a href="accounts.html">accounts</a><ul class='methods'><li data-type='method'><a href="accounts.html#.create">create</a></li><li data-type='method'><a href="accounts.html#.destroy">destroy</a></li><li data-type='method'><a href="accounts.html#.show">show</a></li><li data-type='method'><a href="accounts.html#.update">update</a></li></ul></li><li><a href="auth.html">auth</a><ul class='methods'><li data-type='method'><a href="auth.html#.signin">signin</a></li></ul></li><li><a href="invoices.html">invoices</a><ul class='methods'><li data-type='method'><a href="invoices.html#.list">list</a></li><li data-type='method'><a href="invoices.html#.show">show</a></li></ul></li><li><a href="machines.html">machines</a><ul class='methods'><li data-type='method'><a href="machines.html#.autoshutdown">autoshutdown</a></li><li data-type='method'><a href="machines.html#.create">create</a></li><li data-type='method'><a href="machines.html#.destroy">destroy</a></li><li data-type='method'><a href="machines.html#.modify">modify</a></li><li data-type='method'><a href="machines.html#.shutdown">shutdown</a></li><li data-type='method'><a href="machines.html#.start">start</a></li><li data-type='method'><a href="machines.html#.stop">stop</a></li><li data-type='method'><a href="machines.html#.update">update</a></li><li data-type='method'><a href="machines.html#.waitfor">waitfor</a></li></ul></li><li><a href="snapshots.html">snapshots</a><ul class='methods'><li data-type='method'><a href="snapshots.html#.create">create</a></li><li data-type='method'><a href="snapshots.html#.destroy">destroy</a></li><li data-type='method'><a href="snapshots.html#.list">list</a></li><li data-type='method'><a href="snapshots.html#.show">show</a></li></ul></li><li><a href="teams.html">teams</a><ul class='methods'><li data-type='method'><a href="teams.html#.addmember">addmember</a></li><li data-type='method'><a href="teams.html#.removemember">removemember</a></li><li data-type='method'><a href="teams.html#.show">show</a></li></ul></li><li><a href="templates.html">templates</a><ul class='methods'><li data-type='method'><a href="templates.html#.create">create</a></li><li data-type='method'><a href="templates.html#.destroy">destroy</a></li><li data-type='method'><a href="templates.html#.list">list</a></li><li data-type='method'><a href="templates.html#.show">show</a></li></ul></li></ul>
 </nav>
 
 <div id="main">
@@ -113,6 +113,757 @@
     
 
     
+        <h3 class="subsection-title">Methods</h3>
+
+        
+            
+
+    
+
+    <h4 class="name" id=".addmember"><span class="type-signature">(static) </span>addmember<span class="signature">(params, cb)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="teams_addmember.js.html">teams/addmember.js</a>, <a href="teams_addmember.js.html#line6">line 6</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Add a new member (user account) to the team with the given id. When created,
+the account will immediately be available for login by the person with the credentials
+assigned. No machine is created with this action. This action can only be performed by
+the administrator of the team.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Examples</h5>
+    
+    <pre class="prettyprint"><code>paperspace.teams.addmember({
+  teamId: 123,
+  email: 'example@example.com',
+  password: 'secret123',
+}, function(err, resp) {
+  // handle error or http response
+});</code></pre>
+
+    <pre class="prettyprint"><code>$ paperspace teams addmember \
+    --teamId 123 \
+    --email "example@example.com" \
+    --password "secret123"</code></pre>
+
+    <pre class="prettyprint"><code># HTTP request:
+POST /teams/123/addMember {"email": "example@example.com", "password": "secret123"}
+# Returns 201 on success</code></pre>
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>params</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Team member creation parameters</p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>teamId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Id of the team in which to add the member</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>email</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Email address for the user's Paperspace account</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>password</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Password for the user's Paperspace account</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>cb</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Node-style error-first callback function</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".removemember"><span class="type-signature">(static) </span>removemember<span class="signature">(params, cb)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="teams_removemember.js.html">teams/removemember.js</a>, <a href="teams_removemember.js.html#line6">line 6</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Remove a member from a team. This action only works if the user with the
+given user id belongs to the team with the given team id. This action may only be performed
+by the team's administrator. All of the user's machines are deactivated immediately when
+this action succeeds. Any snapshots of those machines are also destroyed. Access to the user
+account will also be terminated.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Examples</h5>
+    
+    <pre class="prettyprint"><code>paperspace.teams.removemember({
+  teamId: 123,
+  userId: 456,
+}, function(err, resp) {
+  // handle error or http response
+});</code></pre>
+
+    <pre class="prettyprint"><code>$ paperspace teams removemember \
+    --teamId 123 \
+    --userId 456</code></pre>
+
+    <pre class="prettyprint"><code># HTTP request:
+POST /teams/123/removeMember {"userId": 456}
+# Returns 204 on success</code></pre>
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>params</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Team member creation parameters</p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>teamId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Id of the team in which to add the member</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>userId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Id of the user to remove from the team</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>cb</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Node-style error-first callback function</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".show"><span class="type-signature">(static) </span>show<span class="signature">(params, cb)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="teams_show.js.html">teams/show.js</a>, <a href="teams_show.js.html#line6">line 6</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Show information about an individual team using the given team id.
+This returns basic information about the team, as well as information about all
+members' user accounts, and the team administrator's account. This action is only
+permitted for the team's administrator.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Examples</h5>
+    
+    <pre class="prettyprint"><code>paperspace.teams.show({
+  teamId: 123,
+}, function(err, resp) {
+  // handle error or http response
+});</code></pre>
+
+    <pre class="prettyprint"><code>$ paperspace teams show --teamId 123</code></pre>
+
+    <pre class="prettyprint"><code># HTTP request:
+GET /teams/123
+# Returns 200 on success</code></pre>
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>params</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Team lookup parameters</p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>teamId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Id of the team to show</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>cb</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Node-style error-first callback function</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+    
 
     
 
@@ -129,7 +880,7 @@
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Thu Aug 11 2016 11:19:39 GMT-0400 (EDT) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Wed Aug 24 2016 11:49:54 GMT-0400 (EDT) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>

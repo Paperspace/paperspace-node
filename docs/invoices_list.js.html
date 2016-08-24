@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>invoices/list.js - Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Namespaces</h3><ul><li><a href="accounts.html">accounts</a><ul class='methods'><li data-type='method'><a href="accounts.html#.create">create</a></li><li data-type='method'><a href="accounts.html#.destroy">destroy</a></li><li data-type='method'><a href="accounts.html#.show">show</a></li><li data-type='method'><a href="accounts.html#.update">update</a></li></ul></li><li><a href="auth.html">auth</a><ul class='methods'><li data-type='method'><a href="auth.html#.signin">signin</a></li></ul></li><li><a href="invoices.html">invoices</a><ul class='methods'><li data-type='method'><a href="invoices.html#.list">list</a></li><li data-type='method'><a href="invoices.html#.show">show</a></li></ul></li><li><a href="machines.html">machines</a><ul class='methods'><li data-type='method'><a href="machines.html#.autoshutdown">autoshutdown</a></li><li data-type='method'><a href="machines.html#.create">create</a></li><li data-type='method'><a href="machines.html#.destroy">destroy</a></li><li data-type='method'><a href="machines.html#.modify">modify</a></li><li data-type='method'><a href="machines.html#.shutdown">shutdown</a></li><li data-type='method'><a href="machines.html#.start">start</a></li><li data-type='method'><a href="machines.html#.stop">stop</a></li><li data-type='method'><a href="machines.html#.update">update</a></li><li data-type='method'><a href="machines.html#.waitfor">waitfor</a></li></ul></li><li><a href="snapshots.html">snapshots</a><ul class='methods'><li data-type='method'><a href="snapshots.html#.create">create</a></li><li data-type='method'><a href="snapshots.html#.destroy">destroy</a></li><li data-type='method'><a href="snapshots.html#.list">list</a></li><li data-type='method'><a href="snapshots.html#.show">show</a></li></ul></li><li><a href="teams.html">teams</a><ul class='methods'><li data-type='method'><a href="teams.html#.addmember">addmember</a></li><li data-type='method'><a href="teams.html#.removemember">removemember</a></li><li data-type='method'><a href="teams.html#.show">show</a></li></ul></li><li><a href="templates.html">templates</a><ul class='methods'><li data-type='method'><a href="templates.html#.create">create</a></li><li data-type='method'><a href="templates.html#.destroy">destroy</a></li><li data-type='method'><a href="templates.html#.list">list</a></li><li data-type='method'><a href="templates.html#.show">show</a></li></ul></li></ul>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">invoices/list.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>'use strict';
+
+var method = require('./../method');
+var assign = require('lodash.assign');
+
+/**
+ * @memberof invoices
+ * @method list
+ * @description List the invoices for a given team account or user account. If a user id
+ * is passed, invoices for that user will be returned. If the user is a team administrator,
+ * invoices for the team will be returned. If a team id is passed, invoices for the team will
+ * be returned. This action is only permitted for credentials that have privileges for
+ * the account in question.
+ * @param {object} params - Invoice lookup parameters
+ * @param {string} params.userId - If looking up a user's invoices, the id of the user account
+ * @param {string} params.teamId - If looking up a team's invoices, the id of the team account
+ * @param {function} cb - Node-style error-first callback function
+ * @returns {object} invoices - A list of invoice JSON objects
+ * @example
+ * paperspace.invoices.list({
+ *   userId: 123, // optional - Either userId or teamId, not both!
+ *   teamId: 456, // optional - Either userId or teamId, not both!
+ * }, function(err, resp) {
+ *   // handle error or http response
+ * });
+ * @example
+ * $ paperspace invoices list --userId 123
+ * @example
+ * # HTTP request:
+ * GET /invoices/listInvoices {"userId": 123, "teamId": 456} # One or the other, but not both!
+ * # Returns 200 on success
+ */
+
+function list(params, cb) {
+  return method(list, params, cb);
+}
+
+assign(list, {
+  group: 'invoices',
+  name: 'list',
+  method: 'get',
+  route: '/invoices/listInvoices',
+  requires: {},
+  returns: {},
+})
+
+module.exports = list;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Wed Aug 24 2016 11:49:54 GMT-0400 (EDT) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+</body>
+</html>

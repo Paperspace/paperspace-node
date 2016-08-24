@@ -22,7 +22,7 @@
 <label for="nav-trigger" class="overlay"></label>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Namespaces</h3><ul><li><a href="accounts.html">accounts</a></li><li><a href="auth.html">auth</a><ul class='methods'><li data-type='method'><a href="auth.html#.signin">signin</a></li></ul></li><li><a href="invoices.html">invoices</a></li><li><a href="machines.html">machines</a><ul class='methods'><li data-type='method'><a href="machines.html#.autoshutdown">autoshutdown</a></li><li data-type='method'><a href="machines.html#.create">create</a></li></ul></li><li><a href="snapshots.html">snapshots</a></li><li><a href="teams.html">teams</a></li><li><a href="templates.html">templates</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Namespaces</h3><ul><li><a href="accounts.html">accounts</a><ul class='methods'><li data-type='method'><a href="accounts.html#.create">create</a></li><li data-type='method'><a href="accounts.html#.destroy">destroy</a></li><li data-type='method'><a href="accounts.html#.show">show</a></li><li data-type='method'><a href="accounts.html#.update">update</a></li></ul></li><li><a href="auth.html">auth</a><ul class='methods'><li data-type='method'><a href="auth.html#.signin">signin</a></li></ul></li><li><a href="invoices.html">invoices</a><ul class='methods'><li data-type='method'><a href="invoices.html#.list">list</a></li><li data-type='method'><a href="invoices.html#.show">show</a></li></ul></li><li><a href="machines.html">machines</a><ul class='methods'><li data-type='method'><a href="machines.html#.autoshutdown">autoshutdown</a></li><li data-type='method'><a href="machines.html#.create">create</a></li><li data-type='method'><a href="machines.html#.destroy">destroy</a></li><li data-type='method'><a href="machines.html#.modify">modify</a></li><li data-type='method'><a href="machines.html#.shutdown">shutdown</a></li><li data-type='method'><a href="machines.html#.start">start</a></li><li data-type='method'><a href="machines.html#.stop">stop</a></li><li data-type='method'><a href="machines.html#.update">update</a></li><li data-type='method'><a href="machines.html#.waitfor">waitfor</a></li></ul></li><li><a href="snapshots.html">snapshots</a><ul class='methods'><li data-type='method'><a href="snapshots.html#.create">create</a></li><li data-type='method'><a href="snapshots.html#.destroy">destroy</a></li><li data-type='method'><a href="snapshots.html#.list">list</a></li><li data-type='method'><a href="snapshots.html#.show">show</a></li></ul></li><li><a href="teams.html">teams</a><ul class='methods'><li data-type='method'><a href="teams.html#.addmember">addmember</a></li><li data-type='method'><a href="teams.html#.removemember">removemember</a></li><li data-type='method'><a href="teams.html#.show">show</a></li></ul></li><li><a href="templates.html">templates</a><ul class='methods'><li data-type='method'><a href="templates.html#.create">create</a></li><li data-type='method'><a href="templates.html#.destroy">destroy</a></li><li data-type='method'><a href="templates.html#.list">list</a></li><li data-type='method'><a href="templates.html#.show">show</a></li></ul></li></ul>
 </nav>
 
 <div id="main">
@@ -49,7 +49,8 @@ var assign = require('lodash.assign');
  * you will be assigned as the owner of the machine. If you are a team administrator, you must
  * specify who the machine should belong to, either by their user id, or their email address.
  * If you pass a full set of user parameters, we will create a user within your team and assign
- * them the machine.
+ * them the machine. This action can only be performed by the account owner. (Team members cannot
+ * create machines themselves; only the team administrator may do so.)
  * @param {object} params - Machine creation parameters
  * @param {string} params.location - Name of the datacenter (nyc01/ca2)
  * @param {string} params.machineType - Machine preset type (Air/Basic/Pro)
@@ -67,6 +68,7 @@ var assign = require('lodash.assign');
  * @param {string} [params.adUsername] - If creating a new Active Directory user, specify their username
  * @param {string} [params.notificationEmail] - Send a notification to this email address when complete
  * @param {function} cb - Node-style error-first callback function
+ * @returns {objectt} machine - The created machine JSON object
  * @example
  * paperspace.machines.create({
  *   location: 'nyc01',
@@ -74,13 +76,40 @@ var assign = require('lodash.assign');
  *   size: '50GB',
  *   billingType: 'hourly',
  *   machineName: 'My Machine 1',
+ *   templateId: 123, // optional - only if creating from a template
+ *   templateModel: 'template', // optional - only if creating from a template
+ *   teamId: 456, // optional - if creating for an existing team member
+ *   userId: 123, // optional - if creating for an existing team member
+ *   email: 'example@example.com', // optional - if creating a new user
+ *   password: 'secret123', // optional - if creating a new user
+ *   firstName: 'Jon', // optional - if creating a new user
+ *   lastName: 'Snow', // optional - if creating a new user
+ *   adUsername: 'jonsnow1', // optional - if creating a new user for an Active Directory team
+ *   notificationEmail: 'example@example.com', // optional - to send a notification here when ready
  * }, function(err, resp) {
  *   // handle error or http response
  * });
  * @example
- * $ paperspace machines create --location "nyc01" \
- *    --machineType "Air" --size "50GB" --billingType "hourly" \
- *    --machineName "My Machine 1"
+ * $ paperspace machines create \
+ *     --location "nyc01" \
+ *     --machineType "Air" \
+ *     --size "50GB" \
+ *     --billingType "hourly" \
+ *     --machineName "My Machine 1" \
+ *     --templateId 123 \
+ *     --templateModel "template" \
+ *     --teamId 456 \
+ *     --userId 123 \
+ *     --email "example@example.com" \
+ *     --password "secret123" \
+ *     --firstName "Jon" \
+ *     --lastName "Snow" \
+ *     --adUsername "jonsnow1" \
+ *     --notificationEmail "example@example.com"
+ * @example
+ * # HTTP request:
+ * POST /machines/createMachinePublic {"location": "nyc01", "machineType": "Air", "size": "50GB", "billingType": "monthly", "machineName": "Jon Snow 1", "templateId": 123, "templateModel": "template", "teamId": 456, "userId": 123, "email": "example@example.com", "password": "secret123", "firstName": "Jon", "lastName": "Snow", "adUsername": "jonsnow1", "notificationEmail": "example@example.com"}
+ * # Returns 201 on success
  */
 
 function create(params, cb) {
@@ -88,7 +117,6 @@ function create(params, cb) {
 }
 
 assign(create, {
-  auth: false,
   group: 'machines',
   name: 'create',
   method: 'post',
@@ -116,7 +144,7 @@ module.exports = create;
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Thu Aug 11 2016 11:19:39 GMT-0400 (EDT) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Wed Aug 24 2016 11:49:54 GMT-0400 (EDT) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>

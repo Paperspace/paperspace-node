@@ -22,7 +22,7 @@
 <label for="nav-trigger" class="overlay"></label>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Namespaces</h3><ul><li><a href="accounts.html">accounts</a></li><li><a href="auth.html">auth</a><ul class='methods'><li data-type='method'><a href="auth.html#.signin">signin</a></li></ul></li><li><a href="invoices.html">invoices</a></li><li><a href="machines.html">machines</a><ul class='methods'><li data-type='method'><a href="machines.html#.autoshutdown">autoshutdown</a></li><li data-type='method'><a href="machines.html#.create">create</a></li></ul></li><li><a href="snapshots.html">snapshots</a></li><li><a href="teams.html">teams</a></li><li><a href="templates.html">templates</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Namespaces</h3><ul><li><a href="accounts.html">accounts</a><ul class='methods'><li data-type='method'><a href="accounts.html#.create">create</a></li><li data-type='method'><a href="accounts.html#.destroy">destroy</a></li><li data-type='method'><a href="accounts.html#.show">show</a></li><li data-type='method'><a href="accounts.html#.update">update</a></li></ul></li><li><a href="auth.html">auth</a><ul class='methods'><li data-type='method'><a href="auth.html#.signin">signin</a></li></ul></li><li><a href="invoices.html">invoices</a><ul class='methods'><li data-type='method'><a href="invoices.html#.list">list</a></li><li data-type='method'><a href="invoices.html#.show">show</a></li></ul></li><li><a href="machines.html">machines</a><ul class='methods'><li data-type='method'><a href="machines.html#.autoshutdown">autoshutdown</a></li><li data-type='method'><a href="machines.html#.create">create</a></li><li data-type='method'><a href="machines.html#.destroy">destroy</a></li><li data-type='method'><a href="machines.html#.modify">modify</a></li><li data-type='method'><a href="machines.html#.shutdown">shutdown</a></li><li data-type='method'><a href="machines.html#.start">start</a></li><li data-type='method'><a href="machines.html#.stop">stop</a></li><li data-type='method'><a href="machines.html#.update">update</a></li><li data-type='method'><a href="machines.html#.waitfor">waitfor</a></li></ul></li><li><a href="snapshots.html">snapshots</a><ul class='methods'><li data-type='method'><a href="snapshots.html#.create">create</a></li><li data-type='method'><a href="snapshots.html#.destroy">destroy</a></li><li data-type='method'><a href="snapshots.html#.list">list</a></li><li data-type='method'><a href="snapshots.html#.show">show</a></li></ul></li><li><a href="teams.html">teams</a><ul class='methods'><li data-type='method'><a href="teams.html#.addmember">addmember</a></li><li data-type='method'><a href="teams.html#.removemember">removemember</a></li><li data-type='method'><a href="teams.html#.show">show</a></li></ul></li><li><a href="templates.html">templates</a><ul class='methods'><li data-type='method'><a href="templates.html#.create">create</a></li><li data-type='method'><a href="templates.html#.destroy">destroy</a></li><li data-type='method'><a href="templates.html#.list">list</a></li><li data-type='method'><a href="templates.html#.show">show</a></li></ul></li></ul>
 </nav>
 
 <div id="main">
@@ -172,7 +172,13 @@
 
 
 <div class="description">
-    <p>Configure a machine to shut down automatically after a given interval.</p>
+    <p>Configure a machine to shut down automatically after a given interval.
+The machine will automatically be shut down after this amount of time following the
+last time a machine was used. (If a machine is used before the end of the interval is
+reached, the interval will reset and start again at the end of the session.) The interval
+value must be supplied as one of the following strings: <code>&quot;1 week&quot;, &quot;1 day&quot;, &quot;1 hour&quot;</code>.
+Any other value passed will be ignored. (We plan to offer more options in the future.)
+This action can only be performed by the user who owns the machine.</p>
 </div>
 
 
@@ -187,12 +193,16 @@
     
     <pre class="prettyprint"><code>paperspace.machines.autoshutdown({
   machineId: 123,
-  interval: '1 week'
+  interval: '1 week' // You must pass a valid interval string
 }, function(err, resp) {
   // handle error or http response
 });</code></pre>
 
     <pre class="prettyprint"><code>$ paperspace machines autoshutdown --machineId 123 --interval "1 week"</code></pre>
+
+    <pre class="prettyprint"><code># HTTP request:
+POST /machines/123/autoshutdown {"interval": "1 week"}
+# Returns 204 on success</code></pre>
 
 
 
@@ -361,7 +371,7 @@ e.g. '1 week', '1 day', '1 hour'</p></td>
 
     
 
-    <h4 class="name" id=".create"><span class="type-signature">(static) </span>create<span class="signature">(params, cb)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id=".create"><span class="type-signature">(static) </span>create<span class="signature">(params, cb)</span><span class="type-signature"> &rarr; {objectt}</span></h4>
 
     
 
@@ -417,7 +427,8 @@ e.g. '1 week', '1 day', '1 hour'</p></td>
 you will be assigned as the owner of the machine. If you are a team administrator, you must
 specify who the machine should belong to, either by their user id, or their email address.
 If you pass a full set of user parameters, we will create a user within your team and assign
-them the machine.</p>
+them the machine. This action can only be performed by the account owner. (Team members cannot
+create machines themselves; only the team administrator may do so.)</p>
 </div>
 
 
@@ -436,13 +447,40 @@ them the machine.</p>
   size: '50GB',
   billingType: 'hourly',
   machineName: 'My Machine 1',
+  templateId: 123, // optional - only if creating from a template
+  templateModel: 'template', // optional - only if creating from a template
+  teamId: 456, // optional - if creating for an existing team member
+  userId: 123, // optional - if creating for an existing team member
+  email: 'example@example.com', // optional - if creating a new user
+  password: 'secret123', // optional - if creating a new user
+  firstName: 'Jon', // optional - if creating a new user
+  lastName: 'Snow', // optional - if creating a new user
+  adUsername: 'jonsnow1', // optional - if creating a new user for an Active Directory team
+  notificationEmail: 'example@example.com', // optional - to send a notification here when ready
 }, function(err, resp) {
   // handle error or http response
 });</code></pre>
 
-    <pre class="prettyprint"><code>$ paperspace machines create --location "nyc01" \
-   --machineType "Air" --size "50GB" --billingType "hourly" \
-   --machineName "My Machine 1"</code></pre>
+    <pre class="prettyprint"><code>$ paperspace machines create \
+    --location "nyc01" \
+    --machineType "Air" \
+    --size "50GB" \
+    --billingType "hourly" \
+    --machineName "My Machine 1" \
+    --templateId 123 \
+    --templateModel "template" \
+    --teamId 456 \
+    --userId 123 \
+    --email "example@example.com" \
+    --password "secret123" \
+    --firstName "Jon" \
+    --lastName "Snow" \
+    --adUsername "jonsnow1" \
+    --notificationEmail "example@example.com"</code></pre>
+
+    <pre class="prettyprint"><code># HTTP request:
+POST /machines/createMachinePublic {"location": "nyc01", "machineType": "Air", "size": "50GB", "billingType": "monthly", "machineName": "Jon Snow 1", "templateId": 123, "templateModel": "template", "teamId": 456, "userId": 123, "email": "example@example.com", "password": "secret123", "firstName": "Jon", "lastName": "Snow", "adUsername": "jonsnow1", "notificationEmail": "example@example.com"}
+# Returns 201 on success</code></pre>
 
 
 
@@ -1044,6 +1082,1757 @@ them the machine.</p>
 
 
 
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>machine - The created machine JSON object</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">objectt</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".destroy"><span class="type-signature">(static) </span>destroy<span class="signature">(params, cb)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="machines_destroy.js.html">machines/destroy.js</a>, <a href="machines_destroy.js.html#line6">line 6</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Destroy the machine with the given id. When this action is performed,
+the machine is immediately shut down and marked for deletion from the datacenter.
+Any snapshots that were derived from the machine are also deleted. Access to the machine
+is terminated immediately and billing for the machine is prorated to the hour.
+This action can only be performed by the user who owns the machine, or in the case of
+a team, the team administrator.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Examples</h5>
+    
+    <pre class="prettyprint"><code>paperspace.machines.destroy({
+  machineId: 123,
+}, function(err, resp) {
+  // handle error or http response
+});</code></pre>
+
+    <pre class="prettyprint"><code>$ paperspace machines destroy --machineId 123</code></pre>
+
+    <pre class="prettyprint"><code># HTTP request:
+DELETE /machines/123
+# Returns 200 on success</code></pre>
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>params</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Machine destroy parameters</p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>machineId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The id of the machine to destroy</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>cb</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Node-style error-first callback function</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".modify"><span class="type-signature">(static) </span>modify<span class="signature">(params, cb)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="machines_modify.js.html">machines/modify.js</a>, <a href="machines_modify.js.html#line6">line 6</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Modify a machine's working specifications, including its machine type
+(Air, Basic, Pro), billing type (monthly, hourly), and storage size (50GB, 100GB...).
+In order to perform a modification, the machine will be immediately shut down when
+this action occurs. Billing changes will be prorated to the hour. You can change
+the machine type and billing type at any time, but the storage size may only be
+increased (storage decreases are not possible).
+This action can only be performed by the user who owns the machine.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Examples</h5>
+    
+    <pre class="prettyprint"><code>paperspace.machines.modify({
+  machineId: 123,
+  machineType: 'Air',
+  billingType: 'monthly',
+  size: '50GB',
+}, function(err, resp) {
+  // handle error or http response
+});</code></pre>
+
+    <pre class="prettyprint"><code>$ paperspace machines modify \
+    --machineId 123 \
+    --machineType "Air" \
+    --billingType "monthly" \
+    --size "50GB"</code></pre>
+
+    <pre class="prettyprint"><code># HTTP request:
+POST /machines/123/upgradeMachine {"machineType": "Air", "billingType": "monthly", "size": "50GB"}
+# Returns 200 on success</code></pre>
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>params</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Machine modification object</p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>machineId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The id of the machine</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>machineType</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The type of machine (Air, Basic, Pro)</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>billingType</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Either 'monthly' or 'hourly'</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>size</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Size value string, formatted as &quot;50GB&quot;</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>cb</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Node-style error-first callback function</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".shutdown"><span class="type-signature">(static) </span>shutdown<span class="signature">(params, cb)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="machines_shutdown.js.html">machines/shutdown.js</a>, <a href="machines_shutdown.js.html#line6">line 6</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Shut down an individual machine. This action immediately requests
+that the datacenter shut down the machine. Anyone accessing the machine will be
+kicked out of the machine immediately. A machine in the shut down state is considered
+&quot;off&quot; and will need to be booted up again before it can be used.
+This action can only be performed by the user who owns the machine.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Examples</h5>
+    
+    <pre class="prettyprint"><code>paperspace.machines.shutdown({
+  machineId: 123,
+}, function(err, resp) {
+  // handle error or http response
+});</code></pre>
+
+    <pre class="prettyprint"><code>$ paperspace machines shutdown --machineId 123</code></pre>
+
+    <pre class="prettyprint"><code># HTTP request:
+POST /machines/123/shutdown
+# Returns 200 on success</code></pre>
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>params</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Machine shutdown parameters</p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>machineId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Id of the machine to shut down</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>cb</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Node-style error-first callback function</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".start"><span class="type-signature">(static) </span>start<span class="signature">(params, cb)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="machines_start.js.html">machines/start.js</a>, <a href="machines_start.js.html#line6">line 6</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Start up an individual machine. If the machine is already started,
+this action is a no-op. If the machine is off, it will be booted up. If the machine
+is stopped, it will be started.
+This action can only be performed by the user who owns the machine.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Examples</h5>
+    
+    <pre class="prettyprint"><code>paperspace.machines.start({
+  machineId: 123,
+}, function(err, resp) {
+  // handle error or http response
+});</code></pre>
+
+    <pre class="prettyprint"><code>$ paperspace machines start --machineId 123</code></pre>
+
+    <pre class="prettyprint"><code># HTTP request:
+POST /machines/123/start
+# Returns 200 on success</code></pre>
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>params</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Machine start parameters</p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>machineId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Id of the machine to shut down</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>cb</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Node-style error-first callback function</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".stop"><span class="type-signature">(static) </span>stop<span class="signature">(params, cb)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="machines_stop.js.html">machines/stop.js</a>, <a href="machines_stop.js.html#line6">line 6</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Stop an individual machine. If the machine is already stopped
+or has been shut down, this action is a no-op. If the machine is running, it
+will be stopped and any users logged in will be immediately kicked out.
+This action can only be performed by the user who owns the machine.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Examples</h5>
+    
+    <pre class="prettyprint"><code>paperspace.machines.stop({
+  machineId: 123,
+}, function(err, resp) {
+  // handle error or http response
+});</code></pre>
+
+    <pre class="prettyprint"><code>$ paperspace machines stop --machineId 123</code></pre>
+
+    <pre class="prettyprint"><code># HTTP request:
+POST /machines/123/stop
+# Returns 200 on success</code></pre>
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>params</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Machine stop parameters</p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>machineId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Id of the machine to shut down</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>cb</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Node-style error-first callback function</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".update"><span class="type-signature">(static) </span>update<span class="signature">(params, cb)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="machines_update.js.html">machines/update.js</a>, <a href="machines_update.js.html#line6">line 6</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Edit the attributes of a machine. For now, it is only possible
+to change the name (label) of a machine. If you want to up/downgrade a machine,
+please see the 'modify' action instead.
+This action can only be performed by the user who owns the machine.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Examples</h5>
+    
+    <pre class="prettyprint"><code>paperspace.machines.update({
+  machineId:  123,
+  name: "Bob's Machine",
+}, function(err, resp) {
+  // handle error or http response
+});</code></pre>
+
+    <pre class="prettyprint"><code>$ paperspace machines update \
+    --machineId 123 \
+    --name "Bob's Machine"
+# HTTP request:
+POST /machines/123/update {"name": "Bob's Machine"}
+# Returns 200 on success</code></pre>
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>params</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Machine update parameters</p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>machineId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Id of the machine to update</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>name</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Name to change the machine to</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>cb</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Node-style error-first callback function</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".waitfor"><span class="type-signature">(static) </span>waitfor<span class="signature">(params, cb)</span><span class="type-signature"> &rarr; {objectt}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="machines_waitfor.js.html">machines/waitfor.js</a>, <a href="machines_waitfor.js.html#line8">line 8</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Wait for the machine with the given id to enter a certain machine
+state. This action polls the server and returns only when we detect that the machine
+has transitioned into the given state. States available are:</p>
+<ul>
+<li>Off</li>
+<li>OffWithUpdatesPending</li>
+<li>StartingUp</li>
+<li>StartingUpAndInstallingUpdates</li>
+<li>ShuttingDown</li>
+<li>ShuttingDownAndInstallingUpdates</li>
+<li>Restarting</li>
+<li>RestartingAndInstallingUpdates</li>
+<li>ServiceReady</li>
+<li>AgentReady - The machine has fully started and is available for use</li>
+<li>Upgrading - The machine is undergoing an upgrade</li>
+<li>Destroyed - The machine is destroyed (no longer available)
+When the callback is called, the returned object will be information about the machine.</li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Examples</h5>
+    
+    <pre class="prettyprint"><code>paperspace.machines.waitfor({
+  machineId:  123,
+  state: "Off",
+}, function(err, resp) {
+  // handle error or http response
+});</code></pre>
+
+    <pre class="prettyprint"><code>$ paperspace machines waitfor \
+    --machineId 123 \
+    --state "Off"</code></pre>
+
+    <pre class="prettyprint"><code># HTTP request:
+# This method is only available using the API client</code></pre>
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>params</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Machine waitfor parameters</p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>machineId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Id of the machine to wait for</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>state</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Name of the state to wait for</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>cb</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Node-style error-first callback function</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>machine - The machine JSON object</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">objectt</span>
+
+
+    </dd>
+</dl>
+
+    
 
 
         
@@ -1064,7 +2853,7 @@ them the machine.</p>
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Thu Aug 11 2016 11:19:39 GMT-0400 (EDT) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Wed Aug 24 2016 11:49:54 GMT-0400 (EDT) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>

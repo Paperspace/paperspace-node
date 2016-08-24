@@ -22,7 +22,7 @@
 <label for="nav-trigger" class="overlay"></label>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Namespaces</h3><ul><li><a href="accounts.html">accounts</a><ul class='methods'><li data-type='method'><a href="accounts.html#.create">create</a></li></ul></li></ul><h3><a href="global.html">Global</a></h3>
+    <h2><a href="index.html">Home</a></h2><h3>Namespaces</h3><ul><li><a href="accounts.html">accounts</a><ul class='methods'><li data-type='method'><a href="accounts.html#.create">create</a></li><li data-type='method'><a href="accounts.html#.destroy">destroy</a></li><li data-type='method'><a href="accounts.html#.show">show</a></li><li data-type='method'><a href="accounts.html#.update">update</a></li></ul></li><li><a href="auth.html">auth</a><ul class='methods'><li data-type='method'><a href="auth.html#.signin">signin</a></li></ul></li><li><a href="invoices.html">invoices</a><ul class='methods'><li data-type='method'><a href="invoices.html#.list">list</a></li><li data-type='method'><a href="invoices.html#.show">show</a></li></ul></li><li><a href="machines.html">machines</a><ul class='methods'><li data-type='method'><a href="machines.html#.autoshutdown">autoshutdown</a></li><li data-type='method'><a href="machines.html#.create">create</a></li><li data-type='method'><a href="machines.html#.destroy">destroy</a></li><li data-type='method'><a href="machines.html#.modify">modify</a></li><li data-type='method'><a href="machines.html#.shutdown">shutdown</a></li><li data-type='method'><a href="machines.html#.start">start</a></li><li data-type='method'><a href="machines.html#.stop">stop</a></li><li data-type='method'><a href="machines.html#.update">update</a></li><li data-type='method'><a href="machines.html#.waitfor">waitfor</a></li></ul></li><li><a href="snapshots.html">snapshots</a><ul class='methods'><li data-type='method'><a href="snapshots.html#.create">create</a></li><li data-type='method'><a href="snapshots.html#.destroy">destroy</a></li><li data-type='method'><a href="snapshots.html#.list">list</a></li><li data-type='method'><a href="snapshots.html#.show">show</a></li></ul></li><li><a href="teams.html">teams</a><ul class='methods'><li data-type='method'><a href="teams.html#.addmember">addmember</a></li><li data-type='method'><a href="teams.html#.removemember">removemember</a></li><li data-type='method'><a href="teams.html#.show">show</a></li></ul></li><li><a href="templates.html">templates</a><ul class='methods'><li data-type='method'><a href="templates.html#.create">create</a></li><li data-type='method'><a href="templates.html#.destroy">destroy</a></li><li data-type='method'><a href="templates.html#.list">list</a></li><li data-type='method'><a href="templates.html#.show">show</a></li></ul></li></ul>
 </nav>
 
 <div id="main">
@@ -39,27 +39,58 @@
         <article>
             <pre class="prettyprint source linenums"><code>'use strict';
 
+var method = require('./../method');
+var assign = require('lodash.assign');
+
 /**
  * @memberof accounts
  * @method create
- * @description Create a new Paperspace user account.
- * @param {String} email - Email address for the account
- * @param {String} password - Password for the account
- * @param {callback} callback - Node-style error-first callback
+ * @description Create a new user account with the given credentials. If a team id is
+ * passed, the user will be assigned as a member to the given team. Note that only the
+ * adminstrator of the team is allowed to assign a team member, so if your API credentials
+ * do not have admnistrator privileges, this action will fail.
+ * @param {object} params - User creation parameters
+ * @param {string} params.email - Email address for the user's Paperspace account
+ * @param {string} params.password - Password for the user's Paperspace account
+ * @param {number} [params.teamId] - If creating a team member, include the id of the team
+ * @param {function} cb - Node-style error-first callback function
+ * @returns {object} user - User information JSON object
+ * @example
+ * paperspace.accounts.create({
+ *   email: 'example@example.com',
+ *   password: 'secret123',
+ *   teamId: 1234, // optional
+ * }, function(err, resp) {
+ *   // handle error or http response
+ * });
+ * @example
+ * $ paperspace accounts create \
+ *     --email "example@example.com" \
+ *     --password "secret123" \
+ *     --teamId 1234
+ * @example
+ * # HTTP request:
+ * POST /users {"email": "example@example.com", "password": "secret123", "teamId": 1234}
+ * # Returns 201 on success
  */
 
-module.exports = {
+function create(params, cb) {
+  return method(create, params, cb);
+}
+
+assign(create, {
   group: 'accounts',
   name: 'create',
   method: 'post',
-  route: '/accounts/signup',
-  accepts: {},
+  route: '/users',
+  requires: {
+    email: 'string',
+    password: 'string',
+  },
   returns: {},
-  impl: {
-    js: 'auto',
-    cli: 'auto'
-  }
-};
+})
+
+module.exports = create;
 </code></pre>
         </article>
     </section>
@@ -72,7 +103,7 @@ module.exports = {
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Wed Aug 10 2016 15:07:45 GMT-0400 (EDT) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Wed Aug 24 2016 11:49:54 GMT-0400 (EDT) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>

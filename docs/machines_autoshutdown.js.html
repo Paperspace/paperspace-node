@@ -22,7 +22,7 @@
 <label for="nav-trigger" class="overlay"></label>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Namespaces</h3><ul><li><a href="accounts.html">accounts</a></li><li><a href="auth.html">auth</a><ul class='methods'><li data-type='method'><a href="auth.html#.signin">signin</a></li></ul></li><li><a href="invoices.html">invoices</a></li><li><a href="machines.html">machines</a><ul class='methods'><li data-type='method'><a href="machines.html#.autoshutdown">autoshutdown</a></li><li data-type='method'><a href="machines.html#.create">create</a></li></ul></li><li><a href="snapshots.html">snapshots</a></li><li><a href="teams.html">teams</a></li><li><a href="templates.html">templates</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Namespaces</h3><ul><li><a href="accounts.html">accounts</a><ul class='methods'><li data-type='method'><a href="accounts.html#.create">create</a></li><li data-type='method'><a href="accounts.html#.destroy">destroy</a></li><li data-type='method'><a href="accounts.html#.show">show</a></li><li data-type='method'><a href="accounts.html#.update">update</a></li></ul></li><li><a href="auth.html">auth</a><ul class='methods'><li data-type='method'><a href="auth.html#.signin">signin</a></li></ul></li><li><a href="invoices.html">invoices</a><ul class='methods'><li data-type='method'><a href="invoices.html#.list">list</a></li><li data-type='method'><a href="invoices.html#.show">show</a></li></ul></li><li><a href="machines.html">machines</a><ul class='methods'><li data-type='method'><a href="machines.html#.autoshutdown">autoshutdown</a></li><li data-type='method'><a href="machines.html#.create">create</a></li><li data-type='method'><a href="machines.html#.destroy">destroy</a></li><li data-type='method'><a href="machines.html#.modify">modify</a></li><li data-type='method'><a href="machines.html#.shutdown">shutdown</a></li><li data-type='method'><a href="machines.html#.start">start</a></li><li data-type='method'><a href="machines.html#.stop">stop</a></li><li data-type='method'><a href="machines.html#.update">update</a></li><li data-type='method'><a href="machines.html#.waitfor">waitfor</a></li></ul></li><li><a href="snapshots.html">snapshots</a><ul class='methods'><li data-type='method'><a href="snapshots.html#.create">create</a></li><li data-type='method'><a href="snapshots.html#.destroy">destroy</a></li><li data-type='method'><a href="snapshots.html#.list">list</a></li><li data-type='method'><a href="snapshots.html#.show">show</a></li></ul></li><li><a href="teams.html">teams</a><ul class='methods'><li data-type='method'><a href="teams.html#.addmember">addmember</a></li><li data-type='method'><a href="teams.html#.removemember">removemember</a></li><li data-type='method'><a href="teams.html#.show">show</a></li></ul></li><li><a href="templates.html">templates</a><ul class='methods'><li data-type='method'><a href="templates.html#.create">create</a></li><li data-type='method'><a href="templates.html#.destroy">destroy</a></li><li data-type='method'><a href="templates.html#.list">list</a></li><li data-type='method'><a href="templates.html#.show">show</a></li></ul></li></ul>
 </nav>
 
 <div id="main">
@@ -46,6 +46,12 @@ var assign = require('lodash.assign');
  * @memberof machines
  * @method autoshutdown
  * @description Configure a machine to shut down automatically after a given interval.
+ * The machine will automatically be shut down after this amount of time following the
+ * last time a machine was used. (If a machine is used before the end of the interval is
+ * reached, the interval will reset and start again at the end of the session.) The interval
+ * value must be supplied as one of the following strings: `"1 week", "1 day", "1 hour"`.
+ * Any other value passed will be ignored. (We plan to offer more options in the future.)
+ * This action can only be performed by the user who owns the machine.
  * @param {object} params - Autoshutdown parameters
  * @param {number} params.machineId - Id of the machine on which to configure autoshutdown
  * @param {string} params.interval - Preset interval of time to shut down the machine,
@@ -54,12 +60,16 @@ var assign = require('lodash.assign');
  * @example
  * paperspace.machines.autoshutdown({
  *   machineId: 123,
- *   interval: '1 week'
+ *   interval: '1 week' // You must pass a valid interval string
  * }, function(err, resp) {
  *   // handle error or http response
  * });
  * @example
  * $ paperspace machines autoshutdown --machineId 123 --interval "1 week"
+ * @example
+ * # HTTP request:
+ * POST /machines/123/autoshutdown {"interval": "1 week"}
+ * # Returns 204 on success
  */
 
 function autoshutdown(params, cb) {
@@ -67,8 +77,7 @@ function autoshutdown(params, cb) {
 }
 
 assign(autoshutdown, {
-  auth: false,
-  group: 'auth',
+  group: 'machines',
   name: 'autoshutdown',
   method: 'post',
   route: '/machines/:machineId/autoshutdown',
@@ -92,7 +101,7 @@ module.exports = autoshutdown;
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Thu Aug 11 2016 11:19:39 GMT-0400 (EDT) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Wed Aug 24 2016 11:49:54 GMT-0400 (EDT) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>
