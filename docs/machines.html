@@ -22,7 +22,7 @@
 <label for="nav-trigger" class="overlay"></label>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Namespaces</h3><ul><li><a href="accounts.html">accounts</a><ul class='methods'><li data-type='method'><a href="accounts.html#.create">create</a></li><li data-type='method'><a href="accounts.html#.destroy">destroy</a></li><li data-type='method'><a href="accounts.html#.show">show</a></li><li data-type='method'><a href="accounts.html#.update">update</a></li></ul></li><li><a href="auth.html">auth</a><ul class='methods'><li data-type='method'><a href="auth.html#.signin">signin</a></li></ul></li><li><a href="invoices.html">invoices</a><ul class='methods'><li data-type='method'><a href="invoices.html#.list">list</a></li><li data-type='method'><a href="invoices.html#.show">show</a></li></ul></li><li><a href="machines.html">machines</a><ul class='methods'><li data-type='method'><a href="machines.html#.autoshutdown">autoshutdown</a></li><li data-type='method'><a href="machines.html#.create">create</a></li><li data-type='method'><a href="machines.html#.destroy">destroy</a></li><li data-type='method'><a href="machines.html#.modify">modify</a></li><li data-type='method'><a href="machines.html#.shutdown">shutdown</a></li><li data-type='method'><a href="machines.html#.start">start</a></li><li data-type='method'><a href="machines.html#.stop">stop</a></li><li data-type='method'><a href="machines.html#.update">update</a></li><li data-type='method'><a href="machines.html#.waitfor">waitfor</a></li></ul></li><li><a href="snapshots.html">snapshots</a><ul class='methods'><li data-type='method'><a href="snapshots.html#.create">create</a></li><li data-type='method'><a href="snapshots.html#.destroy">destroy</a></li><li data-type='method'><a href="snapshots.html#.list">list</a></li><li data-type='method'><a href="snapshots.html#.show">show</a></li></ul></li><li><a href="teams.html">teams</a><ul class='methods'><li data-type='method'><a href="teams.html#.addmember">addmember</a></li><li data-type='method'><a href="teams.html#.removemember">removemember</a></li><li data-type='method'><a href="teams.html#.show">show</a></li></ul></li><li><a href="templates.html">templates</a><ul class='methods'><li data-type='method'><a href="templates.html#.create">create</a></li><li data-type='method'><a href="templates.html#.destroy">destroy</a></li><li data-type='method'><a href="templates.html#.list">list</a></li><li data-type='method'><a href="templates.html#.show">show</a></li></ul></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Namespaces</h3><ul><li><a href="accounts.html">accounts</a><ul class='methods'><li data-type='method'><a href="accounts.html#.create">create</a></li><li data-type='method'><a href="accounts.html#.destroy">destroy</a></li><li data-type='method'><a href="accounts.html#.show">show</a></li><li data-type='method'><a href="accounts.html#.update">update</a></li></ul></li><li><a href="auth.html">auth</a><ul class='methods'><li data-type='method'><a href="auth.html#.signin">signin</a></li></ul></li><li><a href="invoices.html">invoices</a><ul class='methods'><li data-type='method'><a href="invoices.html#.list">list</a></li><li data-type='method'><a href="invoices.html#.show">show</a></li></ul></li><li><a href="machines.html">machines</a><ul class='methods'><li data-type='method'><a href="machines.html#.autoshutdown">autoshutdown</a></li><li data-type='method'><a href="machines.html#.create">create</a></li><li data-type='method'><a href="machines.html#.destroy">destroy</a></li><li data-type='method'><a href="machines.html#.modify">modify</a></li><li data-type='method'><a href="machines.html#.show">show</a></li><li data-type='method'><a href="machines.html#.shutdown">shutdown</a></li><li data-type='method'><a href="machines.html#.start">start</a></li><li data-type='method'><a href="machines.html#.stop">stop</a></li><li data-type='method'><a href="machines.html#.update">update</a></li><li data-type='method'><a href="machines.html#.waitfor">waitfor</a></li></ul></li><li><a href="snapshots.html">snapshots</a><ul class='methods'><li data-type='method'><a href="snapshots.html#.create">create</a></li><li data-type='method'><a href="snapshots.html#.destroy">destroy</a></li><li data-type='method'><a href="snapshots.html#.list">list</a></li><li data-type='method'><a href="snapshots.html#.show">show</a></li></ul></li><li><a href="teams.html">teams</a><ul class='methods'><li data-type='method'><a href="teams.html#.addmember">addmember</a></li><li data-type='method'><a href="teams.html#.removemember">removemember</a></li><li data-type='method'><a href="teams.html#.show">show</a></li></ul></li><li><a href="templates.html">templates</a><ul class='methods'><li data-type='method'><a href="templates.html#.create">create</a></li><li data-type='method'><a href="templates.html#.destroy">destroy</a></li><li data-type='method'><a href="templates.html#.list">list</a></li><li data-type='method'><a href="templates.html#.show">show</a></li></ul></li></ul>
 </nav>
 
 <div id="main">
@@ -1638,6 +1638,248 @@ POST /machines/123/upgradeMachine {"machineType": "Air", "billingType": "monthly
 
     
 
+    <h4 class="name" id=".show"><span class="type-signature">(static) </span>show<span class="signature">(params, cb)</span><span class="type-signature"> &rarr; {objectt}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="machines_show.js.html">machines/show.js</a>, <a href="machines_show.js.html#line8">line 8</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Show machine information for the machine with the given id.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Examples</h5>
+    
+    <pre class="prettyprint"><code>paperspace.machines.show({
+  machineId:  123,
+}, function(err, resp) {
+  // handle error or http response
+});</code></pre>
+
+    <pre class="prettyprint"><code>$ paperspace machines show \
+    --machineId 123</code></pre>
+
+    <pre class="prettyprint"><code># HTTP request:
+# This method is only available using the API client</code></pre>
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>params</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Machine show parameters</p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>machineId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Id of the machine to wait for</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>cb</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Node-style error-first callback function</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>machine - The machine JSON object</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">objectt</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+        
+            
+
+    
+
     <h4 class="name" id=".shutdown"><span class="type-signature">(static) </span>shutdown<span class="signature">(params, cb)</span><span class="type-signature"></span></h4>
 
     
@@ -2853,7 +3095,7 @@ When the callback is called, the returned object will be information about the m
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Wed Aug 24 2016 11:49:54 GMT-0400 (EDT) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Wed Aug 24 2016 12:49:20 GMT-0400 (EDT) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>
