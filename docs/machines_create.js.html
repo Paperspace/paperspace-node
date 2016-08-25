@@ -22,7 +22,7 @@
 <label for="nav-trigger" class="overlay"></label>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Namespaces</h3><ul><li><a href="accounts.html">accounts</a><ul class='methods'><li data-type='method'><a href="accounts.html#.create">create</a></li><li data-type='method'><a href="accounts.html#.destroy">destroy</a></li><li data-type='method'><a href="accounts.html#.show">show</a></li><li data-type='method'><a href="accounts.html#.update">update</a></li></ul></li><li><a href="auth.html">auth</a><ul class='methods'><li data-type='method'><a href="auth.html#.signin">signin</a></li></ul></li><li><a href="invoices.html">invoices</a><ul class='methods'><li data-type='method'><a href="invoices.html#.list">list</a></li><li data-type='method'><a href="invoices.html#.show">show</a></li></ul></li><li><a href="machines.html">machines</a><ul class='methods'><li data-type='method'><a href="machines.html#.autoshutdown">autoshutdown</a></li><li data-type='method'><a href="machines.html#.create">create</a></li><li data-type='method'><a href="machines.html#.destroy">destroy</a></li><li data-type='method'><a href="machines.html#.modify">modify</a></li><li data-type='method'><a href="machines.html#.show">show</a></li><li data-type='method'><a href="machines.html#.shutdown">shutdown</a></li><li data-type='method'><a href="machines.html#.start">start</a></li><li data-type='method'><a href="machines.html#.stop">stop</a></li><li data-type='method'><a href="machines.html#.update">update</a></li><li data-type='method'><a href="machines.html#.waitfor">waitfor</a></li></ul></li><li><a href="snapshots.html">snapshots</a><ul class='methods'><li data-type='method'><a href="snapshots.html#.create">create</a></li><li data-type='method'><a href="snapshots.html#.destroy">destroy</a></li><li data-type='method'><a href="snapshots.html#.list">list</a></li><li data-type='method'><a href="snapshots.html#.show">show</a></li></ul></li><li><a href="teams.html">teams</a><ul class='methods'><li data-type='method'><a href="teams.html#.addmember">addmember</a></li><li data-type='method'><a href="teams.html#.removemember">removemember</a></li><li data-type='method'><a href="teams.html#.show">show</a></li></ul></li><li><a href="templates.html">templates</a><ul class='methods'><li data-type='method'><a href="templates.html#.create">create</a></li><li data-type='method'><a href="templates.html#.destroy">destroy</a></li><li data-type='method'><a href="templates.html#.list">list</a></li><li data-type='method'><a href="templates.html#.show">show</a></li></ul></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Namespaces</h3><ul><li><a href="accounts.html">accounts</a><ul class='methods'><li data-type='method'><a href="accounts.html#.destroy">destroy</a></li><li data-type='method'><a href="accounts.html#.show">show</a></li><li data-type='method'><a href="accounts.html#.update">update</a></li></ul></li><li><a href="auth.html">auth</a><ul class='methods'><li data-type='method'><a href="auth.html#.signin">signin</a></li></ul></li><li><a href="invoices.html">invoices</a><ul class='methods'><li data-type='method'><a href="invoices.html#.list">list</a></li><li data-type='method'><a href="invoices.html#.show">show</a></li></ul></li><li><a href="machines.html">machines</a><ul class='methods'><li data-type='method'><a href="machines.html#.autoshutdown">autoshutdown</a></li><li data-type='method'><a href="machines.html#.create">create</a></li><li data-type='method'><a href="machines.html#.destroy">destroy</a></li><li data-type='method'><a href="machines.html#.modify">modify</a></li><li data-type='method'><a href="machines.html#.restart">restart</a></li><li data-type='method'><a href="machines.html#.show">show</a></li><li data-type='method'><a href="machines.html#.start">start</a></li><li data-type='method'><a href="machines.html#.stop">stop</a></li><li data-type='method'><a href="machines.html#.update">update</a></li><li data-type='method'><a href="machines.html#.waitfor">waitfor</a></li></ul></li><li><a href="snapshots.html">snapshots</a><ul class='methods'><li data-type='method'><a href="snapshots.html#.create">create</a></li><li data-type='method'><a href="snapshots.html#.destroy">destroy</a></li><li data-type='method'><a href="snapshots.html#.list">list</a></li></ul></li><li><a href="teams.html">teams</a><ul class='methods'><li data-type='method'><a href="teams.html#.removemember">removemember</a></li><li data-type='method'><a href="teams.html#.show">show</a></li></ul></li><li><a href="templates.html">templates</a><ul class='methods'><li data-type='method'><a href="templates.html#.create">create</a></li><li data-type='method'><a href="templates.html#.destroy">destroy</a></li><li data-type='method'><a href="templates.html#.list">list</a></li></ul></li></ul>
 </nav>
 
 <div id="main">
@@ -54,7 +54,7 @@ var assign = require('lodash.assign');
  * @param {object} params - Machine creation parameters
  * @param {string} params.location - Name of the datacenter (nyc01/ca2)
  * @param {string} params.machineType - Machine preset type (Air/Basic/Pro)
- * @param {string} params.size - Storage size for the machine (50GB/100GB...)
+ * @param {number} params.size - Storage size for the machine in GB
  * @param {string} params.billingType - Either 'monthly' or 'hourly'billing
  * @param {string} params.machineName - A memorable name for this machine
  * @param {number} [params.templateId] - If creating from a template, specify its id
@@ -73,13 +73,13 @@ var assign = require('lodash.assign');
  * paperspace.machines.create({
  *   location: 'nyc01',
  *   machineType: 'Air',
- *   size: '50GB',
+ *   size: 50,
  *   billingType: 'hourly',
  *   machineName: 'My Machine 1',
  *   templateId: 123, // optional - only if creating from a template
  *   templateModel: 'template', // optional - only if creating from a template
- *   teamId: 456, // optional - if creating for an existing team member
- *   userId: 123, // optional - if creating for an existing team member
+ *   teamId: 456, // optional - required if creating for an team member
+ *   userId: 123, // optional - required if creating for an user
  *   email: 'example@example.com', // optional - if creating a new user
  *   password: 'secret123', // optional - if creating a new user
  *   firstName: 'Jon', // optional - if creating a new user
@@ -93,7 +93,7 @@ var assign = require('lodash.assign');
  * $ paperspace machines create \
  *     --location "nyc01" \
  *     --machineType "Air" \
- *     --size "50GB" \
+ *     --size 50 \
  *     --billingType "hourly" \
  *     --machineName "My Machine 1" \
  *     --templateId 123 \
@@ -108,7 +108,7 @@ var assign = require('lodash.assign');
  *     --notificationEmail "example@example.com"
  * @example
  * # HTTP request:
- * POST /machines/createMachinePublic {"location": "nyc01", "machineType": "Air", "size": "50GB", "billingType": "monthly", "machineName": "Jon Snow 1", "templateId": 123, "templateModel": "template", "teamId": 456, "userId": 123, "email": "example@example.com", "password": "secret123", "firstName": "Jon", "lastName": "Snow", "adUsername": "jonsnow1", "notificationEmail": "example@example.com"}
+ * POST /machines/createMachinePublic {"location": "nyc01", "machineType": "Air", "size": 50, "billingType": "monthly", "machineName": "Jon Snow 1", "templateId": 123, "templateModel": "template", "teamId": 456, "userId": 123, "email": "example@example.com", "password": "secret123", "firstName": "Jon", "lastName": "Snow", "adUsername": "jonsnow1", "notificationEmail": "example@example.com"}
  * # Returns 201 on success
  */
 
@@ -125,7 +125,7 @@ assign(create, {
   requires: {
     location: 'string',
     machineType: 'string',
-    size: 'string',
+    size: 'number',
     billingType: 'string',
     machineName: 'string'
   },
@@ -145,7 +145,7 @@ module.exports = create;
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Wed Aug 24 2016 12:49:20 GMT-0400 (EDT) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Thu Aug 25 2016 13:25:49 GMT-0400 (EDT) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>

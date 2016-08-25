@@ -22,7 +22,7 @@
 <label for="nav-trigger" class="overlay"></label>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Namespaces</h3><ul><li><a href="accounts.html">accounts</a><ul class='methods'><li data-type='method'><a href="accounts.html#.create">create</a></li><li data-type='method'><a href="accounts.html#.destroy">destroy</a></li><li data-type='method'><a href="accounts.html#.show">show</a></li><li data-type='method'><a href="accounts.html#.update">update</a></li></ul></li><li><a href="auth.html">auth</a><ul class='methods'><li data-type='method'><a href="auth.html#.signin">signin</a></li></ul></li><li><a href="invoices.html">invoices</a><ul class='methods'><li data-type='method'><a href="invoices.html#.list">list</a></li><li data-type='method'><a href="invoices.html#.show">show</a></li></ul></li><li><a href="machines.html">machines</a><ul class='methods'><li data-type='method'><a href="machines.html#.autoshutdown">autoshutdown</a></li><li data-type='method'><a href="machines.html#.create">create</a></li><li data-type='method'><a href="machines.html#.destroy">destroy</a></li><li data-type='method'><a href="machines.html#.modify">modify</a></li><li data-type='method'><a href="machines.html#.show">show</a></li><li data-type='method'><a href="machines.html#.shutdown">shutdown</a></li><li data-type='method'><a href="machines.html#.start">start</a></li><li data-type='method'><a href="machines.html#.stop">stop</a></li><li data-type='method'><a href="machines.html#.update">update</a></li><li data-type='method'><a href="machines.html#.waitfor">waitfor</a></li></ul></li><li><a href="snapshots.html">snapshots</a><ul class='methods'><li data-type='method'><a href="snapshots.html#.create">create</a></li><li data-type='method'><a href="snapshots.html#.destroy">destroy</a></li><li data-type='method'><a href="snapshots.html#.list">list</a></li><li data-type='method'><a href="snapshots.html#.show">show</a></li></ul></li><li><a href="teams.html">teams</a><ul class='methods'><li data-type='method'><a href="teams.html#.addmember">addmember</a></li><li data-type='method'><a href="teams.html#.removemember">removemember</a></li><li data-type='method'><a href="teams.html#.show">show</a></li></ul></li><li><a href="templates.html">templates</a><ul class='methods'><li data-type='method'><a href="templates.html#.create">create</a></li><li data-type='method'><a href="templates.html#.destroy">destroy</a></li><li data-type='method'><a href="templates.html#.list">list</a></li><li data-type='method'><a href="templates.html#.show">show</a></li></ul></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Namespaces</h3><ul><li><a href="accounts.html">accounts</a><ul class='methods'><li data-type='method'><a href="accounts.html#.destroy">destroy</a></li><li data-type='method'><a href="accounts.html#.show">show</a></li><li data-type='method'><a href="accounts.html#.update">update</a></li></ul></li><li><a href="auth.html">auth</a><ul class='methods'><li data-type='method'><a href="auth.html#.signin">signin</a></li></ul></li><li><a href="invoices.html">invoices</a><ul class='methods'><li data-type='method'><a href="invoices.html#.list">list</a></li><li data-type='method'><a href="invoices.html#.show">show</a></li></ul></li><li><a href="machines.html">machines</a><ul class='methods'><li data-type='method'><a href="machines.html#.autoshutdown">autoshutdown</a></li><li data-type='method'><a href="machines.html#.create">create</a></li><li data-type='method'><a href="machines.html#.destroy">destroy</a></li><li data-type='method'><a href="machines.html#.modify">modify</a></li><li data-type='method'><a href="machines.html#.restart">restart</a></li><li data-type='method'><a href="machines.html#.show">show</a></li><li data-type='method'><a href="machines.html#.start">start</a></li><li data-type='method'><a href="machines.html#.stop">stop</a></li><li data-type='method'><a href="machines.html#.update">update</a></li><li data-type='method'><a href="machines.html#.waitfor">waitfor</a></li></ul></li><li><a href="snapshots.html">snapshots</a><ul class='methods'><li data-type='method'><a href="snapshots.html#.create">create</a></li><li data-type='method'><a href="snapshots.html#.destroy">destroy</a></li><li data-type='method'><a href="snapshots.html#.list">list</a></li></ul></li><li><a href="teams.html">teams</a><ul class='methods'><li data-type='method'><a href="teams.html#.removemember">removemember</a></li><li data-type='method'><a href="teams.html#.show">show</a></li></ul></li><li><a href="templates.html">templates</a><ul class='methods'><li data-type='method'><a href="templates.html#.create">create</a></li><li data-type='method'><a href="templates.html#.destroy">destroy</a></li><li data-type='method'><a href="templates.html#.list">list</a></li></ul></li></ul>
 </nav>
 
 <div id="main">
@@ -175,7 +175,8 @@
     <p>Create a template of the machine that has the given id. This action
 is only available if your credentials have the privilege to access the machine from
 which the template has been created (either the individual user who owns the machine,
-or the administrator of the team).</p>
+or the administrator of the team). At this time, templates can only be created on
+behalf of a team, not for individual users/machines.</p>
 </div>
 
 
@@ -189,18 +190,20 @@ or the administrator of the team).</p>
     <h5>Examples</h5>
     
     <pre class="prettyprint"><code>paperspace.templates.create({
+  teamId: 456,
   machineId: 123,
-  name: 'My Template 1',
+  templateName: 'My Template 1',
 }, function(err, resp) {
   // handle error or http response
 });</code></pre>
 
     <pre class="prettyprint"><code>$ paperspace templates create \
+    --teamId 456 \
     --machineId 123 \
-    --name "My Template 1"</code></pre>
+    --templateName "My Template 1"</code></pre>
 
     <pre class="prettyprint"><code># HTTP request:
-POST /machines/123/createTemplate {"name": "My Template 1"}
+POST /teams/456/createTemplate/123 {"templateName": "My Template 1"}
 # Returns 201 on success</code></pre>
 
 
@@ -273,6 +276,29 @@ POST /machines/123/createTemplate {"name": "My Template 1"}
 
         <tr>
             
+                <td class="name"><code>teamId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Id of the team the template is created for</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
                 <td class="name"><code>machineId</code></td>
             
 
@@ -296,7 +322,7 @@ POST /machines/123/createTemplate {"name": "My Template 1"}
 
         <tr>
             
-                <td class="name"><code>name</code></td>
+                <td class="name"><code>templateName</code></td>
             
 
             <td class="type">
@@ -468,7 +494,7 @@ or the administrator of the team).</p>
     <pre class="prettyprint"><code>$ paperspace templates destroy --templateId 123</code></pre>
 
     <pre class="prettyprint"><code># HTTP request:
-POST /templates/123/deleteTemplate
+DELETE /templates/123
 # Returns 204 on success</code></pre>
 
 
@@ -666,11 +692,8 @@ POST /templates/123/deleteTemplate
 
 
 <div class="description">
-    <p>List information about all templates that have been created from the machine
-with the given id. This action
-is only available if your credentials have the privilege to access the machine from
-which the template has been created (either the individual user who owns the machine,
-or the administrator of the team).</p>
+    <p>List information about all templates available to either the current
+authenticated user or the team, if a team id is passed.</p>
 </div>
 
 
@@ -684,15 +707,15 @@ or the administrator of the team).</p>
     <h5>Examples</h5>
     
     <pre class="prettyprint"><code>paperspace.templates.list({
-  machineId: 123,
+  teamId: 456,
 }, function(err, resp) {
   // handle error or http response
 });</code></pre>
 
-    <pre class="prettyprint"><code>$ paperspace templates list --machineId 123</code></pre>
+    <pre class="prettyprint"><code>$ paperspace templates list --teamId 456</code></pre>
 
     <pre class="prettyprint"><code># HTTP request:
-GET /machines/123/listTemplates
+GET /{teams|users}/getAvailableTemplates {"teamId": 456}
 # Returns 200 on success</code></pre>
 
 
@@ -765,7 +788,7 @@ GET /machines/123/listTemplates
 
         <tr>
             
-                <td class="name"><code>machineId</code></td>
+                <td class="name"><code>teamId</code></td>
             
 
             <td class="type">
@@ -781,253 +804,7 @@ GET /machines/123/listTemplates
 
             
 
-            <td class="description last"><p>Id of the machine from which to list the template</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-            </td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>cb</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">function</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>Node-style error-first callback function</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    <p>template - Template info JSON object</p>
-</div>
-
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">object</span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-        
-            
-
-    
-
-    <h4 class="name" id=".show"><span class="type-signature">(static) </span>show<span class="signature">(params, cb)</span><span class="type-signature"> &rarr; {object}</span></h4>
-
-    
-
-
-
-
-<dl class="details">
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="templates_show.js.html">templates/show.js</a>, <a href="templates_show.js.html#line6">line 6</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-<div class="description">
-    <p>Show information about the template with the given id. This returns information
-about the machine it was created from. This action
-is only available if your credentials have the privilege to access the machine from
-which the template has been created (either the individual user who owns the machine,
-or the administrator of the team).</p>
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Examples</h5>
-    
-    <pre class="prettyprint"><code>paperspace.templates.show({
-  templateId: 123,
-}, function(err, resp) {
-  // handle error or http response
-});</code></pre>
-
-    <pre class="prettyprint"><code>$ paperspace templates show --templateId 123</code></pre>
-
-    <pre class="prettyprint"><code># HTTP request:
-GET /templates/123
-# Returns 200 on success</code></pre>
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>params</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>Template show parameters</p>
-                <h6>Properties</h6>
-                
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>templateId</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>Id of the template record</p></td>
+            <td class="description last"><p>If looking for a team's templates, provide this</p></td>
         </tr>
 
     
@@ -1119,7 +896,7 @@ GET /templates/123
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Wed Aug 24 2016 12:49:20 GMT-0400 (EDT) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Thu Aug 25 2016 13:25:49 GMT-0400 (EDT) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>

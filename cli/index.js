@@ -95,5 +95,5 @@ foundMethod.method(argv, function _methodCb(methodErr, methodResp) {
     process.exit(1);
   }
 
-  process.stdout.write(safeJSON(methodResp.body));
+  process.stdout.write(safeJSON(methodResp.body || {}));
 })

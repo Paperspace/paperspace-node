@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>templates/index.js - Documentation</title>
+    <title>machines/restart.js - Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -27,7 +27,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">templates/index.js</h1>
+    <h1 class="page-title">machines/restart.js</h1>
     
 
     
@@ -39,15 +39,50 @@
         <article>
             <pre class="prettyprint source linenums"><code>'use strict';
 
+var method = require('./../method');
+var assign = require('lodash.assign');
+
 /**
- * @namespace templates
+ * @memberof machines
+ * @method restart
+ * @description Start up an individual machine. If the machine is already restarted,
+ * this action is a no-op. If the machine is off, it will be booted up. If the machine
+ * is stopped, it will be restarted.
+ * This action can only be performed by the user who owns the machine.
+ * @param {object} params - Machine restart parameters
+ * @param {string} params.machineId - Id of the machine to shut down
+ * @param {function} cb - Node-style error-first callback function
+ * @example
+ * paperspace.machines.restart({
+ *   machineId: 123,
+ * }, function(err, resp) {
+ *   // handle error or http response
+ * });
+ * @example
+ * $ paperspace machines restart --machineId 123
+ * @example
+ * # HTTP request:
+ * POST /machines/123/restart
+ * # Returns 200 on success
  */
 
-module.exports = {
-  create: require('./create'),
-  destroy: require('./destroy'),
-  list: require('./list'),
-};
+function restart(params, cb) {
+  return method(restart, params, cb);
+}
+
+assign(restart, {
+  auth: true,
+  group: 'machines',
+  name: 'restart',
+  method: 'post',
+  route: '/machines/:machineId/restart',
+  requires: {
+    machineId: 'number',
+  },
+  returns: {},
+})
+
+module.exports = restart;
 </code></pre>
         </article>
     </section>
