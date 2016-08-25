@@ -1,4 +1,10 @@
-# Paperspace SDK (v0)
+# Paperspace SDK (v0.0.0)
+
+- - - -
+
+**Heads up! This project is under construction!** We're offering this early, unstable, pre-alpha release to get early feedback and to see how it might get used in the wild. Use caution: Until we ship a release >= v1.0, expect to encounter bugs, and expect our documentation to be missing or inaccurate in places. We welcome your bug reports and suggestions via GitHub Issues!
+
+- - - -
 
 The **Paperspace SDK** is the official devkit for automating your [Paperspace](https://paperspace.com) account. It's currently available in JavaScript, and we plan to offer other languages and integrations in the future. For v0, we are offering basic actions such as creating machines and managing team members. This repo includes:
 
