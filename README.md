@@ -26,11 +26,15 @@ The reason we recommend installing it globally is so the `paperspace` command wi
 
 ### Setup
 
-Before you can use this tool, you'll need a [Paperspace account](https://paperspace.com). For v0, you'll use your Paperspace.com login credentials (email/password) to obtain API access tokens. We'll be offering a more robust API token system soon.
+Before you can use this tool, you'll need a [Paperspace account](https://paperspace.com). You'll use this account to obtain Paperspace API keys.
+
+### Obtaining an API key
+
+First, sign in to your [Paperspace account](https://paperspace.com). Click 'Launch Console' at top right. From your admin console, you should find an 'Account Info' section. There, you'll find a form where you can create API keys. You'll use the API keys you generate here to authenticate your requests.
 
 ## Usage
 
-You can interact with Paperspace's API in two ways: programatically (from within JavaScript), or from the command line. Both tools are backed by the same underlying API client. The method and parameters are the same format for both.
+You can interact with Paperspace's API in two ways: programatically (from within JavaScript), or from the command line. Both tools are backed by the same underlying API client.
 
 ### Programmatic
 
@@ -43,23 +47,12 @@ Assuming you've installed the `paperspace-sdk` package, you can import the SDK w
 Then create an instance of the client, passing in your authentication credentials:
 
     var ps = paperspace({
-      authEmail: 'mrrobot@example.com',
-      authPassword: 'secret123'
+      apiKey: '0b3c5f...' // <~ Copy+paste your key here
     });
-
-If you already have an _access token_, you can pass that instead:
-
-    var ps = paperspace({
-      token: 'a03ikfdj29j0f...'
-    });
-
-We plan to provide a more robust auth system soon.
-
-That's all you need to get going. The client will handle authenticating your requests transparently.
 
 #### Calling the API programmatically
 
-All of the methods are namespaced by category ("machines.create" or "invoices.show") and use the same function signature. For example:
+All of the methods are namespaced by category ("machines.create" or "invoices.show") and have the same function signature. For example:
 
     ps.machines.create({
       // parameters
@@ -73,16 +66,14 @@ For information on all the methods available, see the [API documentation](https:
 
 ### CLI
 
-Assuming you've installed the `paperspace-sdk` package, you can call the Paperspace CLI with:
+Assuming you've installed the `paperspace-sdk` package, you can invoke the Paperspace CLI with:
 
     $ paperspace --help
 
-For authenticated requests, the Paperspace CLI will look in three places:
+For authenticated requests, the Paperspace CLI will look in two places:
 
-- CLI arguments: `--authEmail` and `--authPassword` (or `--token` if you have an access token)
-- Environment variables: `PAPERSPACE_AUTH_EMAIL` and `PAPERSPACE_AUTH_PASSWORD` (or `PAPERSPACE_TOKEN`)
-
-We plan to provide a more robust auth system soon.
+- CLI argument: `--apiKey`
+- Environment variable: `PAPERSPACE_API_KEY`
 
 #### Calling the API with the CLI
 
@@ -96,7 +87,9 @@ For information on all the methods available, see the [API documentation](https:
 
 ## HTTP endpoints
 
-If you'd prefer to interact with our HTTP API directly, and roll your own client instead of using ours, our HTTP endpoints are also described in our [API documentation](https://paperspace.github.io/paperspace-sdk). If you've created an API client in a language other than JavaScript, please [let us know](mailto:support@paperspace.com) and we will link to it here.
+If you'd prefer to interact with our HTTP API directly, and roll your own client instead of using ours, our HTTP endpoints are also described in our [API documentation](https://paperspace.github.io/paperspace-sdk).
+
+If you've created an API client in a language other than JavaScript, please [let us know](mailto:support@paperspace.com) and we will link to it here.
 
 ## Contributing
 
