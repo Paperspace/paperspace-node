@@ -9,6 +9,6 @@ tape('paperspace-sdk', function(t) {
   t.ok(paperspace, 'exports an object');
 
   t.ok(paperspace({
-    token: 'abc123'
+    apiKey: 'abc123'
   }), 'returns an object');
 });
