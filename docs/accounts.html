@@ -22,7 +22,7 @@
 <label for="nav-trigger" class="overlay"></label>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Namespaces</h3><ul><li><a href="accounts.html">accounts</a><ul class='methods'><li data-type='method'><a href="accounts.html#.create">create</a></li><li data-type='method'><a href="accounts.html#.destroy">destroy</a></li><li data-type='method'><a href="accounts.html#.show">show</a></li><li data-type='method'><a href="accounts.html#.update">update</a></li></ul></li><li><a href="auth.html">auth</a><ul class='methods'><li data-type='method'><a href="auth.html#.signin">signin</a></li></ul></li><li><a href="invoices.html">invoices</a><ul class='methods'><li data-type='method'><a href="invoices.html#.list">list</a></li><li data-type='method'><a href="invoices.html#.show">show</a></li></ul></li><li><a href="machines.html">machines</a><ul class='methods'><li data-type='method'><a href="machines.html#.autoshutdown">autoshutdown</a></li><li data-type='method'><a href="machines.html#.create">create</a></li><li data-type='method'><a href="machines.html#.destroy">destroy</a></li><li data-type='method'><a href="machines.html#.modify">modify</a></li><li data-type='method'><a href="machines.html#.restart">restart</a></li><li data-type='method'><a href="machines.html#.show">show</a></li><li data-type='method'><a href="machines.html#.start">start</a></li><li data-type='method'><a href="machines.html#.stop">stop</a></li><li data-type='method'><a href="machines.html#.update">update</a></li><li data-type='method'><a href="machines.html#.waitfor">waitfor</a></li></ul></li><li><a href="snapshots.html">snapshots</a><ul class='methods'><li data-type='method'><a href="snapshots.html#.create">create</a></li><li data-type='method'><a href="snapshots.html#.destroy">destroy</a></li><li data-type='method'><a href="snapshots.html#.list">list</a></li><li data-type='method'><a href="snapshots.html#.restore">restore</a></li></ul></li><li><a href="teams.html">teams</a><ul class='methods'><li data-type='method'><a href="teams.html#.removemember">removemember</a></li><li data-type='method'><a href="teams.html#.show">show</a></li></ul></li><li><a href="templates.html">templates</a><ul class='methods'><li data-type='method'><a href="templates.html#.create">create</a></li><li data-type='method'><a href="templates.html#.destroy">destroy</a></li><li data-type='method'><a href="templates.html#.list">list</a></li></ul></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Namespaces</h3><ul><li><a href="accounts.html">accounts</a><ul class='methods'><li data-type='method'><a href="accounts.html#.create">create</a></li><li data-type='method'><a href="accounts.html#.destroy">destroy</a></li><li data-type='method'><a href="accounts.html#.show">show</a></li><li data-type='method'><a href="accounts.html#.update">update</a></li></ul></li><li><a href="auth.html">auth</a><ul class='methods'><li data-type='method'><a href="auth.html#.signin">signin</a></li></ul></li><li><a href="machines.html">machines</a><ul class='methods'><li data-type='method'><a href="machines.html#.create">create</a></li><li data-type='method'><a href="machines.html#.destroy">destroy</a></li><li data-type='method'><a href="machines.html#.restart">restart</a></li><li data-type='method'><a href="machines.html#.show">show</a></li><li data-type='method'><a href="machines.html#.start">start</a></li><li data-type='method'><a href="machines.html#.stop">stop</a></li></ul></li><li><a href="templates.html">templates</a><ul class='methods'><li data-type='method'><a href="templates.html#.create">create</a></li><li data-type='method'><a href="templates.html#.destroy">destroy</a></li><li data-type='method'><a href="templates.html#.list">list</a></li></ul></li></ul>
 </nav>
 
 <div id="main">
@@ -187,26 +187,11 @@ are creating user accounts for their team members.</p>
 
     <h5>Examples</h5>
     
-    <pre class="prettyprint"><code>paperspace.accounts.create({
-  teamId: 456,
-  firstName: "Bob", // optional
-  lastName: "Smith", // optional
-  email: 'example@example.com', // optional
-  password: 'secret123', // optional
-}, function(err, resp) {
-  // handle error or http response
-});</code></pre>
+    <pre class="prettyprint"><code>paperspace.accounts.create({  teamId: 456,  firstName: "Bob", // optional  lastName: "Smith", // optional  email: 'example@example.com', // optional  password: 'secret123', // optional}, function(err, resp) {  // handle error or http response});</code></pre>
 
-    <pre class="prettyprint"><code>$ paperspace accounts create \
-    --teamId 456 \
-    --firstName "Bob" \
-    --lastName "Smith" \
-    --email "example@example.com" \
-    --password "secret123"</code></pre>
+    <pre class="prettyprint"><code>$ paperspace accounts create \    --teamId 456 \    --firstName "Bob" \    --lastName "Smith" \    --email "example@example.com" \    --password "secret123"</code></pre>
 
-    <pre class="prettyprint"><code># HTTP request:
-POST /users/createUser {"teamId": 456, "email": "example@example.com", "password": "secret123", "firstName": "Bob", "lastName": "Smith"}
-# Returns 200 on success</code></pre>
+    <pre class="prettyprint"><code># HTTP request:POST /users/createUser {"teamId": 456, "email": "example@example.com", "password": "secret123", "firstName": "Bob", "lastName": "Smith"}# Returns 200 on success</code></pre>
 
 
 
@@ -583,17 +568,11 @@ as any snapshots created from those machines.</p>
 
     <h5>Examples</h5>
     
-    <pre class="prettyprint"><code>paperspace.accounts.destroy({
-  userId: 123,
-}, function(err, resp) {
-  // handle error or http response
-});</code></pre>
+    <pre class="prettyprint"><code>paperspace.accounts.destroy({  userId: 123,}, function(err, resp) {  // handle error or http response});</code></pre>
 
     <pre class="prettyprint"><code>$ paperspace accounts destroy --userId 123</code></pre>
 
-    <pre class="prettyprint"><code># HTTP request:
-POST /users/123/cancelAccount
-# Returns 204 on success</code></pre>
+    <pre class="prettyprint"><code># HTTP request:POST /users/123/cancelAccount# Returns 204 on success</code></pre>
 
 
 
@@ -806,17 +785,11 @@ accessible to the person making the request. The user's basic information is inc
 
     <h5>Examples</h5>
     
-    <pre class="prettyprint"><code>paperspace.accounts.show({
-  userId: 123,
-}, function(err, resp) {
-  // handle error or http response
-});</code></pre>
+    <pre class="prettyprint"><code>paperspace.accounts.show({  userId: 123,}, function(err, resp) {  // handle error or http response});</code></pre>
 
     <pre class="prettyprint"><code>$ paperspace accounts show --userId 123</code></pre>
 
-    <pre class="prettyprint"><code># HTTP request:
-GET /users/123
-# Returns 200 on success</code></pre>
+    <pre class="prettyprint"><code># HTTP request:GET /users/123# Returns 200 on success</code></pre>
 
 
 
@@ -1053,26 +1026,11 @@ This action returns the updated user information object.</p>
 
     <h5>Examples</h5>
     
-    <pre class="prettyprint"><code>paperspace.accounts.update({
-  userId: 123,
-  firstName: "Bob", // optional
-  lastName: "Smith", // optional
-  email: 'example@example.com', // optional
-  password: 'secret123', // optional
-}, function(err, resp) {
-  // handle error or http response
-});</code></pre>
+    <pre class="prettyprint"><code>paperspace.accounts.update({  userId: 123,  firstName: "Bob", // optional  lastName: "Smith", // optional  email: 'example@example.com', // optional  password: 'secret123', // optional}, function(err, resp) {  // handle error or http response});</code></pre>
 
-    <pre class="prettyprint"><code>$ paperspace accounts update \
-    --userId 123 \
-    --firstName "Bob" \
-    --lastName "Smith" \
-    --email "example@example.com" \
-    --password "secret123"</code></pre>
+    <pre class="prettyprint"><code>$ paperspace accounts update \    --userId 123 \    --firstName "Bob" \    --lastName "Smith" \    --email "example@example.com" \    --password "secret123"</code></pre>
 
-    <pre class="prettyprint"><code># HTTP request:
-PUT /users/123/edit {"email": "example@example.com", "password": "secret123", "firstName": "Bob", "lastName": "Smith"}
-# Returns 200 on success</code></pre>
+    <pre class="prettyprint"><code># HTTP request:PUT /users/123/edit {"email": "example@example.com", "password": "secret123", "firstName": "Bob", "lastName": "Smith"}# Returns 200 on success</code></pre>
 
 
 
@@ -1394,7 +1352,7 @@ PUT /users/123/edit {"email": "example@example.com", "password": "secret123", "f
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.2</a> on Fri Oct 28 2016 11:18:50 GMT-0400 (EDT) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Thu Mar 23 2017 15:21:18 GMT-0400 (Eastern Daylight Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>
