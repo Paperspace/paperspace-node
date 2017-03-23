@@ -22,7 +22,7 @@
 <label for="nav-trigger" class="overlay"></label>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Namespaces</h3><ul><li><a href="accounts.html">accounts</a><ul class='methods'><li data-type='method'><a href="accounts.html#.create">create</a></li><li data-type='method'><a href="accounts.html#.destroy">destroy</a></li><li data-type='method'><a href="accounts.html#.show">show</a></li><li data-type='method'><a href="accounts.html#.update">update</a></li></ul></li><li><a href="auth.html">auth</a><ul class='methods'><li data-type='method'><a href="auth.html#.signin">signin</a></li></ul></li><li><a href="machines.html">machines</a><ul class='methods'><li data-type='method'><a href="machines.html#.create">create</a></li><li data-type='method'><a href="machines.html#.destroy">destroy</a></li><li data-type='method'><a href="machines.html#.restart">restart</a></li><li data-type='method'><a href="machines.html#.show">show</a></li><li data-type='method'><a href="machines.html#.start">start</a></li><li data-type='method'><a href="machines.html#.stop">stop</a></li></ul></li><li><a href="templates.html">templates</a><ul class='methods'><li data-type='method'><a href="templates.html#.create">create</a></li><li data-type='method'><a href="templates.html#.destroy">destroy</a></li><li data-type='method'><a href="templates.html#.list">list</a></li></ul></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Namespaces</h3><ul><li><a href="accounts.html">accounts</a><ul class='methods'><li data-type='method'><a href="accounts.html#.create">create</a></li><li data-type='method'><a href="accounts.html#.destroy">destroy</a></li><li data-type='method'><a href="accounts.html#.show">show</a></li><li data-type='method'><a href="accounts.html#.update">update</a></li></ul></li><li><a href="auth.html">auth</a><ul class='methods'><li data-type='method'><a href="auth.html#.signin">signin</a></li></ul></li><li><a href="invoices.html">invoices</a><ul class='methods'><li data-type='method'><a href="invoices.html#.list">list</a></li><li data-type='method'><a href="invoices.html#.show">show</a></li></ul></li><li><a href="machines.html">machines</a><ul class='methods'><li data-type='method'><a href="machines.html#.autoshutdown">autoshutdown</a></li><li data-type='method'><a href="machines.html#.create">create</a></li><li data-type='method'><a href="machines.html#.destroy">destroy</a></li><li data-type='method'><a href="machines.html#.modify">modify</a></li><li data-type='method'><a href="machines.html#.restart">restart</a></li><li data-type='method'><a href="machines.html#.show">show</a></li><li data-type='method'><a href="machines.html#.start">start</a></li><li data-type='method'><a href="machines.html#.stop">stop</a></li><li data-type='method'><a href="machines.html#.update">update</a></li><li data-type='method'><a href="machines.html#.waitfor">waitfor</a></li></ul></li><li><a href="snapshots.html">snapshots</a><ul class='methods'><li data-type='method'><a href="snapshots.html#.create">create</a></li><li data-type='method'><a href="snapshots.html#.destroy">destroy</a></li><li data-type='method'><a href="snapshots.html#.list">list</a></li><li data-type='method'><a href="snapshots.html#.restore">restore</a></li></ul></li><li><a href="teams.html">teams</a><ul class='methods'><li data-type='method'><a href="teams.html#.removemember">removemember</a></li><li data-type='method'><a href="teams.html#.show">show</a></li></ul></li><li><a href="templates.html">templates</a><ul class='methods'><li data-type='method'><a href="templates.html#.create">create</a></li><li data-type='method'><a href="templates.html#.destroy">destroy</a></li><li data-type='method'><a href="templates.html#.list">list</a></li></ul></li></ul>
 </nav>
 
 <div id="main">
@@ -120,6 +120,255 @@
 
     
 
+    <h4 class="name" id=".autoshutdown"><span class="type-signature">(static) </span>autoshutdown<span class="signature">(params, cb)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="machines_autoshutdown.js.html">machines/autoshutdown.js</a>, <a href="machines_autoshutdown.js.html#line6">line 6</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Configure a machine to shut down automatically after a given timeout.
+The machine will automatically be shut down after this amount of time following the
+last time a machine was used. (If a machine is used before the end of the timeout is
+reached, the timeout will reset and start again at the end of the session.) The timeout
+value must be supplied as a numeric value representing a number of hours.
+This action can only be performed by the user who owns the machine.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Examples</h5>
+    
+    <pre class="prettyprint"><code>paperspace.machines.autoshutdown({
+  machineId: 123,
+  timeout: 1, // 1 hour
+}, function(err, resp) {
+  // handle error or http response
+});</code></pre>
+
+    <pre class="prettyprint"><code>$ paperspace machines autoshutdown --machineId 123 --timeout 1</code></pre>
+
+    <pre class="prettyprint"><code># HTTP request:
+POST /machines/123/autoshutdown {"timeout": 1}
+# Returns 204 on success</code></pre>
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>params</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Autoshutdown parameters</p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>machineId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Id of the machine on which to configure autoshutdown</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>timeout</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Timout for the machine, in hours</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>cb</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Node-style error-first callback function</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
     <h4 class="name" id=".create"><span class="type-signature">(static) </span>create<span class="signature">(params, cb)</span><span class="type-signature"> &rarr; {objectt}</span></h4>
 
     
@@ -190,11 +439,46 @@ create machines themselves; only the team administrator may do so.)</p>
 
     <h5>Examples</h5>
     
-    <pre class="prettyprint"><code>paperspace.machines.create({  location: 'nyc01',  machineType: 'Air',  size: 50,  billingType: 'hourly',  machineName: 'My Machine 1',  templateId: 123, // optional - only if creating from a template  templateModel: 'template', // optional - only if creating from a template  teamId: 456, // optional - required if creating for an team member  userId: 123, // optional - required if creating for an user  email: 'example@example.com', // optional - if creating a new user  password: 'secret123', // optional - if creating a new user  firstName: 'Jon', // optional - if creating a new user  lastName: 'Snow', // optional - if creating a new user  adUsername: 'jonsnow1', // optional - if creating a new user for an Active Directory team  notificationEmail: 'example@example.com', // optional - to send a notification here when ready}, function(err, resp) {  // handle error or http response});</code></pre>
+    <pre class="prettyprint"><code>paperspace.machines.create({
+  location: 'nyc01',
+  machineType: 'Air',
+  size: 50,
+  billingType: 'hourly',
+  machineName: 'My Machine 1',
+  templateId: 123, // optional - only if creating from a template
+  templateModel: 'template', // optional - only if creating from a template
+  teamId: 456, // optional - required if creating for an team member
+  userId: 123, // optional - required if creating for an user
+  email: 'example@example.com', // optional - if creating a new user
+  password: 'secret123', // optional - if creating a new user
+  firstName: 'Jon', // optional - if creating a new user
+  lastName: 'Snow', // optional - if creating a new user
+  adUsername: 'jonsnow1', // optional - if creating a new user for an Active Directory team
+  notificationEmail: 'example@example.com', // optional - to send a notification here when ready
+}, function(err, resp) {
+  // handle error or http response
+});</code></pre>
 
-    <pre class="prettyprint"><code>$ paperspace machines create \    --location "nyc01" \    --machineType "Air" \    --size 50 \    --billingType "hourly" \    --machineName "My Machine 1" \    --templateId 123 \    --templateModel "template" \    --teamId 456 \    --userId 123 \    --email "example@example.com" \    --password "secret123" \    --firstName "Jon" \    --lastName "Snow" \    --adUsername "jonsnow1" \    --notificationEmail "example@example.com"</code></pre>
+    <pre class="prettyprint"><code>$ paperspace machines create \
+    --location "nyc01" \
+    --machineType "Air" \
+    --size 50 \
+    --billingType "hourly" \
+    --machineName "My Machine 1" \
+    --templateId 123 \
+    --templateModel "template" \
+    --teamId 456 \
+    --userId 123 \
+    --email "example@example.com" \
+    --password "secret123" \
+    --firstName "Jon" \
+    --lastName "Snow" \
+    --adUsername "jonsnow1" \
+    --notificationEmail "example@example.com"</code></pre>
 
-    <pre class="prettyprint"><code># HTTP request:POST /machines/createMachinePublic {"location": "nyc01", "machineType": "Air", "size": 50, "billingType": "monthly", "machineName": "Jon Snow 1", "templateId": 123, "templateModel": "template", "teamId": 456, "userId": 123, "email": "example@example.com", "password": "secret123", "firstName": "Jon", "lastName": "Snow", "adUsername": "jonsnow1", "notificationEmail": "example@example.com"}# Returns 201 on success</code></pre>
+    <pre class="prettyprint"><code># HTTP request:
+POST /machines/createMachinePublic {"location": "nyc01", "machineType": "Air", "size": 50, "billingType": "monthly", "machineName": "Jon Snow 1", "templateId": 123, "templateModel": "template", "teamId": 456, "userId": 123, "email": "example@example.com", "password": "secret123", "firstName": "Jon", "lastName": "Snow", "adUsername": "jonsnow1", "notificationEmail": "example@example.com"}
+# Returns 201 on success</code></pre>
 
 
 
@@ -895,11 +1179,17 @@ a team, the team administrator.</p>
 
     <h5>Examples</h5>
     
-    <pre class="prettyprint"><code>paperspace.machines.destroy({  publicMachineId: pslg3mr3,}, function(err, resp) {  // handle error or http response});</code></pre>
+    <pre class="prettyprint"><code>paperspace.machines.destroy({
+  machineId: 123,
+}, function(err, resp) {
+  // handle error or http response
+});</code></pre>
 
-    <pre class="prettyprint"><code>$ paperspace machines destroy --publicMachineId 123</code></pre>
+    <pre class="prettyprint"><code>$ paperspace machines destroy --machineId 123</code></pre>
 
-    <pre class="prettyprint"><code># HTTP request:POST /machines/pslg3mr3/deactivateMachine# Returns 200 on success</code></pre>
+    <pre class="prettyprint"><code># HTTP request:
+POST /machines/123/deactivateMachine
+# Returns 200 on success</code></pre>
 
 
 
@@ -971,7 +1261,240 @@ a team, the team administrator.</p>
 
         <tr>
             
-                <td class="name"><code>publicMachineId</code></td>
+                <td class="name"><code>machineId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The id of the machine to destroy</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>cb</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Node-style error-first callback function</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".modify"><span class="type-signature">(static) </span>modify<span class="signature">(params, cb)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="machines_modify.js.html">machines/modify.js</a>, <a href="machines_modify.js.html#line6">line 6</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Modify a machine's working specifications, including its machine type
+(Air, Basic, Pro), billing type (monthly, hourly), and storage size in GB.
+In order to perform a modification, the machine will be immediately shut down when
+this action occurs. Billing changes will be prorated to the hour. You can change
+the machine type and billing type at any time, but the storage size may only be
+increased (storage decreases are not possible).
+This action can only be performed by the user who owns the machine.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Examples</h5>
+    
+    <pre class="prettyprint"><code>paperspace.machines.modify({
+  machineId: 123,
+  machineType: 'Air',
+  billingType: 'monthly',
+  size: 50,
+}, function(err, resp) {
+  // handle error or http response
+});</code></pre>
+
+    <pre class="prettyprint"><code>$ paperspace machines modify \
+    --machineId 123 \
+    --machineType "Air" \
+    --billingType "monthly" \
+    --size 50</code></pre>
+
+    <pre class="prettyprint"><code># HTTP request:
+POST /machines/123/upgradeMachine {"machineType": "Air", "billingType": "monthly", "size": 50}
+# Returns 200 on success</code></pre>
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>params</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Machine modification object</p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>machineId</code></td>
             
 
             <td class="type">
@@ -987,7 +1510,76 @@ a team, the team administrator.</p>
 
             
 
-            <td class="description last"><p>The UUID of the machine to destroy</p></td>
+            <td class="description last"><p>The id of the machine</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>machineType</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The type of machine (Air, Basic, Pro)</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>billingType</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Either 'monthly' or 'hourly'</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>size</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Size value in GB</p></td>
         </tr>
 
     
@@ -1112,11 +1704,17 @@ This action can only be performed by the user who owns the machine.</p>
 
     <h5>Examples</h5>
     
-    <pre class="prettyprint"><code>paperspace.machines.restart({  machineId: pslg3mr3,}, function(err, resp) {  // handle error or http response});</code></pre>
+    <pre class="prettyprint"><code>paperspace.machines.restart({
+  machineId: 123,
+}, function(err, resp) {
+  // handle error or http response
+});</code></pre>
 
-    <pre class="prettyprint"><code>$ paperspace machines restart --publicMachineId pslg3mr3</code></pre>
+    <pre class="prettyprint"><code>$ paperspace machines restart --machineId 123</code></pre>
 
-    <pre class="prettyprint"><code># HTTP request:POST /machines/pslg3mr3/restart# Returns 200 on success</code></pre>
+    <pre class="prettyprint"><code># HTTP request:
+POST /machines/123/restart
+# Returns 200 on success</code></pre>
 
 
 
@@ -1188,7 +1786,7 @@ This action can only be performed by the user who owns the machine.</p>
 
         <tr>
             
-                <td class="name"><code>publicMachineId</code></td>
+                <td class="name"><code>machineId</code></td>
             
 
             <td class="type">
@@ -1204,7 +1802,7 @@ This action can only be performed by the user who owns the machine.</p>
 
             
 
-            <td class="description last"><p>UUID of the machine to shut down</p></td>
+            <td class="description last"><p>Id of the machine to shut down</p></td>
         </tr>
 
     
@@ -1261,7 +1859,7 @@ This action can only be performed by the user who owns the machine.</p>
 
     
 
-    <h4 class="name" id=".show"><span class="type-signature">(static) </span>show<span class="signature">(params, cb)</span><span class="type-signature"> &rarr; {object}</span></h4>
+    <h4 class="name" id=".show"><span class="type-signature">(static) </span>show<span class="signature">(params, cb)</span><span class="type-signature"> &rarr; {objectt}</span></h4>
 
     
 
@@ -1273,7 +1871,7 @@ This action can only be performed by the user who owns the machine.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="machines_show.js.html">machines/show.js</a>, <a href="machines_show.js.html#line6">line 6</a>
+        <a href="machines_show.js.html">machines/show.js</a>, <a href="machines_show.js.html#line8">line 8</a>
     </li></ul></dd>
     
 
@@ -1326,11 +1924,18 @@ This action can only be performed by the user who owns the machine.</p>
 
     <h5>Examples</h5>
     
-    <pre class="prettyprint"><code>paperspace.machines.show({  publicMachineId:  pslg3mr3,}, function(err, resp) {  // handle error or http response});</code></pre>
+    <pre class="prettyprint"><code>paperspace.machines.show({
+  machineId:  123,
+}, function(err, resp) {
+  // handle error or http response
+});</code></pre>
 
-    <pre class="prettyprint"><code>$ paperspace machines show \    --publicMachineId pslg3mr3</code></pre>
+    <pre class="prettyprint"><code>$ paperspace machines show \
+    --machineId 123</code></pre>
 
-    <pre class="prettyprint"><code># HTTP request:GET /machines/getMachine?publicMachineId=pslg3mr3Returns 200 on success</code></pre>
+    <pre class="prettyprint"><code># HTTP request:
+GET /machines/getMachine?machineId=123
+Returns 200 on success</code></pre>
 
 
 
@@ -1402,13 +2007,13 @@ This action can only be performed by the user who owns the machine.</p>
 
         <tr>
             
-                <td class="name"><code>publicMachineId</code></td>
+                <td class="name"><code>machineId</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">string</span>
+<span class="param-type">number</span>
 
 
             
@@ -1418,7 +2023,7 @@ This action can only be performed by the user who owns the machine.</p>
 
             
 
-            <td class="description last"><p>UUID of the machine to show</p></td>
+            <td class="description last"><p>Id of the machine to wait for</p></td>
         </tr>
 
     
@@ -1483,7 +2088,7 @@ This action can only be performed by the user who owns the machine.</p>
     </dt>
     <dd>
         
-<span class="param-type">object</span>
+<span class="param-type">objectt</span>
 
 
     </dd>
@@ -1565,11 +2170,17 @@ This action can only be performed by the user who owns the machine.</p>
 
     <h5>Examples</h5>
     
-    <pre class="prettyprint"><code>paperspace.machines.start({  publicMachineId: pslg3mr3,}, function(err, resp) {  // handle error or http response});</code></pre>
+    <pre class="prettyprint"><code>paperspace.machines.start({
+  machineId: 123,
+}, function(err, resp) {
+  // handle error or http response
+});</code></pre>
 
-    <pre class="prettyprint"><code>$ paperspace machines start --publicMachineId pslg3mr3</code></pre>
+    <pre class="prettyprint"><code>$ paperspace machines start --machineId 123</code></pre>
 
-    <pre class="prettyprint"><code># HTTP request:POST /machines/pslg3mr3/start# Returns 200 on success</code></pre>
+    <pre class="prettyprint"><code># HTTP request:
+POST /machines/123/start
+# Returns 200 on success</code></pre>
 
 
 
@@ -1641,7 +2252,7 @@ This action can only be performed by the user who owns the machine.</p>
 
         <tr>
             
-                <td class="name"><code>publicMachineId</code></td>
+                <td class="name"><code>machineId</code></td>
             
 
             <td class="type">
@@ -1657,7 +2268,7 @@ This action can only be performed by the user who owns the machine.</p>
 
             
 
-            <td class="description last"><p>UUID of the machine to shut down</p></td>
+            <td class="description last"><p>Id of the machine to shut down</p></td>
         </tr>
 
     
@@ -1782,11 +2393,17 @@ This action can only be performed by the user who owns the machine.</p>
 
     <h5>Examples</h5>
     
-    <pre class="prettyprint"><code>paperspace.machines.stop({  publicMachineId: pslg3mr3,}, function(err, resp) {  // handle error or http response});</code></pre>
+    <pre class="prettyprint"><code>paperspace.machines.stop({
+  machineId: 123,
+}, function(err, resp) {
+  // handle error or http response
+});</code></pre>
 
-    <pre class="prettyprint"><code>$ paperspace machines stop --publicMachineId pslg3mr3</code></pre>
+    <pre class="prettyprint"><code>$ paperspace machines stop --machineId 123</code></pre>
 
-    <pre class="prettyprint"><code># HTTP request:POST /machines/pslg3mr3/stop# Returns 200 on success</code></pre>
+    <pre class="prettyprint"><code># HTTP request:
+POST /machines/123/stop
+# Returns 200 on success</code></pre>
 
 
 
@@ -1858,7 +2475,7 @@ This action can only be performed by the user who owns the machine.</p>
 
         <tr>
             
-                <td class="name"><code>publicMachineId</code></td>
+                <td class="name"><code>machineId</code></td>
             
 
             <td class="type">
@@ -1874,7 +2491,7 @@ This action can only be performed by the user who owns the machine.</p>
 
             
 
-            <td class="description last"><p>UUID of the machine to shut down</p></td>
+            <td class="description last"><p>Id of the machine to shut down</p></td>
         </tr>
 
     
@@ -1927,6 +2544,538 @@ This action can only be performed by the user who owns the machine.</p>
 
 
         
+            
+
+    
+
+    <h4 class="name" id=".update"><span class="type-signature">(static) </span>update<span class="signature">(params, cb)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="machines_update.js.html">machines/update.js</a>, <a href="machines_update.js.html#line6">line 6</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Edit the attributes of a machine. For now, it is only possible
+to change the name (label) of a machine. If you want to up/downgrade a machine,
+please see the 'modify' action instead.
+This action can only be performed by the user who owns the machine.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Examples</h5>
+    
+    <pre class="prettyprint"><code>paperspace.machines.update({
+  machineId:  123,
+  name: "Bob's Machine",
+}, function(err, resp) {
+  // handle error or http response
+});</code></pre>
+
+    <pre class="prettyprint"><code>$ paperspace machines update \
+    --machineId 123 \
+    --name "Bob's Machine"
+# HTTP request:
+PUT /machines/123/editMachine {"name": "Bob's Machine"}
+# Returns 200 on success</code></pre>
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>params</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Machine update parameters</p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>machineId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Id of the machine to update</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>name</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Name to change the machine to</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>cb</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Node-style error-first callback function</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".waitfor"><span class="type-signature">(static) </span>waitfor<span class="signature">(params, cb)</span><span class="type-signature"> &rarr; {objectt}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="machines_waitfor.js.html">machines/waitfor.js</a>, <a href="machines_waitfor.js.html#line8">line 8</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Wait for the machine with the given id to enter a certain machine
+state. This action polls the server and returns only when we detect that the machine
+has transitioned into the given state. States available are:</p>
+<ul>
+<li>Off</li>
+<li>OffWithUpdatesPending</li>
+<li>StartingUp</li>
+<li>StartingUpAndInstallingUpdates</li>
+<li>ShuttingDown</li>
+<li>ShuttingDownAndInstallingUpdates</li>
+<li>Restarting</li>
+<li>RestartingAndInstallingUpdates</li>
+<li>ServiceReady</li>
+<li>AgentReady - The machine has fully started and is available for use</li>
+<li>Upgrading - The machine is undergoing an upgrade</li>
+<li>Destroyed - The machine is destroyed (no longer available)
+When the callback is called, the returned object will be information about the machine.</li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Examples</h5>
+    
+    <pre class="prettyprint"><code>paperspace.machines.waitfor({
+  machineId:  123,
+  state: "Off",
+}, function(err, resp) {
+  // handle error or http response
+});</code></pre>
+
+    <pre class="prettyprint"><code>$ paperspace machines waitfor \
+    --machineId 123 \
+    --state "Off"</code></pre>
+
+    <pre class="prettyprint"><code># HTTP request:
+# This method is only available using the API client</code></pre>
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>params</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Machine waitfor parameters</p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>machineId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Id of the machine to wait for</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>state</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Name of the state to wait for</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>cb</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Node-style error-first callback function</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>machine - The machine JSON object</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">objectt</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+        
     
 
     
@@ -1944,7 +3093,7 @@ This action can only be performed by the user who owns the machine.</p>
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Thu Mar 23 2017 15:21:18 GMT-0400 (Eastern Daylight Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.2</a> on Fri Oct 28 2016 11:18:50 GMT-0400 (EDT) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>
