@@ -1,5 +1,7 @@
 # Paperspace SDK (v0.0.0)
 
+![image](https://cloud.githubusercontent.com/assets/585865/26324445/cdeb6658-3f00-11e7-9a18-3e2070d9a400.png)
+
 - - - -
 
 **Heads up! This project is under construction!** We're offering this early, unstable, pre-alpha release to get early feedback and to see how it might get used in the wild. Use caution: Until we ship a release >= v1.0, expect to encounter bugs, and expect our documentation to be missing or inaccurate in places. We welcome your bug reports and suggestions via GitHub Issues!
