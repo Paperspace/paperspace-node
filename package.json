@@ -12,7 +12,8 @@
   "scripts": {
     "test": "tape ./test/*.test.js | tap-spec",
     "lint": "eslint .",
-    "docs": "jsdoc ./index.js -c jsdoc.json && open index.html"
+    "docs": "jsdoc ./index.js -c jsdoc.json && open index.html",
+    "prettier": "prettier --single-quote --trailing-comma es5 --use-tabs --write lib/**/*.js"
   },
   "dependencies": {
     "async": "1.5.2",
@@ -34,6 +35,7 @@
     "docdash": "^0.4.0",
     "eslint": "3.2.2",
     "jsdoc": "^3.4.0",
+    "prettier": "^1.3.1",
     "repl": "0.1.3",
     "tap-spec": "4.1.1",
     "tape": "4.6.0"
