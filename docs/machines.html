@@ -190,18 +190,11 @@ This action can only be performed by the user who owns the machine.</p>
 
     <h5>Examples</h5>
     
-    <pre class="prettyprint"><code>paperspace.machines.autoshutdown({
-  machineId: 123,
-  timeout: 1, // 1 hour
-}, function(err, resp) {
-  // handle error or http response
-});</code></pre>
+    <pre class="prettyprint"><code>paperspace.machines.autoshutdown({  machineId: 123,  timeout: 1, // 1 hour}, function(err, resp) {  // handle error or http response});</code></pre>
 
     <pre class="prettyprint"><code>$ paperspace machines autoshutdown --machineId 123 --timeout 1</code></pre>
 
-    <pre class="prettyprint"><code># HTTP request:
-POST /machines/123/autoshutdown {"timeout": 1}
-# Returns 204 on success</code></pre>
+    <pre class="prettyprint"><code># HTTP request:POST /machines/123/autoshutdown {"timeout": 1}# Returns 204 on success</code></pre>
 
 
 
@@ -439,46 +432,11 @@ create machines themselves; only the team administrator may do so.)</p>
 
     <h5>Examples</h5>
     
-    <pre class="prettyprint"><code>paperspace.machines.create({
-  location: 'nyc01',
-  machineType: 'Air',
-  size: 50,
-  billingType: 'hourly',
-  machineName: 'My Machine 1',
-  templateId: 123, // optional - only if creating from a template
-  templateModel: 'template', // optional - only if creating from a template
-  teamId: 456, // optional - required if creating for an team member
-  userId: 123, // optional - required if creating for an user
-  email: 'example@example.com', // optional - if creating a new user
-  password: 'secret123', // optional - if creating a new user
-  firstName: 'Jon', // optional - if creating a new user
-  lastName: 'Snow', // optional - if creating a new user
-  adUsername: 'jonsnow1', // optional - if creating a new user for an Active Directory team
-  notificationEmail: 'example@example.com', // optional - to send a notification here when ready
-}, function(err, resp) {
-  // handle error or http response
-});</code></pre>
+    <pre class="prettyprint"><code>paperspace.machines.create({  location: 'nyc01',  machineType: 'Air',  size: 50,  billingType: 'hourly',  machineName: 'My Machine 1',  templateId: 123, // optional - only if creating from a template  templateModel: 'template', // optional - only if creating from a template  teamId: 456, // optional - required if creating for an team member  userId: 123, // optional - required if creating for an user  email: 'example@example.com', // optional - if creating a new user  password: 'secret123', // optional - if creating a new user  firstName: 'Jon', // optional - if creating a new user  lastName: 'Snow', // optional - if creating a new user  adUsername: 'jonsnow1', // optional - if creating a new user for an Active Directory team  notificationEmail: 'example@example.com', // optional - to send a notification here when ready}, function(err, resp) {  // handle error or http response});</code></pre>
 
-    <pre class="prettyprint"><code>$ paperspace machines create \
-    --location "nyc01" \
-    --machineType "Air" \
-    --size 50 \
-    --billingType "hourly" \
-    --machineName "My Machine 1" \
-    --templateId 123 \
-    --templateModel "template" \
-    --teamId 456 \
-    --userId 123 \
-    --email "example@example.com" \
-    --password "secret123" \
-    --firstName "Jon" \
-    --lastName "Snow" \
-    --adUsername "jonsnow1" \
-    --notificationEmail "example@example.com"</code></pre>
+    <pre class="prettyprint"><code>$ paperspace machines create \    --location "nyc01" \    --machineType "Air" \    --size 50 \    --billingType "hourly" \    --machineName "My Machine 1" \    --templateId 123 \    --templateModel "template" \    --teamId 456 \    --userId 123 \    --email "example@example.com" \    --password "secret123" \    --firstName "Jon" \    --lastName "Snow" \    --adUsername "jonsnow1" \    --notificationEmail "example@example.com"</code></pre>
 
-    <pre class="prettyprint"><code># HTTP request:
-POST /machines/createMachinePublic {"location": "nyc01", "machineType": "Air", "size": 50, "billingType": "monthly", "machineName": "Jon Snow 1", "templateId": 123, "templateModel": "template", "teamId": 456, "userId": 123, "email": "example@example.com", "password": "secret123", "firstName": "Jon", "lastName": "Snow", "adUsername": "jonsnow1", "notificationEmail": "example@example.com"}
-# Returns 201 on success</code></pre>
+    <pre class="prettyprint"><code># HTTP request:POST /machines/createMachinePublic {"location": "nyc01", "machineType": "Air", "size": 50, "billingType": "monthly", "machineName": "Jon Snow 1", "templateId": 123, "templateModel": "template", "teamId": 456, "userId": 123, "email": "example@example.com", "password": "secret123", "firstName": "Jon", "lastName": "Snow", "adUsername": "jonsnow1", "notificationEmail": "example@example.com"}# Returns 201 on success</code></pre>
 
 
 
@@ -1179,17 +1137,11 @@ a team, the team administrator.</p>
 
     <h5>Examples</h5>
     
-    <pre class="prettyprint"><code>paperspace.machines.destroy({
-  machineId: 123,
-}, function(err, resp) {
-  // handle error or http response
-});</code></pre>
+    <pre class="prettyprint"><code>paperspace.machines.destroy({  machineId: 123,}, function(err, resp) {  // handle error or http response});</code></pre>
 
     <pre class="prettyprint"><code>$ paperspace machines destroy --machineId 123</code></pre>
 
-    <pre class="prettyprint"><code># HTTP request:
-POST /machines/123/deactivateMachine
-# Returns 200 on success</code></pre>
+    <pre class="prettyprint"><code># HTTP request:POST /machines/123/deactivateMachine# Returns 200 on success</code></pre>
 
 
 
@@ -1405,24 +1357,11 @@ This action can only be performed by the user who owns the machine.</p>
 
     <h5>Examples</h5>
     
-    <pre class="prettyprint"><code>paperspace.machines.modify({
-  machineId: 123,
-  machineType: 'Air',
-  billingType: 'monthly',
-  size: 50,
-}, function(err, resp) {
-  // handle error or http response
-});</code></pre>
+    <pre class="prettyprint"><code>paperspace.machines.modify({  machineId: 123,  machineType: 'Air',  billingType: 'monthly',  size: 50,}, function(err, resp) {  // handle error or http response});</code></pre>
 
-    <pre class="prettyprint"><code>$ paperspace machines modify \
-    --machineId 123 \
-    --machineType "Air" \
-    --billingType "monthly" \
-    --size 50</code></pre>
+    <pre class="prettyprint"><code>$ paperspace machines modify \    --machineId 123 \    --machineType "Air" \    --billingType "monthly" \    --size 50</code></pre>
 
-    <pre class="prettyprint"><code># HTTP request:
-POST /machines/123/upgradeMachine {"machineType": "Air", "billingType": "monthly", "size": 50}
-# Returns 200 on success</code></pre>
+    <pre class="prettyprint"><code># HTTP request:POST /machines/123/upgradeMachine {"machineType": "Air", "billingType": "monthly", "size": 50}# Returns 200 on success</code></pre>
 
 
 
@@ -1704,17 +1643,11 @@ This action can only be performed by the user who owns the machine.</p>
 
     <h5>Examples</h5>
     
-    <pre class="prettyprint"><code>paperspace.machines.restart({
-  machineId: 123,
-}, function(err, resp) {
-  // handle error or http response
-});</code></pre>
+    <pre class="prettyprint"><code>paperspace.machines.restart({  machineId: 123,}, function(err, resp) {  // handle error or http response});</code></pre>
 
     <pre class="prettyprint"><code>$ paperspace machines restart --machineId 123</code></pre>
 
-    <pre class="prettyprint"><code># HTTP request:
-POST /machines/123/restart
-# Returns 200 on success</code></pre>
+    <pre class="prettyprint"><code># HTTP request:POST /machines/123/restart# Returns 200 on success</code></pre>
 
 
 
@@ -1924,18 +1857,11 @@ POST /machines/123/restart
 
     <h5>Examples</h5>
     
-    <pre class="prettyprint"><code>paperspace.machines.show({
-  machineId:  123,
-}, function(err, resp) {
-  // handle error or http response
-});</code></pre>
+    <pre class="prettyprint"><code>paperspace.machines.show({  machineId:  123,}, function(err, resp) {  // handle error or http response});</code></pre>
 
-    <pre class="prettyprint"><code>$ paperspace machines show \
-    --machineId 123</code></pre>
+    <pre class="prettyprint"><code>$ paperspace machines show \    --machineId 123</code></pre>
 
-    <pre class="prettyprint"><code># HTTP request:
-GET /machines/getMachine?machineId=123
-Returns 200 on success</code></pre>
+    <pre class="prettyprint"><code># HTTP request:GET /machines/getMachine?machineId=123Returns 200 on success</code></pre>
 
 
 
@@ -2170,17 +2096,11 @@ This action can only be performed by the user who owns the machine.</p>
 
     <h5>Examples</h5>
     
-    <pre class="prettyprint"><code>paperspace.machines.start({
-  machineId: 123,
-}, function(err, resp) {
-  // handle error or http response
-});</code></pre>
+    <pre class="prettyprint"><code>paperspace.machines.start({  machineId: 123,}, function(err, resp) {  // handle error or http response});</code></pre>
 
     <pre class="prettyprint"><code>$ paperspace machines start --machineId 123</code></pre>
 
-    <pre class="prettyprint"><code># HTTP request:
-POST /machines/123/start
-# Returns 200 on success</code></pre>
+    <pre class="prettyprint"><code># HTTP request:POST /machines/123/start# Returns 200 on success</code></pre>
 
 
 
@@ -2393,17 +2313,11 @@ This action can only be performed by the user who owns the machine.</p>
 
     <h5>Examples</h5>
     
-    <pre class="prettyprint"><code>paperspace.machines.stop({
-  machineId: 123,
-}, function(err, resp) {
-  // handle error or http response
-});</code></pre>
+    <pre class="prettyprint"><code>paperspace.machines.stop({  machineId: 123,}, function(err, resp) {  // handle error or http response});</code></pre>
 
     <pre class="prettyprint"><code>$ paperspace machines stop --machineId 123</code></pre>
 
-    <pre class="prettyprint"><code># HTTP request:
-POST /machines/123/stop
-# Returns 200 on success</code></pre>
+    <pre class="prettyprint"><code># HTTP request:POST /machines/123/stop# Returns 200 on success</code></pre>
 
 
 
@@ -2616,19 +2530,9 @@ This action can only be performed by the user who owns the machine.</p>
 
     <h5>Examples</h5>
     
-    <pre class="prettyprint"><code>paperspace.machines.update({
-  machineId:  123,
-  name: "Bob's Machine",
-}, function(err, resp) {
-  // handle error or http response
-});</code></pre>
+    <pre class="prettyprint"><code>paperspace.machines.update({  machineId:  123,  name: "Bob's Machine",}, function(err, resp) {  // handle error or http response});</code></pre>
 
-    <pre class="prettyprint"><code>$ paperspace machines update \
-    --machineId 123 \
-    --name "Bob's Machine"
-# HTTP request:
-PUT /machines/123/editMachine {"name": "Bob's Machine"}
-# Returns 200 on success</code></pre>
+    <pre class="prettyprint"><code>$ paperspace machines update \    --machineId 123 \    --name "Bob's Machine"# HTTP request:PUT /machines/123/editMachine {"name": "Bob's Machine"}# Returns 200 on success</code></pre>
 
 
 
@@ -2878,19 +2782,11 @@ When the callback is called, the returned object will be information about the m
 
     <h5>Examples</h5>
     
-    <pre class="prettyprint"><code>paperspace.machines.waitfor({
-  machineId:  123,
-  state: "Off",
-}, function(err, resp) {
-  // handle error or http response
-});</code></pre>
+    <pre class="prettyprint"><code>paperspace.machines.waitfor({  machineId:  123,  state: "Off",}, function(err, resp) {  // handle error or http response});</code></pre>
 
-    <pre class="prettyprint"><code>$ paperspace machines waitfor \
-    --machineId 123 \
-    --state "Off"</code></pre>
+    <pre class="prettyprint"><code>$ paperspace machines waitfor \    --machineId 123 \    --state "Off"</code></pre>
 
-    <pre class="prettyprint"><code># HTTP request:
-# This method is only available using the API client</code></pre>
+    <pre class="prettyprint"><code># HTTP request:# This method is only available using the API client</code></pre>
 
 
 
@@ -3093,7 +2989,7 @@ When the callback is called, the returned object will be information about the m
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.2</a> on Fri Oct 28 2016 11:18:50 GMT-0400 (EDT) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Mon May 22 2017 15:46:03 GMT-0400 (Eastern Daylight Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>
