@@ -117,4 +117,4 @@ This project is open source, under the ISC license. See LICENSE.txt.
 
 ## Copyright
 
-Copyright &ncopy; 2016 Paperspace - All Rights Reserved
+Copyright :copyright: 2017 Paperspace - All Rights Reserved
