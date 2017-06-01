@@ -22,7 +22,7 @@
 <label for="nav-trigger" class="overlay"></label>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Namespaces</h3><ul><li><a href="auth.html">auth</a><ul class='methods'><li data-type='method'><a href="auth.html#.signin">signin</a></li></ul></li><li><a href="machines.html">machines</a><ul class='methods'><li data-type='method'><a href="machines.html#.restart">restart</a></li><li data-type='method'><a href="machines.html#.show">show</a></li><li data-type='method'><a href="machines.html#.start">start</a></li><li data-type='method'><a href="machines.html#.stop">stop</a></li><li data-type='method'><a href="machines.html#.waitfor">waitfor</a></li></ul></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Namespaces</h3><ul><li><a href="machines.html">machines</a><ul class='methods'><li data-type='method'><a href="machines.html#.restart">restart</a></li><li data-type='method'><a href="machines.html#.start">start</a></li><li data-type='method'><a href="machines.html#.stop">stop</a></li><li data-type='method'><a href="machines.html#.waitfor">waitfor</a></li></ul></li></ul>
 </nav>
 
 <div id="main">
@@ -56,7 +56,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="machines_index.js.html">machines/index.js</a>, <a href="machines_index.js.html#line3">line 3</a>
+        <a href="index.js.html">index.js</a>, <a href="index.js.html#line3">line 3</a>
     </li></ul></dd>
     
 
@@ -132,7 +132,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="machines_restart.js.html">machines/restart.js</a>, <a href="machines_restart.js.html#line6">line 6</a>
+        <a href="restart.js.html">restart.js</a>, <a href="restart.js.html#line6">line 6</a>
     </li></ul></dd>
     
 
@@ -343,249 +343,6 @@ POST /machines/123/restart
 
     
 
-    <h4 class="name" id=".show"><span class="type-signature">(static) </span>show<span class="signature">(params, cb)</span><span class="type-signature"> &rarr; {objectt}</span></h4>
-
-    
-
-
-
-
-<dl class="details">
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="machines_show.js.html">machines/show.js</a>, <a href="machines_show.js.html#line8">line 8</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-<div class="description">
-    <p>Show machine information for the machine with the given id.</p>
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Examples</h5>
-    
-    <pre class="prettyprint"><code>paperspace.machines.show({
-  machineId:  123,
-}, function(err, resp) {
-  // handle error or http response
-});</code></pre>
-
-    <pre class="prettyprint"><code>$ paperspace machines show \
-    --machineId 123</code></pre>
-
-    <pre class="prettyprint"><code># HTTP request:
-GET /machines/getMachine?machineId=123
-Returns 200 on success</code></pre>
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>params</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>Machine show parameters</p>
-                <h6>Properties</h6>
-                
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>machineId</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>Id of the machine to wait for</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-            </td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>cb</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">function</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>Node-style error-first callback function</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    <p>machine - The machine JSON object</p>
-</div>
-
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">objectt</span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-        
-            
-
-    
-
     <h4 class="name" id=".start"><span class="type-signature">(static) </span>start<span class="signature">(params, cb)</span><span class="type-signature"></span></h4>
 
     
@@ -598,7 +355,7 @@ Returns 200 on success</code></pre>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="machines_start.js.html">machines/start.js</a>, <a href="machines_start.js.html#line6">line 6</a>
+        <a href="start.js.html">start.js</a>, <a href="start.js.html#line6">line 6</a>
     </li></ul></dd>
     
 
@@ -821,7 +578,7 @@ POST /machines/123/start
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="machines_stop.js.html">machines/stop.js</a>, <a href="machines_stop.js.html#line6">line 6</a>
+        <a href="stop.js.html">stop.js</a>, <a href="stop.js.html#line6">line 6</a>
     </li></ul></dd>
     
 
@@ -1044,7 +801,7 @@ POST /machines/123/stop
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="machines_waitfor.js.html">machines/waitfor.js</a>, <a href="machines_waitfor.js.html#line8">line 8</a>
+        <a href="waitfor.js.html">waitfor.js</a>, <a href="waitfor.js.html#line8">line 8</a>
     </li></ul></dd>
     
 
@@ -1329,7 +1086,7 @@ When the callback is called, the returned object will be information about the m
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Thu Jun 01 2017 13:50:10 GMT-0400 (EDT) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Thu Jun 01 2017 14:33:23 GMT-0400 (EDT) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>
