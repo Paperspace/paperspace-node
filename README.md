@@ -22,7 +22,7 @@ Your system will need [Node.js](https://nodejs.org) v4+ installed. Check that yo
 
 Install the package from npm:
 
-    $ npm install -g paperspace-sdk
+    $ npm install -g Paperspace/paperspace-sdk#master
 
 The reason we recommend installing it globally is so the `paperspace` command will be available on your command line everywhere on your system. If you only want to make it available within an individual Node.js project, you can install it locally by omitting the `-g` flag.
 
