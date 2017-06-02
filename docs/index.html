@@ -45,6 +45,54 @@
     
 
 
+    <section class="readme">
+        <article><h1>Paperspace SDK (v0.0.0)</h1><p><img src="https://cloud.githubusercontent.com/assets/585865/26324445/cdeb6658-3f00-11e7-9a18-3e2070d9a400.png" alt="image"></p>
+<hr>
+<p><strong>Heads up! This project is under construction!</strong> We're offering this early, unstable, pre-alpha release to get early feedback and to see how it might get used in the wild. Use caution: Until we ship a release &gt;= v1.0, expect to encounter bugs, and expect our documentation to be missing or inaccurate in places. We welcome your bug reports and suggestions via GitHub Issues!</p>
+<hr>
+<p>The <strong>Paperspace SDK</strong> is the official devkit for automating your <a href="https://paperspace.com">Paperspace</a> account. It's currently available in JavaScript, and we plan to offer other languages and integrations in the future. For v0, we are offering basic actions such as creating machines and managing team members. This repo includes:</p>
+<ul>
+<li><a href="#programmatic">JavaScript API client</a> (for Node.js and the browser)</li>
+<li><a href="#cli">CLI</a></li>
+<li><a href="https://paperspace.github.io/paperspace-sdk">API documentation</a></li>
+</ul>
+<h2>Getting started</h2><p>Your system will need <a href="https://nodejs.org">Node.js</a> v4+ installed. Check that you have a recent enough version by running <code>node -v</code> in your terminal. Node.js comes bundled with <code>npm</code>, the Node.js package management tool, which you'll use to install this SDK.</p>
+<h3>Installation</h3><p>Install the package from npm:</p>
+<pre class="prettyprint source"><code>$ npm install -g paperspace-sdk</code></pre><p>The reason we recommend installing it globally is so the <code>paperspace</code> command will be available on your command line everywhere on your system. If you only want to make it available within an individual Node.js project, you can install it locally by omitting the <code>-g</code> flag.</p>
+<h3>Setup</h3><p>Before you can use this tool, you'll need a <a href="https://paperspace.com">Paperspace account</a>. You'll use this account to obtain Paperspace API keys.</p>
+<h3>Obtaining an API key</h3><p>First, sign in to your <a href="https://paperspace.com">Paperspace account</a>. Click 'Launch Console' at top right. From your admin console, you should find an 'Account Info' section. There, you'll find a form where you can create API keys. You'll use the API keys you generate here to authenticate your requests.</p>
+<h2>Usage</h2><p>You can interact with Paperspace's API in two ways: programatically (from within JavaScript), or from the command line. Both tools are backed by the same underlying API client.</p>
+<h3>Programmatic</h3><p>We'll be illustrating all examples using <a href="http://speakingjs.com/es5/ch01.html">ES5</a> syntax and the CommonJS module format. For other systems like AMD, consider using a bundler such as Browserify.</p>
+<p>Assuming you've installed the <code>paperspace-sdk</code> package, you can import the SDK with:</p>
+<pre class="prettyprint source"><code>var paperspace = require('paperspace-sdk');</code></pre><p>Then create an instance of the client, passing in your authentication credentials:</p>
+<pre class="prettyprint source"><code>var ps = paperspace({
+  apiKey: '0b3c5f...' // &lt;~ Copy+paste your key here
+});</code></pre><h4>Calling the API programmatically</h4><p>All of the methods are namespaced by category (&quot;machines.create&quot; or &quot;invoices.show&quot;) and have the same function signature. For example:</p>
+<pre class="prettyprint source"><code>ps.machines.create({
+  // parameters
+}, function (err, resp) {
+  // callback
+});</code></pre><p>That is, the first argument is parameters object, and the second is a error-first callback function.</p>
+<p>For information on all the methods available, see the <a href="https://paperspace.github.io/paperspace-sdk">API documentation</a>.</p>
+<h3>CLI</h3><p>Assuming you've installed the <code>paperspace-sdk</code> package, you can invoke the Paperspace CLI with:</p>
+<pre class="prettyprint source"><code>$ paperspace --help</code></pre><p>For authenticated requests, the Paperspace CLI will look in two places:</p>
+<ul>
+<li>CLI argument: <code>--apiKey</code></li>
+<li>Environment variable: <code>PAPERSPACE_API_KEY</code></li>
+</ul>
+<h4>Calling the API with the CLI</h4><p>The CLI provides all methods as subcommands. For example:</p>
+<pre class="prettyprint source"><code>$ paperspace machines create --name &quot;My Machine&quot; --size &quot;50GB&quot; # etc.</code></pre><p>For information on all the methods available, see the <a href="https://paperspace.github.io/paperspace-sdk">API documentation</a>.</p>
+<h2><a href="https://paperspace.github.io/paperspace-sdk">API Documentation</a></h2><h2>HTTP endpoints</h2><p>If you'd prefer to interact with our HTTP API directly, and roll your own client instead of using ours, our HTTP endpoints are also described in our <a href="https://paperspace.github.io/paperspace-sdk">API documentation</a>.</p>
+<p>If you've created an API client in a language other than JavaScript, please <a href="mailto:support@paperspace.com">let us know</a> and we will link to it here.</p>
+<h2>Contributing</h2><p>We welcome contributions to this project. Please adhere to the established coding conventions within the project and submit changes using pull requests.</p>
+<h2>Bugs / Support / Troubleshooting</h2><p>For bugs with the API client, command-line utility, or the HTTP API, please file tickets using GitHub Issues on this repo. We'll do our best to respond as quickly as we can. Keep in mind that Paperspace is a small team and you may need to allow up to a week for a response.</p>
+<p>Other issues, such as those related to your Paperspace account, your team or team members, billing, or technical issues with your Paperspace machines should be directed to <a href="mailto:support@paperspace.com">support@paperspace.com</a>.</p>
+<h2>Security</h2><p>Think you've discovered a security flaw or exploit? We offer bug bounties for responsible vulnerability disclosures that match our criteria. Please contact us directly at <a href="mailto:support@paperspace.com">support@paperspace.com</a> and we will respond as quickly as we can.</p>
+<h2>Disclaimer</h2><p><strong>Use the Paperspace API with care.</strong> This tool is provided as-is (please see our LICENSE). Know that many actions provided via our public API can result in billing charges for Paperspace services. Please be aware of Paperspace's billing policies before performing any of these actions; you'll see charges reflected in your invoice at the end of the month. Some actions, such as deactivating machines, are irreversible, resulting in permanent loss of data. Paperspace cannot recover lost data such as mistakenly deleted account information, and may only be able to give limited assistance if an action is performed mistakenly. API access will be disabled for accounts not in good standing. Keeping your account credentials secret is your responsibility. You may only use Paperspace's API to store, retrieve, query, serve, and execute content that is owned, licensed or lawfully obtained by you.</p>
+<h2>License</h2><p>This project is open source, under the ISC license. See LICENSE.txt.</p>
+<h2>Copyright</h2><p>Copyright :copyright: 2017 Paperspace - All Rights Reserved</p></article>
+    </section>
+
 
 
 
@@ -55,7 +103,7 @@
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Thu Jun 01 2017 19:27:37 GMT-0400 (EDT) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Fri Jun 02 2017 11:40:07 GMT-0400 (EDT) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>

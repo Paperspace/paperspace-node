@@ -172,9 +172,8 @@
 
 
 <div class="description">
-    <p>Start up an individual machine. If the machine is already restarted,
-this action is a no-op. If the machine is off, it will be booted up. If the machine
-is stopped, it will be restarted.
+    <p>Restart an individual machine. If the machine is already restarting,
+this action will request the machine be restarted again.
 This action can only be performed by the user who owns the machine.</p>
 </div>
 
@@ -189,15 +188,15 @@ This action can only be performed by the user who owns the machine.</p>
     <h5>Examples</h5>
     
     <pre class="prettyprint"><code>paperspace.machines.restart({
-  machineId: 123,
+  publicMachineId: psabcdef,
 }, function(err, resp) {
   // handle error or http response
 });</code></pre>
 
-    <pre class="prettyprint"><code>$ paperspace machines restart --machineId 123</code></pre>
+    <pre class="prettyprint"><code>$ paperspace machines restart --publicMachineId psabcdef</code></pre>
 
     <pre class="prettyprint"><code># HTTP request:
-POST /machines/123/restart
+POST /machines/restart
 # Returns 200 on success</code></pre>
 
 
@@ -270,7 +269,7 @@ POST /machines/123/restart
 
         <tr>
             
-                <td class="name"><code>machineId</code></td>
+                <td class="name"><code>publicMachineId</code></td>
             
 
             <td class="type">
@@ -396,8 +395,7 @@ POST /machines/123/restart
 
 <div class="description">
     <p>Start up an individual machine. If the machine is already started,
-this action is a no-op. If the machine is off, it will be booted up. If the machine
-is stopped, it will be started.
+this action is a no-op. If the machine is off, it will be booted up.
 This action can only be performed by the user who owns the machine.</p>
 </div>
 
@@ -412,15 +410,15 @@ This action can only be performed by the user who owns the machine.</p>
     <h5>Examples</h5>
     
     <pre class="prettyprint"><code>paperspace.machines.start({
-  machineId: 123,
+  publicMachineId: psabcdef,
 }, function(err, resp) {
   // handle error or http response
 });</code></pre>
 
-    <pre class="prettyprint"><code>$ paperspace machines start --machineId 123</code></pre>
+    <pre class="prettyprint"><code>$ paperspace machines start --publicMachineId psabcdef</code></pre>
 
     <pre class="prettyprint"><code># HTTP request:
-POST /machines/123/start
+POST /machines/start
 # Returns 200 on success</code></pre>
 
 
@@ -493,7 +491,7 @@ POST /machines/123/start
 
         <tr>
             
-                <td class="name"><code>machineId</code></td>
+                <td class="name"><code>publicMachineId</code></td>
             
 
             <td class="type">
@@ -635,15 +633,15 @@ This action can only be performed by the user who owns the machine.</p>
     <h5>Examples</h5>
     
     <pre class="prettyprint"><code>paperspace.machines.stop({
-  machineId: 123,
+  publicMachineId: psabcdef,
 }, function(err, resp) {
   // handle error or http response
 });</code></pre>
 
-    <pre class="prettyprint"><code>$ paperspace machines stop --machineId 123</code></pre>
+    <pre class="prettyprint"><code>$ paperspace machines stop --publicMachineId psabcdef</code></pre>
 
     <pre class="prettyprint"><code># HTTP request:
-POST /machines/123/stop
+POST /machines/stop
 # Returns 200 on success</code></pre>
 
 
@@ -716,7 +714,7 @@ POST /machines/123/stop
 
         <tr>
             
-                <td class="name"><code>machineId</code></td>
+                <td class="name"><code>publicMachineId</code></td>
             
 
             <td class="type">
@@ -845,20 +843,10 @@ POST /machines/123/stop
 state. This action polls the server and returns only when we detect that the machine
 has transitioned into the given state. States available are:</p>
 <ul>
-<li>Off</li>
-<li>OffWithUpdatesPending</li>
-<li>StartingUp</li>
-<li>StartingUpAndInstallingUpdates</li>
-<li>ShuttingDown</li>
-<li>ShuttingDownAndInstallingUpdates</li>
-<li>Restarting</li>
-<li>RestartingAndInstallingUpdates</li>
-<li>ServiceReady</li>
-<li>AgentReady - The machine has fully started and is available for use</li>
-<li>Upgrading - The machine is undergoing an upgrade</li>
-<li>Destroyed - The machine is destroyed (no longer available)
-When the callback is called, the returned object will be information about the machine.</li>
+<li>off</li>
+<li>ready</li>
 </ul>
+<p>When the callback is called, the returned object will be information about the machine.</p>
 </div>
 
 
@@ -872,15 +860,15 @@ When the callback is called, the returned object will be information about the m
     <h5>Examples</h5>
     
     <pre class="prettyprint"><code>paperspace.machines.waitfor({
-  machineId:  123,
-  state: "Off",
+  publicMachineId: psabcdef,
+  state: "off",
 }, function(err, resp) {
   // handle error or http response
 });</code></pre>
 
     <pre class="prettyprint"><code>$ paperspace machines waitfor \
-    --machineId 123 \
-    --state "Off"</code></pre>
+    --publicMachineId psabcdef \
+    --state "off"</code></pre>
 
     <pre class="prettyprint"><code># HTTP request:
 # This method is only available using the API client</code></pre>
@@ -955,7 +943,7 @@ When the callback is called, the returned object will be information about the m
 
         <tr>
             
-                <td class="name"><code>machineId</code></td>
+                <td class="name"><code>publicMachineId</code></td>
             
 
             <td class="type">
@@ -1086,7 +1074,7 @@ When the callback is called, the returned object will be information about the m
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Thu Jun 01 2017 19:27:37 GMT-0400 (EDT) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Fri Jun 02 2017 11:40:07 GMT-0400 (EDT) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>
