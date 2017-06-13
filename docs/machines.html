@@ -22,7 +22,7 @@
 <label for="nav-trigger" class="overlay"></label>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Namespaces</h3><ul><li><a href="machines.html">machines</a><ul class='methods'><li data-type='method'><a href="machines.html#.restart">restart</a></li><li data-type='method'><a href="machines.html#.start">start</a></li><li data-type='method'><a href="machines.html#.stop">stop</a></li><li data-type='method'><a href="machines.html#.waitfor">waitfor</a></li></ul></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Namespaces</h3><ul><li><a href="machines.html">machines</a><ul class='methods'><li data-type='method'><a href="machines.html#.list">list</a></li><li data-type='method'><a href="machines.html#.restart">restart</a></li><li data-type='method'><a href="machines.html#.start">start</a></li><li data-type='method'><a href="machines.html#.stop">stop</a></li><li data-type='method'><a href="machines.html#.waitfor">waitfor</a></li></ul></li><li><a href="networks.html">networks</a><ul class='methods'><li data-type='method'><a href="networks.html#.list">list</a></li></ul></li><li><a href="templates.html">templates</a><ul class='methods'><li data-type='method'><a href="templates.html#.list">list</a></li></ul></li><li><a href="users.html">users</a><ul class='methods'><li data-type='method'><a href="users.html#.list">list</a></li></ul></li></ul>
 </nav>
 
 <div id="main">
@@ -56,7 +56,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="index.js.html">index.js</a>, <a href="index.js.html#line3">line 3</a>
+        <a href="machines_index.js.html">machines/index.js</a>, <a href="machines_index.js.html#line3">line 3</a>
     </li></ul></dd>
     
 
@@ -120,6 +120,175 @@
 
     
 
+    <h4 class="name" id=".list"><span class="type-signature">(static) </span>list<span class="signature">(cb)</span><span class="type-signature"> &rarr; {object}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="machines_list.js.html">machines/list.js</a>, <a href="machines_list.js.html#line6">line 6</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>List information about all machines available to either the current
+authenticated user or the team, if the user belongs to a team.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Examples</h5>
+    
+    <pre class="prettyprint"><code>paperspace.machines.list(function(err, resp) {
+  // handle error or http response
+});</code></pre>
+
+    <pre class="prettyprint"><code>$ paperspace machines list</code></pre>
+
+    <pre class="prettyprint"><code># HTTP request:
+GET /machines/getMachines
+# Returns 200 on success</code></pre>
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>cb</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Node-style error-first callback function</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>template - Template info JSON object</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">object</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+        
+            
+
+    
+
     <h4 class="name" id=".restart"><span class="type-signature">(static) </span>restart<span class="signature">(params, cb)</span><span class="type-signature"></span></h4>
 
     
@@ -132,7 +301,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="restart.js.html">restart.js</a>, <a href="restart.js.html#line6">line 6</a>
+        <a href="machines_restart.js.html">machines/restart.js</a>, <a href="machines_restart.js.html#line6">line 6</a>
     </li></ul></dd>
     
 
@@ -354,7 +523,7 @@ POST /machines/restart
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="start.js.html">start.js</a>, <a href="start.js.html#line6">line 6</a>
+        <a href="machines_start.js.html">machines/start.js</a>, <a href="machines_start.js.html#line6">line 6</a>
     </li></ul></dd>
     
 
@@ -576,7 +745,7 @@ POST /machines/start
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="stop.js.html">stop.js</a>, <a href="stop.js.html#line6">line 6</a>
+        <a href="machines_stop.js.html">machines/stop.js</a>, <a href="machines_stop.js.html#line6">line 6</a>
     </li></ul></dd>
     
 
@@ -799,7 +968,7 @@ POST /machines/stop
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="waitfor.js.html">waitfor.js</a>, <a href="waitfor.js.html#line8">line 8</a>
+        <a href="machines_waitfor.js.html">machines/waitfor.js</a>, <a href="machines_waitfor.js.html#line8">line 8</a>
     </li></ul></dd>
     
 
@@ -1074,7 +1243,7 @@ has transitioned into the given state. States available are:</p>
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Fri Jun 02 2017 11:40:07 GMT-0400 (EDT) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Tue Jun 13 2017 11:17:36 GMT-0400 (EDT) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>
