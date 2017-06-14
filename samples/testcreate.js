@@ -5,7 +5,7 @@ var paperspace = paperspace_sdk({
 });
 
 paperspace.machines.create({
-   regionId: 1,
+   region: 'East Coast (NY2)',
    machineType: 'Air',
    size: 50,
    billingType: 'hourly',
