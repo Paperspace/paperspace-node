@@ -22,7 +22,7 @@
 <label for="nav-trigger" class="overlay"></label>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Namespaces</h3><ul><li><a href="machines.html">machines</a><ul class='methods'><li data-type='method'><a href="machines.html#.list">list</a></li><li data-type='method'><a href="machines.html#.restart">restart</a></li><li data-type='method'><a href="machines.html#.start">start</a></li><li data-type='method'><a href="machines.html#.stop">stop</a></li><li data-type='method'><a href="machines.html#.waitfor">waitfor</a></li></ul></li><li><a href="networks.html">networks</a><ul class='methods'><li data-type='method'><a href="networks.html#.list">list</a></li></ul></li><li><a href="templates.html">templates</a><ul class='methods'><li data-type='method'><a href="templates.html#.list">list</a></li></ul></li><li><a href="users.html">users</a><ul class='methods'><li data-type='method'><a href="users.html#.list">list</a></li></ul></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Namespaces</h3><ul><li><a href="machines.html">machines</a><ul class='methods'><li data-type='method'><a href="machines.html#.create">create</a></li><li data-type='method'><a href="machines.html#.list">list</a></li><li data-type='method'><a href="machines.html#.restart">restart</a></li><li data-type='method'><a href="machines.html#.start">start</a></li><li data-type='method'><a href="machines.html#.stop">stop</a></li><li data-type='method'><a href="machines.html#.waitfor">waitfor</a></li></ul></li><li><a href="networks.html">networks</a><ul class='methods'><li data-type='method'><a href="networks.html#.list">list</a></li></ul></li><li><a href="templates.html">templates</a><ul class='methods'><li data-type='method'><a href="templates.html#.list">list</a></li></ul></li><li><a href="users.html">users</a><ul class='methods'><li data-type='method'><a href="users.html#.list">list</a></li></ul></li></ul>
 </nav>
 
 <div id="main">
@@ -114,6 +114,711 @@
 
     
         <h3 class="subsection-title">Methods</h3>
+
+        
+            
+
+    
+
+    <h4 class="name" id=".create"><span class="type-signature">(static) </span>create<span class="signature">(params, cb)</span><span class="type-signature"> &rarr; {objectt}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="machines_create.js.html">machines/create.js</a>, <a href="machines_create.js.html#line6">line 6</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Create a new Paperspace virtual machine. If you are using an individual account,
+you will be assigned as the owner of the machine. If you are a team administrator, you must
+specify who the machine should belong to, either by their user id, or their email address.
+If you pass a full set of user parameters, we will create a user within your team and assign
+them the machine. This action can only be performed by the account owner. (Team members cannot
+create machines themselves; only the team administrator may do so.)</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Examples</h5>
+    
+    <pre class="prettyprint"><code>paperspace.machines.create({
+  regionId: 1,
+  machineType: 'Air',
+  size: 50,
+  billingType: 'hourly',
+  machineName: 'My Machine 1',
+  networkId: 'n123abc', // optional - only if creating on a specific network
+  templateId: 't123abc', // optional - only if creating from a template
+  teamId: 'te456def', // optional - required if creating for an team member
+  userId: 'u123abc', // optional - required if creating for an user
+  email: 'example@example.com', // optional - if creating a new user
+  password: 'secret123', // optional - if creating a new user
+  firstName: 'Jon', // optional - if creating a new user
+  lastName: 'Snow', // optional - if creating a new user
+  notificationEmail: 'example@example.com', // optional - to send a notification here when ready
+}, function(err, resp) {
+  // handle error or http response
+});</code></pre>
+
+    <pre class="prettyprint"><code>$ paperspace machines create \
+    --regionId 1 \
+    --machineType "Air" \
+    --size 50 \
+    --billingType "hourly" \
+    --machineName "My Machine 1" \
+    --networkId "n123abc" \
+    --templateId "t123abc" \
+    --teamId "te456def" \
+    --userId "u123abc" \
+    --email "example@example.com" \
+    --password "secret123" \
+    --firstName "Jon" \
+    --lastName "Snow" \
+    --notificationEmail "example@example.com"</code></pre>
+
+    <pre class="prettyprint"><code># HTTP request:
+POST /machines/createMachinePublic {"region": 1, "machineType": "Air", "size": 50, "billingType": "monthly", "machineName": "My Machine 1", "networkId": "n123abc", "templateId": "t123abc", "teamId": "te456def", "userId": "u123abc", "email": "example@example.com", "password": "secret123", "firstName": "Jon", "lastName": "Snow", "notificationEmail": "example@example.com"}
+# Returns 201 on success</code></pre>
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>params</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Machine creation parameters</p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>regionId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Id of the region (1 for east coast, 2 for west coast)</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>machineType</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Machine preset type (Air/Basic/Pro)</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>size</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Storage size for the machine in GB</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>billingType</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Either 'monthly' or 'hourly'billing</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>machineName</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>A memorable name for this machine</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>networkId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>If creating on a specific network, specify its id</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>templateId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>If creating from a template, specify its id</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>teamId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>If creating for a team, specify the team id</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>userId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>If creating for a user other than yourself, specify the user id</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>email</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>If creating a new team member, specify their email address</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>password</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>If creating a new team member, specify their password</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>firstName</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>If creating a new team member, specify their first name</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>lastName</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>If creating a new team member, specify their last name</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>notificationEmail</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Send a notification to this email address when complete</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>cb</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Node-style error-first callback function</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>machine - The created machine JSON object</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">objectt</span>
+
+
+    </dd>
+</dl>
+
+    
+
 
         
             
@@ -357,15 +1062,15 @@ This action can only be performed by the user who owns the machine.</p>
     <h5>Examples</h5>
     
     <pre class="prettyprint"><code>paperspace.machines.restart({
-  publicMachineId: psabcdef,
+  publicMachineId: 'psabcdef',
 }, function(err, resp) {
   // handle error or http response
 });</code></pre>
 
-    <pre class="prettyprint"><code>$ paperspace machines restart --publicMachineId psabcdef</code></pre>
+    <pre class="prettyprint"><code>$ paperspace machines restart --publicMachineId "psabcdef"</code></pre>
 
     <pre class="prettyprint"><code># HTTP request:
-POST /machines/restart
+POST /machines/psabcdef/restart
 # Returns 200 on success</code></pre>
 
 
@@ -579,15 +1284,15 @@ This action can only be performed by the user who owns the machine.</p>
     <h5>Examples</h5>
     
     <pre class="prettyprint"><code>paperspace.machines.start({
-  publicMachineId: psabcdef,
+  publicMachineId: 'psabcdef',
 }, function(err, resp) {
   // handle error or http response
 });</code></pre>
 
-    <pre class="prettyprint"><code>$ paperspace machines start --publicMachineId psabcdef</code></pre>
+    <pre class="prettyprint"><code>$ paperspace machines start --publicMachineId "psabcdef"</code></pre>
 
     <pre class="prettyprint"><code># HTTP request:
-POST /machines/start
+POST /machines/psabcdef/start
 # Returns 200 on success</code></pre>
 
 
@@ -802,15 +1507,15 @@ This action can only be performed by the user who owns the machine.</p>
     <h5>Examples</h5>
     
     <pre class="prettyprint"><code>paperspace.machines.stop({
-  publicMachineId: psabcdef,
+  publicMachineId: 'psabcdef',
 }, function(err, resp) {
   // handle error or http response
 });</code></pre>
 
-    <pre class="prettyprint"><code>$ paperspace machines stop --publicMachineId psabcdef</code></pre>
+    <pre class="prettyprint"><code>$ paperspace machines stop --publicMachineId "psabcdef"</code></pre>
 
     <pre class="prettyprint"><code># HTTP request:
-POST /machines/stop
+POST /machines/psabcdef/stop
 # Returns 200 on success</code></pre>
 
 
@@ -1029,14 +1734,14 @@ has transitioned into the given state. States available are:</p>
     <h5>Examples</h5>
     
     <pre class="prettyprint"><code>paperspace.machines.waitfor({
-  publicMachineId: psabcdef,
-  state: "off",
+  publicMachineId: 'psabcdef',
+  state: 'off',
 }, function(err, resp) {
   // handle error or http response
 });</code></pre>
 
     <pre class="prettyprint"><code>$ paperspace machines waitfor \
-    --publicMachineId psabcdef \
+    --publicMachineId "psabcdef" \
     --state "off"</code></pre>
 
     <pre class="prettyprint"><code># HTTP request:
@@ -1118,7 +1823,7 @@ has transitioned into the given state. States available are:</p>
             <td class="type">
             
                 
-<span class="param-type">number</span>
+<span class="param-type">string</span>
 
 
             
@@ -1243,7 +1948,7 @@ has transitioned into the given state. States available are:</p>
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Tue Jun 13 2017 12:44:55 GMT-0400 (EDT) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Wed Jun 14 2017 04:27:31 GMT-0400 (EDT) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>
