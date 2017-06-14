@@ -44,11 +44,11 @@ We'll be illustrating all examples using [ES5](http://speakingjs.com/es5/ch01.ht
 
 Assuming you've installed the `paperspace-sdk` package, you can import the SDK with:
 
-    var paperspace = require('paperspace-sdk');
+    var paperspace_sdk = require('paperspace-sdk');
 
 Then create an instance of the client, passing in your authentication credentials:
 
-    var ps = paperspace({
+    var paperspace = paperspace_sdk({
       apiKey: '0b3c5f...' // <~ Copy+paste your key here
     });
 
@@ -56,7 +56,7 @@ Then create an instance of the client, passing in your authentication credential
 
 All of the methods are namespaced by category ("machines.create" or "invoices.show") and have the same function signature. For example:
 
-    ps.machines.create({
+    paperspace.machines.create({
       // parameters
     }, function (err, resp) {
       // callback
@@ -81,7 +81,7 @@ For authenticated requests, the Paperspace CLI will look in two places:
 
 The CLI provides all methods as subcommands. For example:
 
-    $ paperspace machines create --name "My Machine" --size "50GB" # etc.
+    $ paperspace machines create --name "My Machine" --size 50 # etc.
 
 For information on all the methods available, see the [API documentation](https://paperspace.github.io/paperspace-sdk).
 
