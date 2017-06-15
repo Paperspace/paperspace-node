@@ -5,7 +5,7 @@ var paperspace = paperspace_sdk({
 });
 
 paperspace.machines.waitfor({
-   publicMachineId: "pssiq341",
+   machineId: "pssiq341",
    state: "off",
  }, function(err, resp) {
    if (err) {
