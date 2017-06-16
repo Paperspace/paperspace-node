@@ -22,7 +22,7 @@
 <label for="nav-trigger" class="overlay"></label>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Namespaces</h3><ul><li><a href="machines.html">machines</a><ul class='methods'><li data-type='method'><a href="machines.html#.create">create</a></li><li data-type='method'><a href="machines.html#.list">list</a></li><li data-type='method'><a href="machines.html#.restart">restart</a></li><li data-type='method'><a href="machines.html#.start">start</a></li><li data-type='method'><a href="machines.html#.stop">stop</a></li><li data-type='method'><a href="machines.html#.waitfor">waitfor</a></li></ul></li><li><a href="networks.html">networks</a><ul class='methods'><li data-type='method'><a href="networks.html#.list">list</a></li></ul></li><li><a href="templates.html">templates</a><ul class='methods'><li data-type='method'><a href="templates.html#.list">list</a></li></ul></li><li><a href="users.html">users</a><ul class='methods'><li data-type='method'><a href="users.html#.list">list</a></li></ul></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Namespaces</h3><ul><li><a href="machines.html">machines</a><ul class='methods'><li data-type='method'><a href="machines.html#.create">create</a></li><li data-type='method'><a href="machines.html#.destroy">destroy</a></li><li data-type='method'><a href="machines.html#.list">list</a></li><li data-type='method'><a href="machines.html#.restart">restart</a></li><li data-type='method'><a href="machines.html#.start">start</a></li><li data-type='method'><a href="machines.html#.stop">stop</a></li><li data-type='method'><a href="machines.html#.waitfor">waitfor</a></li></ul></li><li><a href="networks.html">networks</a><ul class='methods'><li data-type='method'><a href="networks.html#.list">list</a></li></ul></li><li><a href="templates.html">templates</a><ul class='methods'><li data-type='method'><a href="templates.html#.list">list</a></li></ul></li><li><a href="users.html">users</a><ul class='methods'><li data-type='method'><a href="users.html#.list">list</a></li></ul></li></ul>
 </nav>
 
 <div id="main">
@@ -818,6 +818,182 @@ POST /machines/createMachinePublic {"region": "East Coast (NY2)", "machineType":
 </dl>
 
     
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".destroy"><span class="type-signature">(static) </span>destroy<span class="signature">(cb)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="machines_destroy.js.html">machines/destroy.js</a>, <a href="machines_destroy.js.html#line6">line 6</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Destroy the machine with the given id. When this action is performed,
+the machine is immediately shut down and marked for deletion from the datacenter.
+Any snapshots that were derived from the machine are also deleted. Access to the machine
+is terminated immediately and billing for the machine is prorated to the hour.
+This action can only be performed by the user who owns the machine, or in the case of
+a team, the team administrator.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Examples</h5>
+    
+    <pre class="prettyprint"><code>paperspace.machines.destroy({
+  machineId: ps123abc,
+}, function(err, resp) {
+  // handle error or http response
+});</code></pre>
+
+    <pre class="prettyprint"><code>$ paperspace machines destroy --machineId ps123abc</code></pre>
+
+    <pre class="prettyprint"><code># HTTP request:
+POST /machines/ps123abc/destroyMachine
+# Returns 200 on success</code></pre>
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>params.machineId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The id of the machine to destroy</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>cb</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Node-style error-first callback function</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
         
@@ -1948,7 +2124,7 @@ has transitioned into the given state. States available are:</p>
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Thu Jun 15 2017 18:02:57 GMT-0400 (EDT) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Thu Jun 15 2017 21:00:44 GMT-0400 (EDT) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>
