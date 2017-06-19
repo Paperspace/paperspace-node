@@ -57,14 +57,14 @@ var assign = require('lodash.assign');
  * @param {number} params.size - Storage size for the machine in GB
  * @param {string} params.billingType - Either 'monthly' or 'hourly' billing
  * @param {string} params.machineName - A memorable name for this machine
+ * @param {string} params.templateId - Template id of the template to use for creating this machine
  * @param {string} [params.networkId] - If creating on a specific network, specify its id
- * @param {string} [params.templateId] - If creating from a template, specify its id
- * @param {string} [params.teamId] - If creating for a team, specify the team id
- * @param {string} [params.userId] - If creating for a user other than yourself, specify the user id
- * @param {string} [params.email] - If creating a new team member, specify their email address
- * @param {string} [params.password] - If creating a new team member, specify their password
- * @param {string} [params.firstName] - If creating a new team member, specify their first name
- * @param {string} [params.lastName] - If creating a new team member, specify their last name
+ * @param {string} [params.teamId] - If creating the machine for a team, specify the team id
+ * @param {string} [params.userId] - If assigning to an existing user other than yourself, specify the user id
+ * @param {string} [params.email] - If creating a new user for this machine, specify their email address
+ * @param {string} [params.password] - If creating a new user, specify their password
+ * @param {string} [params.firstName] - If creating a new user, specify their first name
+ * @param {string} [params.lastName] - If creating a new user, specify their last name
  * @param {string} [params.notificationEmail] - Send a notification to this email address when complete
  * @param {function} cb - Node-style error-first callback function
  * @returns {object} machine - The created machine JSON object
@@ -75,15 +75,15 @@ var assign = require('lodash.assign');
  *   size: 50,
  *   billingType: 'hourly',
  *   machineName: 'My Machine 1',
+ *   templateId: 't123abc',
  *   networkId: 'n123abc', // optional - only if creating on a specific network
- *   templateId: 't123abc', // optional - only if creating from a template
- *   teamId: 'te456def', // optional - required if creating for an team member
- *   userId: 'u123abc', // optional - required if creating for an user
+ *   teamId: 'te456def', // optional - required if creating this machine for a team
+ *   userId: 'u123abc', // optional - required if assigning to an existing user other than yourself
  *   email: 'example@example.com', // optional - if creating a new user
  *   password: 'secret123', // optional - if creating a new user
  *   firstName: 'Jon', // optional - if creating a new user
  *   lastName: 'Snow', // optional - if creating a new user
- *   notificationEmail: 'example@example.com', // optional - to send a notification here when ready
+ *   notificationEmail: 'example@example.com', // optional - address to send a notification when complete
  * }, function(err, resp) {
  *   // handle error or http response
  * });
@@ -94,8 +94,8 @@ var assign = require('lodash.assign');
  *     --size 50 \
  *     --billingType "hourly" \
  *     --machineName "My Machine 1" \
- *     --networkId "n123abc" \
  *     --templateId "t123abc" \
+ *     --networkId "n123abc" \
  *     --teamId "te456def" \
  *     --userId "u123abc" \
  *     --email "example@example.com" \
@@ -105,7 +105,7 @@ var assign = require('lodash.assign');
  *     --notificationEmail "example@example.com"
  * @example
  * # HTTP request:
- * POST /machines/createMachinePublic {"region": "East Coast (NY2)", "machineType": "Air", "size": 50, "billingType": "monthly", "machineName": "My Machine 1", "networkId": "n123abc", "templateId": "t123abc", "teamId": "te456def", "userId": "u123abc", "email": "example@example.com", "password": "secret123", "firstName": "Jon", "lastName": "Snow", "notificationEmail": "example@example.com"}
+ * POST /machines/createMachinePublic {"region": "East Coast (NY2)", "machineType": "Air", "size": 50, "billingType": "monthly", "machineName": "My Machine 1", "templateId": "t123abc", "networkId": "n123abc", "teamId": "te456def", "userId": "u123abc", "email": "example@example.com", "password": "secret123", "firstName": "Jon", "lastName": "Snow", "notificationEmail": "example@example.com"}
  * # Returns 201 on success
  * @example
  * // Example return value:
@@ -124,7 +124,7 @@ var assign = require('lodash.assign');
  *   "performAutoSnapshot": false,
  *   "autoSnapshotFrequency": null,
  *   "autoSnapshotSaveCount": null,
- *   "agentType": null,
+ *   "agentType": "WindowsDesktop",
  *   "dtCreated": "2017-02-16T20:26:54.880Z",
  *   "state": "provisioning",
  *   "networkId": null,
@@ -152,6 +152,7 @@ assign(create, {
 		size: 'number',
 		billingType: 'string',
 		machineName: 'string',
+		templateId: 'string',
 	},
 	returns: {},
 });
@@ -169,7 +170,7 @@ module.exports = create;
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Sat Jun 17 2017 20:31:06 GMT-0400 (EDT) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Mon Jun 19 2017 13:23:45 GMT-0400 (EDT) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>
