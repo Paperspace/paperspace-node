@@ -12,7 +12,7 @@
   "scripts": {
     "test": "tape ./test/*.test.js | tap-spec",
     "lint": "eslint .",
-    "docs": "jsdoc ./index.js -R README.md -c jsdoc.json && open index.html",
+    "docs": "jsdoc ./index.js -R README.md -c jsdoc.json",
     "prettier": "prettier --single-quote --trailing-comma es5 --use-tabs --write lib/**/*.js"
   },
   "dependencies": {
