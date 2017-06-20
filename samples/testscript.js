@@ -4,11 +4,11 @@ var superagent = require('superagent');
 var paperspace = paperspace_sdk({
   apiKey: '1be4f985c4719029be7fbcc732cbda'
 });
-/*
+
 paperspace.accounts.script({
-   scriptName: 'Tom Script 4',
-   scriptFile: './testscript.js',
-   scriptDescriptione: 'Another script',
+   scriptName: 'Tom Script 10',
+   scriptFile: 'testshow.js',
+   scriptDescription: 'Another script',
    machineId: 'pssiq341',
  }, function(err, resp) {
    if (err) {
@@ -16,13 +16,13 @@ paperspace.accounts.script({
      return;
    }
    console.log(resp.body);
-});*/
-/**/
+});
+/*
 superagent
-  .post( 'http://192.168.8.132:3102/accounts/setStartupScript' )
+  .post( 'http://localhost:3102/accounts/setStartupScript' )
   .set('x-api-key', '1be4f985c4719029be7fbcc732cbda')
   .accept('application/json')
-  .query('scriptName=TomScript5')
+  .query('scriptName=TomScript 9')
   .query('scriptDestription=Ascript')
   .query('machineId=psm0ircf')
   .attach('file', 'testscript.js')
@@ -32,5 +32,4 @@ superagent
         return;
       }
       console.log(JSON.stringify(res));
-  });
-/**/
+  });*/
