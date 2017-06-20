@@ -36,7 +36,7 @@ First, sign in to your [Paperspace account](https://paperspace.com). Click 'Laun
 
 ## Usage
 
-You can interact with Paperspace's API in two ways: programatically (from within JavaScript), or from the command line. Both tools are backed by the same underlying API client.
+You can interact with Paperspace's API in three ways: programatically (from within JavaScript), from the command line (using the Paperspace CLI), or using an HTTP client of your choice and the Paperspace API HTTP enpoints documented here. The JavaScript libabry and the CLI are backed by the same underlying API client.
 
 ### Programmatic
 
@@ -90,6 +90,16 @@ For information on all the methods available, see the [API documentation](https:
 ## HTTP endpoints
 
 If you'd prefer to interact with our HTTP API directly, and roll your own client instead of using ours, our HTTP endpoints are also described in our [API documentation](https://paperspace.github.io/paperspace-sdk).
+
+### Address for HTTP endpoints
+
+If making HTTP requests directly to the Paperspace HTTP endpoints use the following address for each request: `https://api.paperspace.io`
+
+### Authenticating to HTTP endpoints
+
+In order to use the HTTP API directly you must specify the `x-api-key` header with the value of the API key obtained using the procedure above.
+
+## Other clients
 
 If you've created an API client in a language other than JavaScript, please [let us know](mailto:support@paperspace.com) and we will link to it here.
 
