@@ -22,7 +22,7 @@
 <label for="nav-trigger" class="overlay"></label>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Namespaces</h3><ul><li><a href="machines.html">machines</a><ul class='methods'><li data-type='method'><a href="machines.html#.create">create</a></li><li data-type='method'><a href="machines.html#.destroy">destroy</a></li><li data-type='method'><a href="machines.html#.list">list</a></li><li data-type='method'><a href="machines.html#.restart">restart</a></li><li data-type='method'><a href="machines.html#.start">start</a></li><li data-type='method'><a href="machines.html#.stop">stop</a></li><li data-type='method'><a href="machines.html#.waitfor">waitfor</a></li></ul></li><li><a href="networks.html">networks</a><ul class='methods'><li data-type='method'><a href="networks.html#.list">list</a></li></ul></li><li><a href="templates.html">templates</a><ul class='methods'><li data-type='method'><a href="templates.html#.list">list</a></li></ul></li><li><a href="users.html">users</a><ul class='methods'><li data-type='method'><a href="users.html#.list">list</a></li></ul></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Namespaces</h3><ul><li><a href="machines.html">machines</a><ul class='methods'><li data-type='method'><a href="machines.html#.create">create</a></li><li data-type='method'><a href="machines.html#.destroy">destroy</a></li><li data-type='method'><a href="machines.html#.list">list</a></li><li data-type='method'><a href="machines.html#.restart">restart</a></li><li data-type='method'><a href="machines.html#.show">show</a></li><li data-type='method'><a href="machines.html#.start">start</a></li><li data-type='method'><a href="machines.html#.stop">stop</a></li><li data-type='method'><a href="machines.html#.waitfor">waitfor</a></li></ul></li><li><a href="networks.html">networks</a><ul class='methods'><li data-type='method'><a href="networks.html#.list">list</a></li></ul></li><li><a href="templates.html">templates</a><ul class='methods'><li data-type='method'><a href="templates.html#.list">list</a></li></ul></li><li><a href="users.html">users</a><ul class='methods'><li data-type='method'><a href="users.html#.list">list</a></li></ul></li></ul>
 </nav>
 
 <div id="main">
@@ -61,7 +61,7 @@
 <pre class="prettyprint source"><code>$ npm install -g Paperspace/paperspace-sdk#master</code></pre><p>The reason we recommend installing it globally is so the <code>paperspace</code> command will be available on your command line everywhere on your system. If you only want to make it available within an individual Node.js project, you can install it locally by omitting the <code>-g</code> flag.</p>
 <h3>Setup</h3><p>Before you can use this tool, you'll need a <a href="https://paperspace.com">Paperspace account</a>. You'll use this account to obtain Paperspace API keys.</p>
 <h3>Obtaining an API key</h3><p>First, sign in to your <a href="https://paperspace.com">Paperspace account</a>. Click 'Launch Console' at top right. From your admin console, you should find an 'Account Info' section. There, you'll find a form where you can create API keys. You'll use the API keys you generate here to authenticate your requests.</p>
-<h2>Usage</h2><p>You can interact with Paperspace's API in two ways: programatically (from within JavaScript), or from the command line. Both tools are backed by the same underlying API client.</p>
+<h2>Usage</h2><p>You can interact with Paperspace's API in three ways: programatically (from within JavaScript), from the command line (using the Paperspace CLI), or using an HTTP client of your choice and the Paperspace API HTTP enpoints documented here. The JavaScript libabry and the CLI are backed by the same underlying API client.</p>
 <h3>Programmatic</h3><p>We'll be illustrating all examples using <a href="http://speakingjs.com/es5/ch01.html">ES5</a> syntax and the CommonJS module format. For other systems like AMD, consider using a bundler such as Browserify.</p>
 <p>Assuming you've installed the <code>paperspace-sdk</code> package, you can import the SDK with:</p>
 <pre class="prettyprint source"><code>var paperspace_sdk = require('paperspace-sdk');</code></pre><p>Then create an instance of the client, passing in your authentication credentials:</p>
@@ -83,7 +83,9 @@
 <h4>Calling the API with the CLI</h4><p>The CLI provides all methods as subcommands. For example:</p>
 <pre class="prettyprint source"><code>$ paperspace machines create --name &quot;My Machine&quot; --size 50 # etc.</code></pre><p>For information on all the methods available, see the <a href="https://paperspace.github.io/paperspace-sdk">API documentation</a>.</p>
 <h2><a href="https://paperspace.github.io/paperspace-sdk">API Documentation</a></h2><h2>HTTP endpoints</h2><p>If you'd prefer to interact with our HTTP API directly, and roll your own client instead of using ours, our HTTP endpoints are also described in our <a href="https://paperspace.github.io/paperspace-sdk">API documentation</a>.</p>
-<p>If you've created an API client in a language other than JavaScript, please <a href="mailto:support@paperspace.com">let us know</a> and we will link to it here.</p>
+<h3>Address for HTTP endpoints</h3><p>If making HTTP requests directly to the Paperspace HTTP endpoints use the following address for each request: <code>https://api.paperspace.io</code></p>
+<h3>Authenticating to HTTP endpoints</h3><p>In order to use the HTTP API directly you must specify the <code>x-api-key</code> header with the value of the API key obtained using the procedure above.</p>
+<h2>Other clients</h2><p>If you've created an API client in a language other than JavaScript, please <a href="mailto:support@paperspace.com">let us know</a> and we will link to it here.</p>
 <h2>Contributing</h2><p>We welcome contributions to this project. Please adhere to the established coding conventions within the project and submit changes using pull requests.</p>
 <h2>Bugs / Support / Troubleshooting</h2><p>For bugs with the API client, command-line utility, or the HTTP API, please file tickets using GitHub Issues on this repo. We'll do our best to respond as quickly as we can. Keep in mind that Paperspace is a small team and you may need to allow up to a week for a response.</p>
 <p>Other issues, such as those related to your Paperspace account, your team or team members, billing, or technical issues with your Paperspace machines should be directed to <a href="mailto:support@paperspace.com">support@paperspace.com</a>.</p>
@@ -103,7 +105,7 @@
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Mon Jun 19 2017 13:23:45 GMT-0400 (EDT) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Tue Jun 20 2017 01:17:18 GMT-0400 (EDT) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>
