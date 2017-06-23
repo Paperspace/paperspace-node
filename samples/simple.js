@@ -4,7 +4,7 @@ var paperspace = paperspace_sdk({
   apiKey: '1be4f985c4719029be7fbcc732cbda'
 });
 
-paperspace.templates.list(null,
+paperspace.templates.list(
   function(err, resp) {
     if (err) {
       console.log(resp.body);
