@@ -9,7 +9,7 @@ paperspace.machines.show({
  }, function(err, resp) {
    if (err) {
      console.log(err);
-     return;
+     process.exit(1);
    }
    console.log(resp.body);
 });

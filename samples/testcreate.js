@@ -1,24 +1,20 @@
 var paperspace_sdk = require('../../paperspace-sdk');
 
 var paperspace = paperspace_sdk({
-  apiKey: 'eecdfa3766ec2e0f0a2303ca8bddef'
+  apiKey: '1be4f985c4719029be7fbcc732cbda'
 });
 
 paperspace.machines.create({
    region: 'East Coast (NY2)',
-   machineType: 'Air',
+   machineType: 'C1',
    size: 50,
    billingType: 'hourly',
-   machineName: 'My Machine 6',
-   templateId: 'tiddssl', // xe_tempate 45, a public linux template, ml-in-a-box
-   //templateId: 'tinjs77', // template 167, belonging to team 113 with admin 20 (Colin) -- a non-public template
-   networkId: 'ndj60ob', // vlan record 52 (for team 101)
-   teamId: 'te5miig6', // team 101 (AD Test team)
-   userId: 'UIOJ2I5', // user 418, tom@paperspace.io
+   machineName: 'Test API 7',
+   templateId: 'tqalmii',
  }, function(err, resp) {
    if (err) {
      console.log(err);
-     return;
+     process.exit(1);
    }
    console.log(resp.body);
 });

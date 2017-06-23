@@ -13,7 +13,7 @@ paperspace.accounts.script({
  }, function(err, resp) {
    if (err) {
      console.log(err);
-     return;
+     process.exit(1);
    }
    console.log(resp.body);
 });
@@ -29,7 +29,7 @@ superagent
   .end(function(err, res){
       if (err) {
         console.log(JSON.stringify(err));
-        return;
+        process.exit(1);
       }
       console.log(JSON.stringify(res));
   });*/

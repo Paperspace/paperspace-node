@@ -1,7 +1,7 @@
 var paperspace_sdk = require('../../paperspace-sdk');
 
 var paperspace = paperspace_sdk({
-  apiKey: 'eecdfa3766ec2e0f0a2303ca8bddef'
+  apiKey: '1be4f985c4719029be7fbcc732cbda'
 });
 
 paperspace.machines.start({
@@ -9,7 +9,7 @@ paperspace.machines.start({
  }, function(err, resp) {
    if (err) {
      console.log(err);
-     return;
+     process.exit(1);
    }
    console.log(resp.body);
 });
