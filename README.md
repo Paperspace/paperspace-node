@@ -1,4 +1,4 @@
-# Paperspace SDK (v0.0.0)
+# Paperspace API (v0.0.0)
 
 ![image](https://cloud.githubusercontent.com/assets/585865/26324445/cdeb6658-3f00-11e7-9a18-3e2070d9a400.png)
 
@@ -8,21 +8,21 @@
 
 - - - -
 
-The **Paperspace SDK** is the official devkit for automating your [Paperspace](https://paperspace.com) account. It's currently available in JavaScript, and we plan to offer other languages and integrations in the future. For v0, we are offering basic actions such as creating machines and managing team members. This repo includes:
+The **Paperspace API** is the official devkit for automating your [Paperspace](https://paperspace.com) account. It's currently available in JavaScript, and we plan to offer other languages and integrations in the future. For v0, we are offering basic actions such as creating machines and managing team members. This repo includes:
 
 * [JavaScript API client](#programmatic) (for Node.js and the browser)
 * [CLI](#cli)
-* [API documentation](https://paperspace.github.io/paperspace-sdk)
+* [API documentation](https://paperspace.github.io/paperspace-node)
 
 ## Getting started
 
-Your system will need [Node.js](https://nodejs.org) v4+ installed. Check that you have a recent enough version by running `node -v` in your terminal. Node.js comes bundled with `npm`, the Node.js package management tool, which you'll use to install this SDK.
+Your system will need [Node.js](https://nodejs.org) v4+ installed. Check that you have a recent enough version by running `node -v` in your terminal. Node.js comes bundled with `npm`, the Node.js package management tool, which you'll use to install this package.
 
 ### Installation
 
 Install the package from npm:
 
-    $ npm install -g Paperspace/paperspace-sdk#master
+    $ npm install -g Paperspace/paperspace-node#master
 
 The reason we recommend installing it globally is so the `paperspace` command will be available on your command line everywhere on your system. If you only want to make it available within an individual Node.js project, you can install it locally by omitting the `-g` flag.
 
@@ -42,13 +42,13 @@ You can interact with Paperspace's API in three ways: programatically (from with
 
 We'll be illustrating all examples using [ES5](http://speakingjs.com/es5/ch01.html) syntax and the CommonJS module format. For other systems like AMD, consider using a bundler such as Browserify.
 
-Assuming you've installed the `paperspace-sdk` package, you can import the SDK with:
+Assuming you've installed the `paperspace-node` package, you can import the package with:
 
-    var paperspace_sdk = require('paperspace-sdk');
+    var paperspace_node = require('paperspace-node');
 
 Then create an instance of the client, passing in your authentication credentials:
 
-    var paperspace = paperspace_sdk({
+    var paperspace = paperspace_node({
       apiKey: '0b3c5f...' // <~ Copy+paste your key here
     });
 
@@ -64,11 +64,11 @@ All of the methods are namespaced by category ("machines.create" or "invoices.sh
 
 That is, the first argument is parameters object, and the second is a error-first callback function.
 
-For information on all the methods available, see the [API documentation](https://paperspace.github.io/paperspace-sdk).
+For information on all the methods available, see the [API documentation](https://paperspace.github.io/paperspace-node).
 
 ### CLI
 
-Assuming you've installed the `paperspace-sdk` package, you can invoke the Paperspace CLI with:
+Assuming you've installed the `paperspace-node` package, you can invoke the Paperspace CLI with:
 
     $ paperspace --help
 
@@ -83,13 +83,13 @@ The CLI provides all methods as subcommands. For example:
 
     $ paperspace machines create --name "My Machine" --size 50 # etc.
 
-For information on all the methods available, see the [API documentation](https://paperspace.github.io/paperspace-sdk).
+For information on all the methods available, see the [API documentation](https://paperspace.github.io/paperspace-node).
 
-## [API Documentation](https://paperspace.github.io/paperspace-sdk)
+## [API Documentation](https://paperspace.github.io/paperspace-node)
 
 ## HTTP endpoints
 
-If you'd prefer to interact with our HTTP API directly, and roll your own client instead of using ours, our HTTP endpoints are also described in our [API documentation](https://paperspace.github.io/paperspace-sdk).
+If you'd prefer to interact with our HTTP API directly, and roll your own client instead of using ours, our HTTP endpoints are also described in our [API documentation](https://paperspace.github.io/paperspace-node).
 
 NOTE: the HTTP endpoints are subject to change in the future.  We recommend using one of the programmatic APIs whenever possible to maintain forward compatibility.
 

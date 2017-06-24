@@ -6,7 +6,7 @@ A brief guide for developers who want to contribute to this repo.
 
 This repo is responsible for two overall things:
 
-* **Docs** covering SDK usage
+* **Docs** covering API usage
 * **Code** that implements the JavaScript client and CLI
 
 #### Docs
@@ -38,11 +38,11 @@ The CLI handler code is in `cli/index.js`. This is just a very small wrapper ove
 
 ##### JavaScript
 
-The entry module for the JavaScript client is `lib/index.js`. 
+The entry module for the JavaScript client is `lib/index.js`.
 
 Implementation of the individual methods provided by the API are located in the subfolders: `lib/*/*.js`, e.g. `lib/machines/create.js`.
 
-Although the JavaScript entry module loads these individual implementations into a single root interface that can be accessed with `require('paperspace-sdk')`, it is also set up so they can be required a la carte: `require('paperspace-sdk/lib/machines/create')`. Start following the code in `lib/paperspace.js` to understand how this happens.
+Although the JavaScript entry module loads these individual implementations into a single root interface that can be accessed with `require('paperspace-node')`, it is also set up so they can be required a la carte: `require('paperspace-node/lib/machines/create')`. Start following the code in `lib/paperspace.js` to understand how this happens.
 
 ###### Configuration
 

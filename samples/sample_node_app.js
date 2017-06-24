@@ -1,8 +1,8 @@
-// Assumes you have installed the paperspace-sdk node package globally.
-// Use "require('../../paperspace-sdk')" if running from the repository tree.
-var paperspace_sdk = require('paperspace-sdk');
+// Assumes you have installed the paperspace-node package globally.
+// Use "require('../../paperspace-node')" if running from the repository tree.
+var paperspace_node = require('paperspace-node');
 
-var paperspace = paperspace_sdk({
+var paperspace = paperspace_node({
   apiKey: '1be4f97...' // Substitue your actual apiKey here
 });
 

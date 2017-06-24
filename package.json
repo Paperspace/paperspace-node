@@ -1,9 +1,9 @@
 {
-  "name": "paperspace-sdk",
+  "name": "paperspace-node",
   "version": "0.0.0",
-  "description": "Paperspace SDK",
+  "description": "Paperspace API for node",
   "main": "index.js",
-  "repository": "https://github.com/Paperspace/paperspace-sdk",
+  "repository": "https://github.com/Paperspace/paperspace-node",
   "author": "Paperspace <support@paperspace.com>",
   "license": "ISC",
   "bin": {
