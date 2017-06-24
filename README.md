@@ -91,6 +91,8 @@ For information on all the methods available, see the [API documentation](https:
 
 If you'd prefer to interact with our HTTP API directly, and roll your own client instead of using ours, our HTTP endpoints are also described in our [API documentation](https://paperspace.github.io/paperspace-sdk).
 
+NOTE: the HTTP endpoints are subject to change in the future.  We recommend using one of the programmatic APIs whenever possible to maintain forward compatibility.
+
 ### Address for HTTP endpoints
 
 If making HTTP requests directly to the Paperspace HTTP endpoints use the following address for each request: `https://api.paperspace.io`
@@ -102,6 +104,10 @@ In order to use the HTTP API directly you must specify the `x-api-key` header wi
 ## Other clients
 
 If you've created an API client in a language other than JavaScript, please [let us know](mailto:support@paperspace.com) and we will link to it here.
+
+## Sample Apps
+
+See the directory 'samples' for a few simple samples of using the node API, and the CLI in a bash script.  Note: the [jq](https://stedolan.github.io/jq/) tool is used in the bash sample for parsing JSON data.
 
 ## Contributing
 
