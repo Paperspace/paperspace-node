@@ -9,14 +9,14 @@ PAPERSPACE_API_KEY=1be4f97...
 echo "paperspace templates list"
 paperspace templates list
 
-# Select the 6th template in the list  using the 'jq' tool
-echo "selecting the 6th template id..."
-t_id=`paperspace templates list | jq -r '.[5].id'`
+# Select the first template with a label of "ML in a Box", using the 'jq' tool
+echo "finding a template with label 'ML in a Box'..."
+t_id=`paperspace templates list | jq -r '.[] | select(.label=="ML in a Box") | .id'`
 
-# Create the machine and parse out the new machine id
+# Create a machine and parse out the new machine id
 echo "paperspace machines create ... --templateId $t_id"
 m_id=`paperspace machines create --machineName "Test Machine" --billingType "hourly" \
-  --region "East Coast (NY2)" --size 50 --machineType "C1" --templateId "$t_id" | jq -r '.id'`
+  --region "East Coast (NY2)" --size 50 --machineType "GPU+" --templateId "$t_id" | jq -r '.id'`
 
 echo "paperspace machines waitfor --machineId $m_id --state ready"
 paperspace machines waitfor --machineId "$m_id" --state "ready"
@@ -32,3 +32,5 @@ paperspace machines waitfor --machineId "$m_id" --state "off"
 
 echo "paperspace machines destroy --machineId $m_id"
 paperspace machines destroy --machineId "$m_id"
+
+echo "done"

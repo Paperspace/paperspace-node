@@ -1,12 +1,14 @@
 // Assumes you have installed the paperspace-node package globally.
 // Use "require('../../paperspace-node')" if running from the repository tree.
-var paperspace_node = require('paperspace-node');
+var paperspace_node = require('../../paperspace-node');
 
+// Set apkKey for use of the paperspace api
 var paperspace = paperspace_node({
   apiKey: '1be4f97...' // Substitue your actual apiKey here
 });
 
-console.log('paperspace tempates list');
+// Retrieve a list of all the templates as a json array
+console.log('\npaperspace.tempates.list(...);');
 
 paperspace.templates.list(
   function(err, resp) {
@@ -16,13 +18,27 @@ paperspace.templates.list(
     }
     console.log(resp.body);
 
-    var t_id = resp.body[5].id; // e.g., the 6th template was os type 'Ubuntu 16.04 Server'
+    // Search the response body for a template with the label 'ML in a Box'
+    var t_id;
+    for(var i = 0; i < resp.body.length; i++) {
+      if(resp.body[i].label === 'ML in a Box') {
+        t_id = resp.body[i].id;
+        break;
+      }
+    }
+    if (!t_id) {
+      console.log('Error: \'ML in a Box\' template not found.');
+      process.exit(1);
+    }
 
-    console.log('paperspace machines create ... --templateId ' + t_id);
+    // Create a machine using the found template id
+    console.log('\npaperspace.machines.create({\n  region: \'East Coast (NY2)\',\n  machineType: \'GPU+\',');
+    console.log('  size: 50,\n  billingType: \'hourly\',\n  machineName: \'Test Machine\',');
+    console.log('  templateId: \'' + t_id + '\'}, ...);');
 
     paperspace.machines.create({
         region: 'East Coast (NY2)',
-        machineType: 'C1',
+        machineType: 'GPU+',
         size: 50,
         billingType: 'hourly',
         machineName: 'Test Machine',
@@ -36,7 +52,8 @@ paperspace.templates.list(
 
         var id = resp.body.id;  // Extract the id of the newly created machine
 
-        console.log('paperspace machines waitfor --machineId ' + id + ' --state ready');
+        // Wait for machine to enter the 'ready' state
+        console.log('\npaperspace.machines.waitfor({machineId: \'' + id + '\', state: \'ready\'}, ...);');
 
         paperspace.machines.waitfor({
             machineId: id,
@@ -48,7 +65,8 @@ paperspace.templates.list(
             }
             console.log(resp.body);
 
-            console.log('paperspace machines stop --machineId ' + id);
+            // Stop the machine
+            console.log('\npaperspace.machines.stop({machineId: \'' + id + '\'}, ...);');
 
             paperspace.machines.stop({
                 machineId: id,
@@ -59,7 +77,8 @@ paperspace.templates.list(
                  }
                  console.log(resp.body);
 
-                 console.log('paperspace machines waitfor --machineId ' + id + ' --state off');
+                 // Wait for machine to enter the 'off' state
+                 console.log('\npaperspace.machines.waitfor({machineId: \'' + id + '\', state: \'off\'}, ...);');
 
                  paperspace.machines.waitfor({
                      machineId: id,
@@ -71,7 +90,8 @@ paperspace.templates.list(
                      }
                      console.log(resp.body);
 
-                     console.log('paperspace machines destroy --machineId ' + id);
+                     // Destroy the machine
+                     console.log('\npaperspace.machines.destroy({machineId: \'' + id + '\'}, ...);');
 
                      paperspace.machines.destroy({
                          machineId: id,
@@ -82,7 +102,7 @@ paperspace.templates.list(
                          }
                          console.log(resp.body);
 
-                         console.log('done');
+                         console.log('\ndone');
                       });
                   });
               });
