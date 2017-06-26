@@ -46,16 +46,16 @@ function methodHints() {
 }
 
 if (!givenNamespace && !givenName) {
-	console.log(`
-    ${chalk.bold(`paperspace`)} <namespace> <command> [...flags]
-
-    ${chalk.dim('Commands:')}
-
-    ${methodHints()}
-
-    ---
-    ${chalk.dim(DEETS_NOTE)}
-  `);
+	console.log();
+	console.log('    ' + chalk.bold('paperspace') + ' <namespace> <command> [...flags]');
+	console.log();
+	console.log('    ' + chalk.dim('Commands:'));
+	console.log();
+	console.log('    ' + methodHints());
+	console.log();
+	console.log('    ---');
+	console.log('    ' + chalk.dim(DEETS_NOTE));
+	console.log('');
 
 	process.exit();
 }
