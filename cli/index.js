@@ -11,7 +11,7 @@ var chalk = require('chalk');
 // Ours
 var paperspace = require('./../lib/paperspace');
 
-var DEETS_NOTE = 'See https://paperspace.com/api for details';
+var DEETS_NOTE = 'See https://paperspace.github.io/paperspace-node for details';
 
 function methodHint(spec) {
 	return [
