@@ -20,9 +20,9 @@ Your system will need [Node.js](https://nodejs.org) v4+ installed. Check that yo
 
 ### Installation
 
-Install the package from github:
+Install the package from npm:
 
-    $ npm install -g Paperspace/paperspace-node
+    $ npm install -g paperspace-node
 
 The reason we recommend installing it globally is so the `paperspace` command will be available on your command line everywhere on your system. If you only want to make it available within an individual Node.js project, you can install it locally by omitting the `-g` flag.
 
@@ -46,7 +46,7 @@ We'll be illustrating all examples using [ES5](http://speakingjs.com/es5/ch01.ht
 
 First install the `paperspace-node` package in your project directory using:
 
-    $ npm install Paperspace/paperspace-node
+    $ npm install paperspace-node
 
 Within your node.js app you can import the package with:
 
