@@ -20,9 +20,9 @@ Your system will need [Node.js](https://nodejs.org) v4+ installed. Check that yo
 
 ### Installation
 
-Install the package from npm:
+Install the package from github:
 
-    $ npm install -g Paperspace/paperspace-node#master
+    $ npm install -g Paperspace/paperspace-node
 
 The reason we recommend installing it globally is so the `paperspace` command will be available on your command line everywhere on your system. If you only want to make it available within an individual Node.js project, you can install it locally by omitting the `-g` flag.
 
@@ -44,7 +44,11 @@ You can interact with Paperspace's API in three ways: programatically (from with
 
 We'll be illustrating all examples using [ES5](http://speakingjs.com/es5/ch01.html) syntax and the CommonJS module format. For other systems like AMD, consider using a bundler such as Browserify.
 
-Assuming you've installed the `paperspace-node` package, you can import the package with:
+First install the `paperspace-node` package in your project directory using:
+
+    $ npm install Paperspace/paperspace-node
+
+Within your node.js app you can import the package with:
 
     var paperspace_node = require('paperspace-node');
 
