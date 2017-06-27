@@ -1,6 +1,6 @@
-# Paperspace API (v0.0.0)
+# Paperspace API (v0.1.0)
 
-![image](https://cloud.githubusercontent.com/assets/585865/26324445/cdeb6658-3f00-11e7-9a18-3e2070d9a400.png)
+![image](https://user-images.githubusercontent.com/585865/27562775-26b8acc6-5a9c-11e7-8270-2b80ca895bc5.png)
 
 - - - -
 
@@ -8,7 +8,7 @@
 
 - - - -
 
-The **Paperspace API** is the official devkit for automating your [Paperspace](https://paperspace.com) account. It's currently available in JavaScript, and we plan to offer other languages and integrations in the future. For v0, we are offering basic actions such as creating machines and managing team members. This repo includes:
+The **Paperspace API** is the official devkit for automating your [Paperspace](https://www.paperspace.com) account. It's currently available in JavaScript, and we plan to offer other languages and integrations in the future. For v0, we are offering basic actions such as creating machines and managing team members. This repo includes:
 
 * [JavaScript API client](#programmatic) (for Node.js and the browser)
 * [CLI](#cli)
@@ -33,6 +33,8 @@ Before you can use this tool, you'll need a [Paperspace account](https://papersp
 ### Obtaining an API key
 
 First, sign in to your [Paperspace account](https://paperspace.com). Click 'Launch Console' at top right. From your admin console, you should find an 'Account Info' section. There, you'll find a form where you can create API keys. You'll use the API keys you generate here to authenticate your requests.
+
+![image](https://user-images.githubusercontent.com/585865/27563650-f2bc289e-5aa0-11e7-990f-4ed6f9bd39e7.png)
 
 ## Usage
 
