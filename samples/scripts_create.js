@@ -14,9 +14,10 @@ paperspace.scripts.create({
     scriptName: 'Test Script',
     scriptDescription: 'scripts_create.js',
     machineId: 'ps123abc',
-    scriptFile: 'scripts_create.js',
+    //scriptFile: './my_script_file.sh',  // either scriptFile or scriptText is required
+    scriptText: 'services start nginx16',
     isEnabled: true,
-    runOnce: true
+    runOnce: false
   }, function(err, resp) {
     if (err) {
       console.log(err);
