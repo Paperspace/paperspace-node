@@ -22,7 +22,7 @@
 <label for="nav-trigger" class="overlay"></label>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Namespaces</h3><ul><li><a href="machines.html">machines</a><ul class='methods'><li data-type='method'><a href="machines.html#.create">create</a></li><li data-type='method'><a href="machines.html#.destroy">destroy</a></li><li data-type='method'><a href="machines.html#.list">list</a></li><li data-type='method'><a href="machines.html#.restart">restart</a></li><li data-type='method'><a href="machines.html#.show">show</a></li><li data-type='method'><a href="machines.html#.start">start</a></li><li data-type='method'><a href="machines.html#.stop">stop</a></li><li data-type='method'><a href="machines.html#.waitfor">waitfor</a></li></ul></li><li><a href="networks.html">networks</a><ul class='methods'><li data-type='method'><a href="networks.html#.list">list</a></li></ul></li><li><a href="scripts.html">scripts</a><ul class='methods'><li data-type='method'><a href="scripts.html#.create">create</a></li></ul></li><li><a href="templates.html">templates</a><ul class='methods'><li data-type='method'><a href="templates.html#.list">list</a></li></ul></li><li><a href="users.html">users</a><ul class='methods'><li data-type='method'><a href="users.html#.list">list</a></li></ul></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Namespaces</h3><ul><li><a href="machines.html">machines</a><ul class='methods'><li data-type='method'><a href="machines.html#.create">create</a></li><li data-type='method'><a href="machines.html#.destroy">destroy</a></li><li data-type='method'><a href="machines.html#.list">list</a></li><li data-type='method'><a href="machines.html#.restart">restart</a></li><li data-type='method'><a href="machines.html#.show">show</a></li><li data-type='method'><a href="machines.html#.start">start</a></li><li data-type='method'><a href="machines.html#.stop">stop</a></li><li data-type='method'><a href="machines.html#.waitfor">waitfor</a></li></ul></li><li><a href="networks.html">networks</a><ul class='methods'><li data-type='method'><a href="networks.html#.list">list</a></li></ul></li><li><a href="scripts.html">scripts</a><ul class='methods'><li data-type='method'><a href="scripts.html#.create">create</a></li><li data-type='method'><a href="scripts.html#.list">list</a></li></ul></li><li><a href="templates.html">templates</a><ul class='methods'><li data-type='method'><a href="templates.html#.list">list</a></li></ul></li><li><a href="users.html">users</a><ul class='methods'><li data-type='method'><a href="users.html#.list">list</a></li></ul></li></ul>
 </nav>
 
 <div id="main">
@@ -120,7 +120,7 @@
 
     
 
-    <h4 class="name" id=".create"><span class="type-signature">(static) </span>create<span class="signature">(scriptName, scriptFile, scriptDescription<span class="signature-attributes">opt</span>, isEnabled<span class="signature-attributes">opt</span>, runOnce<span class="signature-attributes">opt</span>, machineId<span class="signature-attributes">opt</span>, cb)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id=".create"><span class="type-signature">(static) </span>create<span class="signature">(scriptName, scriptFile<span class="signature-attributes">opt</span>, scriptText<span class="signature-attributes">opt</span>, scriptDescription<span class="signature-attributes">opt</span>, isEnabled<span class="signature-attributes">opt</span>, runOnce<span class="signature-attributes">opt</span>, machineId<span class="signature-attributes">opt</span>, cb)</span><span class="type-signature"> &rarr; {object}</span></h4>
 
     
 
@@ -188,7 +188,7 @@ Note: currently only Linux based machines support startup scripts.  Also, note: 
     
     <pre class="prettyprint"><code>paperspace.scripts.create({
   scriptName: 'My Script',
-  scriptFile: './my_script_file.sh',
+  scriptFile: './my_script_file.sh', // must specify either scriptFile or scriptText
   scriptDescription: 'A startup script', // optional
   isEnabled: true, // optional
   runOnce: false, // optional
@@ -199,8 +199,8 @@ Note: currently only Linux based machines support startup scripts.  Also, note: 
 
     <pre class="prettyprint"><code>$ paperspace accounts create \
     --scriptName "My Script" \
-    --scriptFile "./my_script_file.sh" \
     --scriptDescription "A startup script" \
+    --scriptText "services start nginx" \
     --isEnabled true \
     --runOnce false \
     --machineId "ps123abc"</code></pre>
@@ -209,8 +209,8 @@ Note: currently only Linux based machines support startup scripts.  Also, note: 
 https://api.paperspace.io
 POST /account/setStartupScript {"scriptName": "My Script", "scriptDescription": "A startup script", "isEnabled": true, "runOnce": false, "machineId": "ps123abc"}
 x-api-key: 1ba4f98e7c0...
-(file contents as file form data)
-# Returns 204 on success</code></pre>
+(file contents as multipart form data)
+# Returns 200 on success</code></pre>
 
 
 
@@ -288,6 +288,8 @@ x-api-key: 1ba4f98e7c0...
             
                 <td class="attributes">
                 
+                    &lt;optional><br>
+                
 
                 
 
@@ -297,7 +299,40 @@ x-api-key: 1ba4f98e7c0...
 
             
 
-            <td class="description last"><p>File path to a file containing the script data</p></td>
+            <td class="description last"><p>File path to a file containing the script data; either scriptFile or scriptText must be provide.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>scriptText</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>A string containing the script text; either scriptFile or scriptText must be provide.</p></td>
         </tr>
 
     
@@ -480,6 +515,213 @@ x-api-key: 1ba4f98e7c0...
 
 
 
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>script - The created script JSON object</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">object</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".list"><span class="type-signature">(static) </span>list<span class="signature">(cb)</span><span class="type-signature"> &rarr; {array}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="scripts_list.js.html">scripts/list.js</a>, <a href="scripts_list.js.html#line6">line 6</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>List information about all scripts assigned to either the current
+authenticated user or the team, if the user belongs to a team.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Examples</h5>
+    
+    <pre class="prettyprint"><code>paperspace.scripts.list(function(err, resp) {
+  // handle error or http response
+});</code></pre>
+
+    <pre class="prettyprint"><code>$ paperspace scripts list</code></pre>
+
+    <pre class="prettyprint"><code># HTTP request:
+https://api.paperspace.io
+GET /scripts/getScripts
+x-api-key: 1ba4f98e7c0...
+# Returns 200 on success</code></pre>
+
+    <pre class="prettyprint"><code>//Example return value:
+[
+  {
+    "id": "sc123abc",
+    "ownerType": "user",
+    "ownerId": "u456def",
+    "name": "My Script",
+    "description": "original file: my_script.sh",
+    "dtCreated": "2017-05-30T14:49:16.724Z",
+    "isEnabled": true,
+    "runOnce": false
+  }
+]</code></pre>
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>cb</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Node-style error-first callback function</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>[ network, ... ] - JSON array of network objects</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">array</span>
+
+
+    </dd>
+</dl>
+
+    
 
 
         
@@ -500,7 +742,7 @@ x-api-key: 1ba4f98e7c0...
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Thu Jun 29 2017 23:16:53 GMT-0400 (EDT) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Sat Jul 01 2017 01:15:10 GMT-0400 (EDT) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>
