@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>machines/index.js - Documentation</title>
+    <title>scripts/show.js - Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -27,7 +27,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">machines/index.js</h1>
+    <h1 class="page-title">scripts/show.js</h1>
     
 
     
@@ -39,20 +39,65 @@
         <article>
             <pre class="prettyprint source linenums"><code>'use strict';
 
+'use strict';
+
+var method = require('./../method');
+var assign = require('lodash.assign');
+
 /**
- * @namespace machines
+ * @memberof scripts
+ * @method show
+ * @description Show information for the script with the given id.
+ * @param {object} params - Script show parameters
+ * @param {string} params.scriptId - Id of the script to show
+ * @param {function} cb - Node-style error-first callback function
+ * @returns {object} script - The script JSON object
+ * @example
+ * paperspace.scripts.show({
+ *   scriptId: 'sc123abc',
+ * }, function(err, resp) {
+ *   // handle error or http response
+ * });
+ * @example
+ * $ paperspace scripts show \
+ *     --scriptId "sc123abc"
+ * @example
+ * # HTTP request:
+ * https://api.paperspace.io
+ * GET /scripts/getScript?scriptId=sc123abc
+ * x-api-key: 1ba4f98e7c0...
+ * # Returns 200 on success
+ * @example
+ * //Example return value:
+ * {
+ *   "id": "sc123abc",
+ *   "ownerType": "user",
+ *   "ownerId": "u456def",
+ *   "name": "My Script",
+ *   "description": "original file: my_script.sh",
+ *   "dtCreated": "2017-05-30T14:49:16.724Z",
+ *   "isEnabled": true,
+ *   "runOnce": false
+ * }
  */
 
-module.exports = {
-	create: require('./create'),
-	destroy: require('./destroy'),
-	list: require('./list'),
-	restart: require('./restart'),
-	show: require('./show'),
-	start: require('./start'),
-	stop: require('./stop'),
-	waitfor: require('./waitfor'),
-};
+function show(params, cb) {
+	return method(show, params, cb);
+}
+
+assign(show, {
+	auth: true,
+	group: 'scripts',
+	name: 'show',
+	method: 'get',
+	route: '/scripts/getScript',
+	requires: {
+		scriptId: 'string',
+	},
+	returns: {},
+});
+
+module.exports = show;
 </code></pre>
         </article>
     </section>
