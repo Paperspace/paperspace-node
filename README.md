@@ -13,6 +13,7 @@ The **Paperspace API** is the official devkit for automating your [Paperspace](h
 * [JavaScript API client](#programmatic) (for Node.js and the browser)
 * [CLI](#cli)
 * [API documentation](https://paperspace.github.io/paperspace-node)
+* [Script Guide](scripts.md) for creating and using startup scripts
 
 ## Getting started
 
@@ -113,7 +114,7 @@ If you've created an API client in a language other than JavaScript, please [let
 
 ## Sample Apps
 
-See the directory 'samples' for a few simple samples of using the node API, and the CLI in a bash script.  Note: the [jq](https://stedolan.github.io/jq/) tool is used in the bash sample for parsing JSON data.
+See the directory [samples](samples/) for a few simple samples of using the node API, and the CLI in a bash script.  Note: the [jq](https://stedolan.github.io/jq/) tool is used in the bash sample for parsing JSON data.
 
 ## Contributing
 
