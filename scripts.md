@@ -42,6 +42,8 @@ If your script is set up to run on every boot, you can download the script from 
 
 `curl https://metadata.paperspace.com/script`
 
+Note: this form of download only works from within the machine assigned to the script.
+
 If you are using an existing vm or template and would like to take advantage of the startup script functionality, simply create an executable file with the following contents at /var/lib/cloud/scripts/per-boot/fetch-and-execute-startup-script.sh:
 
 ```
@@ -51,7 +53,6 @@ curl  --retry 10 https://metadata.paperspace.com/script | bash > /var/log/startu
 
 Similarly, if you would like to disable this functionality, simply remove the script located at /var/lib/cloud/scripts/per-boot/fetch-and-execute-startup-script.sh.
 
-Note: this form of download only works from within the machine assigned to the script.
 
 ### Scripts for Windows machines
 
