@@ -16,15 +16,15 @@ Paperspace stores scripts within a secure area associated with your account, and
 
 ### Creating a script
 
-Scripts can be defined with a string value or by uploading a file.  You can optionally specify an existing machine that will run the script during the machine's next boot.  See the [scripts create](https://paperspace.github.io/paperspace-node/docs/scripts.html#.create) docs for info on creating and uploading a new script.
+Scripts can be defined with a string value or by uploading a file.  You can optionally specify an existing machine that will run the script during the machine's next boot.  See the [scripts create](https://paperspace.github.io/paperspace-node/scripts.html#.create) docs for info on creating and uploading a new script.
 
-Alternatively, when creating a new machine, you can specify an existing script to be used during startup of the machine.  See the [machines create](https://paperspace.github.io/paperspace-node/docs/machines.html#.create) docs for info on specifying an existing script to be used by a new machine.
+Alternatively, when creating a new machine, you can specify an existing script to be used during startup of the machine.  See the [machines create](https://paperspace.github.io/paperspace-node/machines.html#.create) docs for info on specifying an existing script to be used by a new machine.
 
-Note: in the current release, if you want to change the script assigned to an existing machine you need to create a new script and assign the new script to the machine as part of the [scripts create](https://paperspace.github.io/paperspace-node/docs/scripts.html#.create) call.  (We plan to remove this limitation in the next release.)
+Note: in the current release, if you want to change the script assigned to an existing machine you need to create a new script and assign the new script to the machine as part of the [scripts create](https://paperspace.github.io/paperspace-node/scripts.html#.create) call.  (We plan to remove this limitation in the next release.)
 
 ### Script options
 
-Scripts are designed to be run during the startup of a machine.  You can optionally specify that the script should only be run once, through the [scripts create](https://paperspace.github.io/paperspace-node/docs/scripts.html#.create) `runOnce` property.  A script name and script description field are also provided.  Use the script description field to make a note of the original script source file name, or other identifying info.  There is also a field to set the script as `isEnabled` (which defaults to true).  You can explicitly set `isEnabled` to false to test script creation without actually activating a script to run automatically.
+Scripts are designed to be run during the startup of a machine.  You can optionally specify that the script should only be run once, through the [scripts create](https://paperspace.github.io/paperspace-node/scripts.html#.create) `runOnce` property.  A script name and script description field are also provided.  Use the script description field to make a note of the original script source file name, or other identifying info.  There is also a field to set the script as `isEnabled` (which defaults to true).  You can explicitly set `isEnabled` to false to test script creation without actually activating a script to run automatically.
 
 Note: currently the `isEnabled` property cannot be changed after script creation, but this will be fixed in the next release.  For now you can just re-create a script with `isEnabled` set to true to get the same effect.
 
