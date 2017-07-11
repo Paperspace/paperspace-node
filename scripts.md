@@ -42,9 +42,9 @@ If your script is set up to run on every boot, you can download the script from 
 
 `curl https://metadata.paperspace.com/script`
 
-Note: this form of download only works from within the machine assigned to the script.
+(This form of script download only works from within the machine assigned to the script.)
 
-If you are using an existing vm or template and would like to take advantage of the startup script functionality, simply create an executable file with the following contents at /var/lib/cloud/scripts/per-boot/fetch-and-execute-startup-script.sh:
+Note:  if you created an existing machine or template prior to the Paperspace API v.1.2.0 release, and would like to take advantage of the startup script functionality, simply create an executable file with the following contents at /var/lib/cloud/scripts/per-boot/fetch-and-execute-startup-script.sh:
 
 ```
 #!/bin/sh
@@ -66,7 +66,7 @@ To examine the contents of an assigned script from within the Windows virtual ma
 
 `(. { iwr -useb https://metadata.paperspace.com/script }).content`
 
-Note: this form of download only works from within a machine assigned to the script.
+(This form of script download only works from within the machine assigned to the script.)
 
 ### Getting metadata from within a machine
 
