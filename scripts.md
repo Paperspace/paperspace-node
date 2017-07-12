@@ -53,6 +53,24 @@ curl  --retry 10 https://metadata.paperspace.com/script | bash > /var/log/startu
 
 Similarly, if you would like to disable this functionality, simply remove the script located at /var/lib/cloud/scripts/per-boot/fetch-and-execute-startup-script.sh.
 
+See below for a sample startup script that will install and run docker on an ubuntu 16.04 system:
+
+```
+if [ -f /etc/firstrun ]; then
+  echo already ran
+else
+  logger installing docker
+  apt-get -y install apt-transport-https ca-certificates curl software-properties-common
+  curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
+  add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+  apt-get update
+  apt-get -y install docker-ce
+  touch /etc/firstrun
+fi
+
+docker run hello-world
+```
+
 
 ### Scripts for Windows machines
 
