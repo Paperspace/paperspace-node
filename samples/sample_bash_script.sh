@@ -4,7 +4,7 @@
 # To install jq run 'sudo apt-get install jq'
 
 # Substitute your apiKey here
-PAPERSPACE_API_KEY=1be4f97...
+export PAPERSPACE_API_KEY=1be4f97...
 
 # List out all the templates
 echo "paperspace templates list"
