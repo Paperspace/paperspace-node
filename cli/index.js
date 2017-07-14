@@ -2,6 +2,17 @@
 
 // Native
 var argv = require('yargs').argv;
+
+// Convert arg values that look boolean to boolean
+for (var arg in argv) {
+	if (arg !== '$0' && typeof argv[arg] === 'string') {
+		var val = argv[arg];
+		if (val === 'true' || argv[arg] === 'false') {
+			argv[arg] = (val === 'true');
+		}
+	}
+}
+
 var givenNamespace = argv._[0];
 var givenName = argv._[1];
 
