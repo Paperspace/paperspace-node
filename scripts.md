@@ -53,7 +53,7 @@ curl  --retry 10 https://metadata.paperspace.com/script | bash > /var/log/startu
 
 Similarly, if you would like to disable this functionality, simply remove the script located at /var/lib/cloud/scripts/per-boot/fetch-and-execute-startup-script.sh.
 
-See below for a sample startup script that will install and run docker on an ubuntu 16.04 system:
+Here is a sample startup script that will install and run docker on an ubuntu 16.04 system:
 
 ```
 if [ -f /etc/firstrun ]; then
@@ -82,7 +82,7 @@ On a Windows machine the script is downloaded to `C:\Windows\Temp\ps_script.ps1`
 
 To examine the contents of an assigned script from within the Windows virtual machine execute the following command from a `powershell` prompt:
 
-`(. { iwr -useb https://metadata.paperspace.com/script }).content`
+`(iwr -useb https://metadata.paperspace.com/script).content`
 
 (This form of script download only works from within the machine assigned to the script.)
 
@@ -97,7 +97,7 @@ To retrieve machine metadata from within a Linux machine run:
 
 For a Windows machine run the `powershell` equivalent command:
 
-`(. { iwr -useb https://metadata.paperspace.com/meta-data/machine }).content`
+`(iwr -useb https://metadata.paperspace.com/meta-data/machine).content`
 
 The metadata available includes the user specified machine 'name', the paperspace machine 'id' and other machine specific info.  The info is returned from the Paperspace metadata service as a JSON object.  Here is an example JSON return value:
 
