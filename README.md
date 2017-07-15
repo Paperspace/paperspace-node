@@ -15,6 +15,23 @@ The **Paperspace API** is the official devkit for automating your [Paperspace](h
 * [API documentation](https://paperspace.github.io/paperspace-node)
 * [Script Guide](scripts.md) for creating and using startup scripts
 
+## Release Notes for v0.1.2
+
+### New features
+* Support for [startup scripts](scripts.md)
+* scripts namespace and methods
+* Assign a new public ip address on machines create method
+* Query filters on list methods
+* Support for [paperspace terraform provider](https://github.com/Paperspace/paperspace-terraform)
+
+### Fixes
+* fix for cli false input values being converted to strings
+* minor doc fixes
+
+### Issues
+* List method exact date searches don't find matches
+* List method null value searches don't find matches
+
 ## Getting started
 
 Your system will need [Node.js](https://nodejs.org) v4+ installed. Check that you have a recent enough version by running `node -v` in your terminal. Node.js comes bundled with `npm`, the Node.js package management tool, which you'll use to install this package.
