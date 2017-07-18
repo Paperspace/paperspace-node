@@ -56,11 +56,11 @@ First, sign in to your [Paperspace account](https://paperspace.com). Click 'Laun
 
 ## Usage
 
-You can interact with Paperspace's API in three ways: programatically (from within JavaScript), from the command line (using the Paperspace CLI), or using an HTTP client of your choice and the Paperspace API HTTP enpoints documented here. The JavaScript libabry and the CLI are backed by the same underlying API client.
+You can interact with Paperspace's API in three ways: programatically (from within JavaScript), from the command line (using the Paperspace CLI), or using an HTTP client of your choice and the Paperspace API HTTP enpoints documented here. The JavaScript library and the CLI are backed by the same underlying API client.
 
 ### Programmatic
 
-We'll be illustrating all examples using [ES5](http://speakingjs.com/es5/ch01.html) syntax and the CommonJS module format. For other systems like AMD, consider using a bundler such as Browserify.
+We'll be illustrating all examples using [ES5](http://speakingjs.com/es5/ch01.html) syntax and the CommonJS module format. For other systems like Asynchronous Module Definition, consider using a bundler such as Browserify.
 
 First install the `paperspace-node` package in your project directory using:
 
@@ -73,7 +73,7 @@ Within your node.js app you can import the package with:
 Then create an instance of the client, passing in your authentication credentials:
 
     var paperspace = paperspace_node({
-      apiKey: '0b3c5f...' // <~ Copy+paste your key here
+      apiKey: '1ba4f98e7c0...' // <- paste your api key here
     });
 
 #### Calling the API programmatically
@@ -96,16 +96,23 @@ Assuming you've installed the `paperspace-node` package, you can invoke the Pape
 
     $ paperspace --help
 
-For authenticated requests, the Paperspace CLI will look in two places:
+For authenticated requests, the Paperspace CLI will look in two places for an api key:
 
-- CLI argument: `--apiKey`
-- Environment variable: `PAPERSPACE_API_KEY`
+1) A command argument: `--apiKey`.  Example:
+
+    $ paperspace machines show --apiKey "1ba4f98e7c0..." --machineId "ps123abc"
+
+2) An environment variable: `PAPERSPACE_API_KEY`.  Example:
+
+    $ export PAPERSPACE_API_KEY=1ba4f98e7c0...
+    $ paperspace machines show --machineId "ps123abc"
+
 
 #### Calling the API with the CLI
 
-The CLI provides all methods as subcommands. For example:
+The CLI provides all methods as subcommands, using this scheme: `paperspace <namespace> <subcommand>`. For example:
 
-    $ paperspace machines create --name "My Machine" --size 50 # etc.
+    $ paperspace machines create --apiKey "1ba4f98e7c0..." --machineName "My Machine" --size 50 ...
 
 For information on all the methods available, see the [API documentation](https://paperspace.github.io/paperspace-node).
 
