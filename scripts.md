@@ -105,7 +105,7 @@ The metadata available includes the user specified machine 'name', the paperspac
 {
     "id": "ps123abc",
     "name": "My Machine",
-    "hostname": "pssiq341",
+    "hostname": "ps123abc",
     "privateIpAddress": "10.63.0.97",
     "publicIpAddress": ""
 }
