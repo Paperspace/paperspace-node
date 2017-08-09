@@ -1,4 +1,4 @@
-# Paperspace API (v0.1.2)
+# Paperspace API (v0.1.3)
 
 ![image](https://user-images.githubusercontent.com/585865/27562775-26b8acc6-5a9c-11e7-8270-2b80ca895bc5.png)
 
@@ -15,20 +15,30 @@ The **Paperspace API** is the official devkit for automating your [Paperspace](h
 * [API documentation](https://paperspace.github.io/paperspace-node)
 * [Script Guide](scripts.md) for creating and using startup scripts
 
+## Release Notes for v0.1.3
+
+#### New features
+* New method: machines utilization
+
+#### Fixes
+* Minor doc fixes
+* List method exact date searches now work
+* List method null value searches now work
+
 ## Release Notes for v0.1.2
 
-### New features
+#### New features
 * Support for [startup scripts](scripts.md)
 * scripts namespace and methods
 * Assign a new public ip address on machines create method
 * Query filters on list methods
 * Support for [paperspace terraform provider](https://github.com/Paperspace/paperspace-terraform)
 
-### Fixes
+#### Fixes
 * fix for cli false input values being converted to strings
 * minor doc fixes
 
-### Issues
+#### Issues
 * List method exact date searches don't find matches
 * List method null value searches don't find matches
 
