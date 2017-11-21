@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>jobs/artifactsDestroy.js - Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Namespaces</h3><ul><li><a href="jobs.html">jobs</a><ul class='methods'><li data-type='method'><a href="jobs.html#.artifactsDestroy">artifactsDestroy</a></li><li data-type='method'><a href="jobs.html#.artifactsGet">artifactsGet</a></li><li data-type='method'><a href="jobs.html#.artifactsList">artifactsList</a></li><li data-type='method'><a href="jobs.html#.artifactsShare">artifactsShare</a></li><li data-type='method'><a href="jobs.html#.create">create</a></li><li data-type='method'><a href="jobs.html#.destroy">destroy</a></li><li data-type='method'><a href="jobs.html#.list">list</a></li><li data-type='method'><a href="jobs.html#.logs">logs</a></li><li data-type='method'><a href="jobs.html#.show">show</a></li><li data-type='method'><a href="jobs.html#.stop">stop</a></li><li data-type='method'><a href="jobs.html#.waitfor">waitfor</a></li></ul></li><li><a href="machines.html">machines</a><ul class='methods'><li data-type='method'><a href="machines.html#.availability">availability</a></li><li data-type='method'><a href="machines.html#.create">create</a></li><li data-type='method'><a href="machines.html#.destroy">destroy</a></li><li data-type='method'><a href="machines.html#.list">list</a></li><li data-type='method'><a href="machines.html#.restart">restart</a></li><li data-type='method'><a href="machines.html#.show">show</a></li><li data-type='method'><a href="machines.html#.start">start</a></li><li data-type='method'><a href="machines.html#.stop">stop</a></li><li data-type='method'><a href="machines.html#.utilization">utilization</a></li><li data-type='method'><a href="machines.html#.waitfor">waitfor</a></li></ul></li><li><a href="networks.html">networks</a><ul class='methods'><li data-type='method'><a href="networks.html#.list">list</a></li></ul></li><li><a href="scripts.html">scripts</a><ul class='methods'><li data-type='method'><a href="scripts.html#.create">create</a></li><li data-type='method'><a href="scripts.html#.destroy">destroy</a></li><li data-type='method'><a href="scripts.html#.list">list</a></li><li data-type='method'><a href="scripts.html#.show">show</a></li><li data-type='method'><a href="scripts.html#.text">text</a></li></ul></li><li><a href="templates.html">templates</a><ul class='methods'><li data-type='method'><a href="templates.html#.list">list</a></li></ul></li><li><a href="users.html">users</a><ul class='methods'><li data-type='method'><a href="users.html#.list">list</a></li></ul></li></ul>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">jobs/artifactsDestroy.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>'use strict';
+
+var method = require('./../method');
+var assign = require('lodash.assign');
+
+/**
+ * @memberof jobs
+ * @method artifactsDestroy
+ * @description Destroy artifact files of the job with the given id. The name of a particular file,
+ * or directory can be spefified, and can include a wildcard character at the end, e.g., "myfiles*".
+ * If no specifc file or directory is specified all artifact files will be destroyed.
+ * This action can only be performed by the user who owns the job, or in the case of
+ * a team, the team administrator.
+ * @param {object} params - Artifacts destroy parameters
+ * @param {string} params.jobId - The id of the job to destroy artifacts for
+ * @param {string} [params.files] - Optional; if destroying only certian files, a file pattern to match against
+ * @param {function} cb - Node-style error-first callback function
+ * @example
+ * paperspace.jobs.artifactsDestroy({
+ *   jobId: 'j123abc',
+ *   files: 'myfiles*' // optional
+ * }, function(err, resp) {
+ *   // handle error or http response
+ * });
+ * @example
+ * $ paperspace jobs artifactsDestroy \
+ *     --jobId "j123abc" \
+ *     --files "myfiles*"
+ * @example
+ * # HTTP request:
+ * https://api.paperspace.io
+ * POST /jobs/j123abc/artifactsDestroy?files=myfiles*
+ * x-api-key: 1ba4f98e7c0...
+ * # Returns 204 on success
+ */
+
+function artifactsDestroy(params, cb) {
+	return method(artifactsDestroy, params, cb);
+}
+
+assign(artifactsDestroy, {
+	auth: true,
+	group: 'jobs',
+	name: 'artifactsDestroy',
+	method: 'post',
+	route: '/jobs/:jobId/artifactsDestroy',
+	requires: {
+		jobId: 'string',
+	},
+	returns: {},
+});
+
+module.exports = artifactsDestroy;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Tue Nov 21 2017 17:04:29 GMT-0500 (EST) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+</body>
+</html>
