@@ -1406,23 +1406,23 @@ x-api-key: 1ba4f98e7c0...
     <h5>Examples</h5>
     
     <pre class="prettyprint"><code>paperspace.jobs.create({
-  region: 'East Coast (NY2)',
-  project: 'My Project',
+  name: 'My Job 1',
   machineType: 'P6000',
-  jobName: 'My Job 1',
+  container: 'http://dockerhub.com/mycontainer',
+  project: 'My Project' // Optional; if not specified the project name is taken from the current directory or the .ps_project/config.json file.
 }, function(err, resp) {
   // handle error or http response
 });</code></pre>
 
     <pre class="prettyprint"><code>$ paperspace jobs create \
-    --region "East Coast (NY2)" \
-    --project "My Project" \
+    --name "My Job 1" \
     --machineType "P6000" \
-    --jobName "My Job 1"</code></pre>
+    --container "http://dockerhub.com/mycontainer" \
+    --project "My Project"</code></pre>
 
     <pre class="prettyprint"><code># HTTP request:
 https://api.paperspace.io
-POST /jobs/createJob {"region": "East Coast (NY2)", "project": "My Project", "machineType": "P6000", "jobName": "My Job 1"}
+POST /jobs/createJob { "name": "My Job 1", "machineType": "P6000", "container": "http://dockerhub.com/mycontainer", "project": "My Project"}
 x-api-key: 1ba4f98e7c0...
 # Returns 201 on success</code></pre>
 
@@ -1430,10 +1430,9 @@ x-api-key: 1ba4f98e7c0...
 {
   "id": "j123abc",
   "name": "My Job 1",
-  "project": "My Project",
-  "region": "East Coast (NY2)",
   "machineType": "P6000",
-  "state": "pending",
+  "project": "My Project",
+  "state": "Pending",
 }</code></pre>
 
 
@@ -1506,7 +1505,7 @@ x-api-key: 1ba4f98e7c0...
 
         <tr>
             
-                <td class="name"><code>region</code></td>
+                <td class="name"><code>name</code></td>
             
 
             <td class="type">
@@ -1522,30 +1521,7 @@ x-api-key: 1ba4f98e7c0...
 
             
 
-            <td class="description last"><p>Name of the region: either 'East Coast (NY2)', 'West Coast (CA1)', or 'Europe (AMS1)'</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>project</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The name of the project for this job</p></td>
+            <td class="description last"><p>A memorable name for this job</p></td>
         </tr>
 
     
@@ -1575,7 +1551,7 @@ x-api-key: 1ba4f98e7c0...
 
         <tr>
             
-                <td class="name"><code>jobName</code></td>
+                <td class="name"><code>container</code></td>
             
 
             <td class="type">
@@ -1591,7 +1567,99 @@ x-api-key: 1ba4f98e7c0...
 
             
 
-            <td class="description last"><p>A memorable name for this job</p></td>
+            <td class="description last"><p>A required reference to a container name or container link to be used for the job.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>project</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The name of the project for this job.  If not provided, this is taken from the .ps_project/config.json file, or the current directory name.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>command</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>An optional command to run within the workspace or container.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>workspace</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>An optional path to a workspace to merge with the container.  If a zip file is provided that is used instead.  If no workspace is provieded the current directory is zipped up and transferred.  If the workspace is 'none', no workspace is merged and the container is run as-is.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>dataset</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>An optional reference to a dataset to be merged with the container.</p></td>
         </tr>
 
     
@@ -2325,7 +2393,7 @@ a team, the team administrator.</p>
 
     <pre class="prettyprint"><code># HTTP request:
 https://api.paperspace.io
-GET /jobs/getJob?jobId=j123abc
+GET /jobs/getLogs?jobId=j123abc
 x-api-key: 1ba4f98e7c0...
 # Returns 200 on success</code></pre>
 
@@ -3256,7 +3324,7 @@ has transitioned into the given state. States available are:</p>
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Tue Nov 21 2017 18:27:49 GMT-0500 (EST) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Wed Nov 22 2017 02:04:22 GMT-0500 (EST) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>
