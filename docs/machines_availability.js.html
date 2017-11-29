@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>machines/stop.js - Documentation</title>
+    <title>machines/availability.js - Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -27,7 +27,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">machines/stop.js</h1>
+    <h1 class="page-title">machines/availability.js</h1>
     
 
     
@@ -44,47 +44,55 @@ var assign = require('lodash.assign');
 
 /**
  * @memberof machines
- * @method stop
- * @description Stop an individual machine. If the machine is already stopped
- * or has been shut down, this action is a no-op. If the machine is running, it
- * will be stopped and any users logged in will be immediately kicked out.
- * This action can only be performed by the user who owns the machine.
- * @param {object} params - Machine stop parameters
- * @param {string} params.machineId - Id of the machine to shut down
+ * @method availability
+ * @description Get machine availability for the given region and machine type.  Note: availability is only provided for the dedicated GPU machine types.  Also, not all machine types are available in all regions.
+ * @param {object} params - Machine utilization parameters
+ * @param {string} params.region - Name of the region: either 'East Coast (NY2)', 'West Coast (CA1)', or 'Europe (AMS1)'
+ * @param {string} params.machineType - Machine type: either 'GPU+', 'P4000', 'P5000', 'P6000', or 'V100'&lt;p>
  * @param {function} cb - Node-style error-first callback function
+ * @returns {object} availability - The availability JSON object, containing a single boolean attribute, "available".  A value of true for "available" means machines of that type can currently be requested in that region.  A value of false means that requests for that machine type are not currently available in that region.
  * @example
- * paperspace.machines.stop({
- *   machineId: 'ps123abc',
+ * paperspace.machines.availability({
+ *   region: 'East Coast (NY2)',
+ *   machineType: 'GPU+',
  * }, function(err, resp) {
  *   // handle error or http response
  * });
  * @example
- * $ paperspace machines stop --machineId "ps123abc"
+ * $ paperspace machines availability \
+ *     --region "East Coast (NY2)" \
+ *     --machineType "GPU+"
  * @example
  * # HTTP request:
  * https://api.paperspace.io
- * POST /machines/ps123abc/stop
+ * GET /machines/getAvailability?region=East%20Coast%20(NY2)&amp;machineType=GPU%2B
  * x-api-key: 1ba4f98e7c0...
- * # Returns 204 on success
+ * # Returns 200 on success
+ * @example
+ * //Example return value:
+ * {
+ *   "available": true
+ * }
  */
 
-function stop(params, cb) {
-	return method(stop, params, cb);
+function availability(params, cb) {
+	return method(availability, params, cb);
 }
 
-assign(stop, {
+assign(availability, {
 	auth: true,
 	group: 'machines',
-	name: 'stop',
-	method: 'post',
-	route: '/machines/:machineId/stop',
+	name: 'availability',
+	method: 'get',
+	route: '/machines/getAvailability',
 	requires: {
-		machineId: 'string',
+		region: 'string',
+		machineType: 'string',
 	},
 	returns: {},
 });
 
-module.exports = stop;
+module.exports = availability;
 </code></pre>
         </article>
     </section>
