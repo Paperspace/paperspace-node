@@ -26,15 +26,15 @@
 </nav>
 
 <div id="main">
-    
+
     <h1 class="page-title">machines/update.js</h1>
-    
-
-    
 
 
 
-    
+
+
+
+
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>'use strict';
@@ -47,7 +47,7 @@ var assign = require('lodash.assign');
  * @method update
  * @description Update attributes of a machine.
  * @param {object} params - Machine update parameters
- * @param {string} params.machineId - Id of the machine to shut down
+ * @param {string} params.machineId - Id of the machine to update
  * @param {string} [params.machineName] - New name for the machine
  * @param {number} [params.shutdownTimeoutInHours] - Number of hours before machine is shutdown if no one is logged in via the Paperspace client
  * @param {boolean} [params.shutdownTimeoutForces] - Force shutdown at shutdown timeout, even if there is a Paperspace client connection
