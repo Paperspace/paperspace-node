@@ -1,4 +1,4 @@
-# Paperspace API (v0.1.4)
+# Paperspace API (v0.1.5)
 
 ![image](https://user-images.githubusercontent.com/585865/27562775-26b8acc6-5a9c-11e7-8270-2b80ca895bc5.png)
 
@@ -14,6 +14,15 @@ The **Paperspace API** is the official devkit for automating your [Paperspace](h
 * [CLI](#cli)
 * [API documentation](https://paperspace.github.io/paperspace-node)
 * [Script Guide](scripts.md) for creating and using startup scripts
+
+## Release Notes for v0.1.5
+
+#### New features
+* New method: machines update
+* machines show method now includes last 10 events associated with the machine
+
+#### Fixes
+* Minor doc fixes
 
 ## Release Notes for v0.1.4
 
