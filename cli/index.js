@@ -115,7 +115,7 @@ foundMethod.method(argv, function _methodCb(methodErr, methodResp) {
 		process.exit(1);
 	}
 	// if content is gzipped, then body is empty object, and content is in 'text'
-	if (methodResp.text) {
+	if (methodResp && methodResp.text) {
 		try {
 			methodResp.body = JSON.parse(methodResp.text);
 		} catch (err) {
@@ -123,5 +123,5 @@ foundMethod.method(argv, function _methodCb(methodErr, methodResp) {
 			methodResp.body = {};
 		}
 	}
-	process.stdout.write(safeJSON(methodResp.body || {}));
+	if (methodResp != null)	process.stdout.write(safeJSON(methodResp.body || {})); // null means suppress output here
 });
