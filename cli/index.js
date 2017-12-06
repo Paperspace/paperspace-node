@@ -95,7 +95,7 @@ if (argv.help) {
 
 function safeJSON(obj) {
 	try {
-		return JSON.stringify(obj, null, 2) + '\n';
+		return JSON.stringify(obj, Object.getOwnPropertyNames(obj), 2) + '\n';
 	} catch (err) {
 		console.error(err);
 		return '{}';
@@ -106,7 +106,7 @@ foundMethod.method(argv, function _methodCb(methodErr, methodResp) {
 	if (methodErr) {
 		process.stdout.write(
 			safeJSON({
-				error: methodErr && (methodErr.message || methodErr.error),
+				error: methodErr.error || methodErr.message,
 				status: methodResp && methodResp.statusCode,
 				response: methodResp && methodResp.body,
 			})
