@@ -106,7 +106,7 @@ foundMethod.method(argv, function _methodCb(methodErr, methodResp) {
 	if (methodErr) {
 		process.stdout.write(
 			safeJSON({
-				error: methodErr.message,
+				error: methodErr && (methodErr.message || methodErr.error),
 				status: methodResp && methodResp.statusCode,
 				response: methodResp && methodResp.body,
 			})
