@@ -95,7 +95,8 @@ if (argv.help) {
 
 function safeJSON(obj) {
 	try {
-		return JSON.stringify(obj, Object.getOwnPropertyNames(obj), 2) + '\n';
+		if (obj instanceof Array) return JSON.stringify(obj, null, 2) + '\n';
+		else return JSON.stringify(obj, Object.getOwnPropertyNames(obj), 2) + '\n';
 	} catch (err) {
 		console.error(err);
 		return '{}';
