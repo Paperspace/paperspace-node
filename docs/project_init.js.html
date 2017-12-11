@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>machines/restart.js - Documentation</title>
+    <title>project/init.js - Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -27,7 +27,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">machines/restart.js</h1>
+    <h1 class="page-title">project/init.js</h1>
     
 
     
@@ -41,49 +41,87 @@
 
 var method = require('./../method');
 var assign = require('lodash.assign');
+var mkdirp = require('mkdirp');
+var path = require('path');
+var os = require('os');
+var fs = require('fs');
 
 /**
- * @memberof machines
- * @method restart
- * @description Restart an individual machine. If the machine is already restarting,
- * this action will request the machine be restarted again.
- * This action can only be performed by the user who owns the machine.
- * @param {object} params - Machine restart parameters
- * @param {string} params.machineId - Id of the machine to restart
+ * @memberof project
+ * @method init
+ * @description Create a new Paperspace project.  A project is simply a directory or name for a set of related files and jobs.  If you do not init a particular name or directory job commands will be given a project name corresponding to the current directory name.
+ * 'paperspace project init' creates a .ps_project/config.json file in the current directory to cache information about the project, such as the name, or the last job created.
+ * @param {string} [params.project] - The name of the project.  If provided, this stored in the .ps_project/config.json file of the directory name.
  * @param {function} cb - Node-style error-first callback function
+ * @returns {object} project
  * @example
- * paperspace.machines.restart({
- *   machineId: 'ps123abc',
+ * paperspace.project.init({
+ *   name: 'myproject',
  * }, function(err, resp) {
  *   // handle error or http response
  * });
  * @example
- * $ paperspace machines restart --machineId "ps123abc"
+ * $ paperspace project init
  * @example
- * # HTTP request:
- * https://api.paperspace.io
- * POST /machines/ps123abc/restart
- * x-api-key: 1ba4f98e7c0...
- * # Returns 204 on success
+ * # Note: there is no HTTP request corresponding to 'paperspace project init'.
+ * @example
+ * // Example return value:
+ * {
+ *   "project": "myproject",
+ * }
  */
 
-function restart(params, cb) {
-	return method(restart, params, cb);
+function init(params, cb) {
+	function ifCliPrintErrorOnly(err) {
+		if (global.paperspace_cli) {
+			console.log(err.message);
+			return cb();
+		}
+		return cb(err);
+	}
+
+	var cwd = process.cwd();
+	if (!params.name) {
+		// default to name of project in .ps_project/config or name of current directory
+		params.name = path.basename(cwd);
+		if (params.name === '/') {
+			return ifCliPrintErrorOnly(new Error('Error: cannot create project from root dir. Please create a project dir and run from there, or use the --name option.'));
+		}
+	}
+
+	var config = { 'project': params.name };
+	var configDir = path.resolve(cwd, '.ps_project');
+	if (!fs.existsSync(configDir)) mkdirp.sync(configDir);
+	else if (!fs.statSync(configDir).isDirectory()) {
+		return ifCliPrintErrorOnly(new Error('Error: existing file with same name as .ps_project directory.'));
+	}
+
+	var configFileName = path.resolve(configDir, 'config.json');
+	if (fs.existsSync(configFileName) &amp;&amp; !fs.statSync(configFileName).isFile()) {
+		return ifCliPrintErrorOnly(new Error('Error: config file not accessible: ' + configFileName));
+	}
+
+	fs.writeFileSync(configFileName, JSON.stringify(config, null, 2) + '\n');
+
+	if (global.paperspace_cli) {
+		console.log('Project name: ' + config.project);
+		return cb();
+	}
+	return cb(null, config);
 }
 
-assign(restart, {
-	auth: true,
-	group: 'machines',
-	name: 'restart',
+assign(init, {
+	auth: false,
+	group: 'project',
+	name: 'init',
 	method: 'post',
-	route: '/machines/:machineId/restart',
+	route: '/projects/createProject',
 	requires: {
-		machineId: 'string',
 	},
 	returns: {},
 });
 
-module.exports = restart;
+module.exports = init;
 </code></pre>
         </article>
     </section>
