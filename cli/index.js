@@ -99,8 +99,8 @@ if (argv.help) {
 
 function safeJSON(obj) {
 	try {
-		if (obj instanceof Array) return JSON.stringify(obj, null, 2) + '\n';
-		else return JSON.stringify(obj, Object.getOwnPropertyNames(obj), 2) + '\n';
+		if (obj instanceof Error) return JSON.stringify(obj, Object.getOwnPropertyNames(obj), 2) + '\n';
+		else return JSON.stringify(obj, null, 2) + '\n';
 	} catch (err) {
 		console.error(err);
 		return '{}';
@@ -109,13 +109,13 @@ function safeJSON(obj) {
 
 foundMethod.method(argv, function _methodCb(methodErr, methodResp) {
 	if (methodErr) {
-		process.stdout.write(
-			safeJSON({
-				error: methodErr.error || methodErr.message,
-				status: methodResp && methodResp.statusCode,
-				response: methodResp && methodResp.body,
-			})
-		);
+		var errorSummary = {
+			error: (methodErr.response && methodErr.response.body && methodErr.response.body.error && methodErr.response.body.error.message) || methodErr.error || methodErr.message,
+			status: methodErr.response && methodErr.response.statusCode || statusmethodErr.status,
+		};
+		if (!global.paperspace_cli) errObj.response = methodErr.response;
+
+		process.stdout.write(safeJSON(errorSummary));
 
 		process.exit(1);
 	}
