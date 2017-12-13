@@ -44,7 +44,6 @@ paperspace.jobs.create({
 
         console.log('\npaperspace.jobs.logs({jobId: \'' + id + '\'}, ...);');
 
-        var logs = [];
         paperspace.jobs.logs({
             jobId: id,
           },
