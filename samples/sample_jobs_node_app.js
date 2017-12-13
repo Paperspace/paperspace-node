@@ -77,7 +77,7 @@ paperspace.jobs.create({
                       console.log('err: ' + err);
                       process.exit(1);
                     }
-                    console.log(resp);
+                    console.log(resp.body);
 
                     console.log('done');
                 });
