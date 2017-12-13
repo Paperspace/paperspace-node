@@ -40,7 +40,7 @@ function methodHint(spec) {
 function methodHints() {
 	var namespaces = {};
 
-	paperspace.eachEndpoint(function _each(namespace, name, method) {
+	paperspace.eachEndpoint(function _each(namespace, name, method) { // eslint-disable-line no-unused-vars
 		if (!namespaces[namespace]) namespaces[namespace] = [];
 		namespaces[namespace].push(name);
 	});
