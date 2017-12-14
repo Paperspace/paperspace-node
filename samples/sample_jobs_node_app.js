@@ -20,14 +20,14 @@ paperspace.jobs.create({
     container: 'Test-Container',
     workspace: '~/myproject3',
     command: './do.sh',
-  }, function(err, resp) {
+  }, function(err, res) {
     if (err) {
       console.log(err);
       process.exit(1);
     }
-    console.log(resp);
+    console.log(res);
 
-    var id = resp.id;  // Extract the id of the newly created job
+    var id = res.id;  // Extract the id of the newly created job
 
     // Wait for job to enter the 'Stopped' state
     console.log('\npaperspace.jobs.waitfor({jobId: \'' + id + '\', state: \'Stopped\'}, ...);');
@@ -35,47 +35,48 @@ paperspace.jobs.create({
     paperspace.jobs.waitfor({
         jobId: id,
         state: 'Stopped',
-      }, function(err, resp) {
+      }, function(err, res) {
         if (err) {
           console.log(err);
           process.exit(1);
         }
-        console.log(resp);
+        console.log(res);
 
         console.log('\npaperspace.jobs.logs({jobId: \'' + id + '\'}, ...);');
 
         paperspace.jobs.logs({
             jobId: id,
           },
-          function(err, resp) {
+          function(err, res) {
             if (err) {
               console.log(err);
               process.exit(1);
             }
-            console.log(resp);
+            console.log(res);
 
             console.log('\npaperspace.jobs.artifactsList({jobId: \'' + id + '\'}, ...);');
 
             paperspace.jobs.artifactsList({
                 jobId: id,
                 size: true,
-              }, function(err, resp) {
+              }, function(err, res) {
                 if (err) {
                   console.log(err);
                   process.exit(1);
                 }
-                console.log(resp);
+                console.log(res);
 
                 console.log('\npaperspace.jobs.artifactsGet({jobId: \'' + id + '\'}, ...);');
 
                 paperspace.jobs.artifactsGet({
                     jobId: id,
-                  }, function(err, resp) {
+                    dest: '~/temp',
+                  }, function(err, res) {
                     if (err) {
                       console.log('err: ' + err);
                       process.exit(1);
                     }
-                    console.log(resp);
+                    console.log(res);
 
                     console.log('done');
                 });
