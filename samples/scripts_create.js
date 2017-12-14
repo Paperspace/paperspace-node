@@ -23,5 +23,5 @@ paperspace.scripts.create({
       console.log(err);
       process.exit(1);
     }
-    console.log(resp.body);
+    console.log(resp);
   });
