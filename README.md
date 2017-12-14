@@ -109,7 +109,7 @@ All of the methods are namespaced by category ("machines.create" or "invoices.sh
 
     paperspace.machines.create({
       // parameters
-    }, function (err, resp) {
+    }, function (err, res) {
       // callback
     });
 

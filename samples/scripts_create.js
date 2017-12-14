@@ -18,10 +18,10 @@ paperspace.scripts.create({
     scriptText: 'services start nginx16',
     isEnabled: true,
     runOnce: false
-  }, function(err, resp) {
+  }, function(err, res) {
     if (err) {
       console.log(err);
       process.exit(1);
     }
-    console.log(resp);
+    console.log(res);
   });
