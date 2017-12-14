@@ -25,9 +25,9 @@ paperspace.jobs.create({
       console.log(err);
       process.exit(1);
     }
-    console.log(resp.body);
+    console.log(resp);
 
-    var id = resp.body.id;  // Extract the id of the newly created job
+    var id = resp.id;  // Extract the id of the newly created job
 
     // Wait for job to enter the 'Stopped' state
     console.log('\npaperspace.jobs.waitfor({jobId: \'' + id + '\', state: \'Stopped\'}, ...);');
@@ -40,7 +40,7 @@ paperspace.jobs.create({
           console.log(err);
           process.exit(1);
         }
-        console.log(resp.body);
+        console.log(resp);
 
         console.log('\npaperspace.jobs.logs({jobId: \'' + id + '\'}, ...);');
 
@@ -52,9 +52,7 @@ paperspace.jobs.create({
               console.log(err);
               process.exit(1);
             }
-            console.log(resp.body);
-            console.log(resp.line);
-            console.log(resp.eof);
+            console.log(resp);
 
             console.log('\npaperspace.jobs.artifactsList({jobId: \'' + id + '\'}, ...);');
 
@@ -66,7 +64,7 @@ paperspace.jobs.create({
                   console.log(err);
                   process.exit(1);
                 }
-                console.log(resp.body);
+                console.log(resp);
 
                 console.log('\npaperspace.jobs.artifactsGet({jobId: \'' + id + '\'}, ...);');
 
@@ -77,7 +75,7 @@ paperspace.jobs.create({
                       console.log('err: ' + err);
                       process.exit(1);
                     }
-                    console.log(resp.body);
+                    console.log(resp);
 
                     console.log('done');
                 });

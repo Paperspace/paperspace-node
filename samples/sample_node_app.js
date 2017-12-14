@@ -13,10 +13,10 @@ console.log('\npaperspace.tempates.list(...);');
 paperspace.templates.list(
   function(err, resp) {
     if (err) {
-      console.log(resp.body);
+      console.log(resp);
       process.exit(1);
     }
-    console.log(resp.body);
+    console.log(resp);
 
     // Search the response body for a template with the label 'Ubuntu 14.04 Server'
     // NOTE: to use the 'ML in a Box' template substitute 'ML in a Box' for 'Ubuntu 14.04 Server'
@@ -25,9 +25,9 @@ paperspace.templates.list(
     var m_machineType = 'C1'; // or 'GPU+' or 'P5000' if choosing the 'ML in a Box' template
 
     var t_id;
-    for(var i = 0; i < resp.body.length; i++) {
-      if(resp.body[i].label === t_label) {
-        t_id = resp.body[i].id;
+    for(var i = 0; i < resp.length; i++) {
+      if(resp[i].label === t_label) {
+        t_id = resp[i].id;
         break;
       }
     }
@@ -53,9 +53,9 @@ paperspace.templates.list(
           console.log(err);
           process.exit(1);
         }
-        console.log(resp.body);
+        console.log(resp);
 
-        var id = resp.body.id;  // Extract the id of the newly created machine
+        var id = resp.id;  // Extract the id of the newly created machine
 
         // Wait for machine to enter the 'ready' state
         console.log('\npaperspace.machines.waitfor({machineId: \'' + id + '\', state: \'ready\'}, ...);');
@@ -68,7 +68,7 @@ paperspace.templates.list(
               console.log(err);
               process.exit(1);
             }
-            console.log(resp.body);
+            console.log(resp);
 
             // Stop the machine
             console.log('\npaperspace.machines.stop({machineId: \'' + id + '\'}, ...);');
@@ -77,10 +77,10 @@ paperspace.templates.list(
                 machineId: id,
               }, function(err, resp) {
                  if (err) {
-                   console.log(resp.body);
+                   console.log(resp);
                    process.exit(1);
                  }
-                 console.log(resp.body);
+                 console.log(resp);
 
                  // Wait for machine to enter the 'off' state
                  console.log('\npaperspace.machines.waitfor({machineId: \'' + id + '\', state: \'off\'}, ...);');
@@ -90,10 +90,10 @@ paperspace.templates.list(
                      state: "off",
                    }, function(err, resp) {
                      if (err) {
-                       console.log(resp.body);
+                       console.log(resp);
                        process.exit(1);
                      }
-                     console.log(resp.body);
+                     console.log(resp);
 
                      // Destroy the machine
                      console.log('\npaperspace.machines.destroy({machineId: \'' + id + '\'}, ...);');
@@ -102,10 +102,10 @@ paperspace.templates.list(
                          machineId: id,
                        }, function(err, resp) {
                          if (err) {
-                           console.log(resp.body);
+                           console.log(resp);
                            process.exit(1);
                          }
-                         console.log(resp.body);
+                         console.log(resp);
 
                          console.log('\ndone');
                       });
