@@ -111,7 +111,7 @@ foundMethod.method(argv, function _methodCb(methodErr, methodResp) {
 	if (methodErr) {
 		var errorSummary = {
 			error: methodErr.response && methodErr.response.body && (methodErr.response.body.error && methodErr.response.body.error.message || methodErr.response.body.message) || methodErr.error || methodErr.message,
-			status: methodErr.response && methodErr.response.body && (methodErr.response.body.error && methodErr.response.body.error.status || methodErr.response.body.status) || methodErr.response.statusCode || methodErr.status,
+			status: methodErr.response && methodErr.response.body && (methodErr.response.body.error && methodErr.response.body.error.status || methodErr.response.body.status) || methodErr.response && methodErr.response.statusCode || methodErr.status,
 		};
 		if (!global.paperspace_cli) errorSummary.response = methodErr.response;
 
