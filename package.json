@@ -1,6 +1,6 @@
 {
   "name": "paperspace-node",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "Paperspace API for node",
   "main": "index.js",
   "repository": "https://github.com/Paperspace/paperspace-node",
@@ -14,6 +14,10 @@
     "lint": "eslint .",
     "docs": "jsdoc ./index.js -R README.md -c jsdoc.json",
     "prettier": "prettier --single-quote --trailing-comma es5 --use-tabs --write lib/**/*.js"
+  },
+  "engines": {
+    "node": ">=8.9.3",
+    "npm": ">=5.5.1"
   },
   "dependencies": {
     "archiver": "^2.1.0",
