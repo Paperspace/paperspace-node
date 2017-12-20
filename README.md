@@ -1,4 +1,4 @@
-# Paperspace API (v0.1.5)
+# Paperspace API (v0.1.6)
 
 ![image](https://user-images.githubusercontent.com/585865/27562775-26b8acc6-5a9c-11e7-8270-2b80ca895bc5.png)
 
@@ -14,6 +14,42 @@ The **Paperspace API** is the official devkit for automating your [Paperspace](h
 * [CLI](#cli)
 * [API documentation](https://paperspace.github.io/paperspace-node)
 * [Script Guide](scripts.md) for creating and using startup scripts
+
+## Release Notes for v0.1.6
+
+#### New Features
+* Pre-built binaries are now available for [Windows](https://s3.amazonaws.com/paperspace-node/v0.1.6/win/paperspace.exe), [Mac](https://s3.amazonaws.com/paperspace-node/v0.1.6/mac/paperspace), and [Linux](https://s3.amazonaws.com/paperspace-node/v0.1.6/linux/paperspace).  These binaries enable you to run the paperspace-node command line tool without having to install Nodejs or any additional node modules.
+* New methods for early access to jobs.  Please contact hello@paperspace.com for more information.
+
+#### Breaking Changes
+*BREAKING CHANGE #1* (for Nodejs apps which use the paperspace-node module):
+
+In previous versions (up to 0.1.5) paperspace-node methods returned an HTTP response object on success, and application code needed
+to dereference through the HTTP response body object to get attributes of the returned object.
+For example, when getting the name of a machine you would have code like this:
+```
+paperspace.machines.show({ machineId: 'ps123abc' }, function callback(err, resp) {
+    if (err) return err;
+    console.log(resp.body.id);
+});
+```
+The new convention is to return the 'body' object directly in the second callback parameter, e.g.:
+```
+paperspace.machines.show({ machineId: 'ps123abc' }, function callback(err, resp) {
+    if (err) return err;
+    console.log(resp.id);
+});
+```
+This change simplifies code that works with the returned objects, and provides better encapsulation.  The command line version of the api already followed this convention.
+
+*BREAKING CHANGE #2* (if building the command line app or a custom Nodejs app using the source):
+
+paperspace-node now requires Nodejs 8.9.3 or later.  This Node version is specified in the package.json file in the root of the repository.
+This change is to support stand-alone binaries of the paperspace-node command line tool that don't require a separate installation of Node.
+Previously Node 4.2.3 or later was required, but that version of Node will soon no longer be maintained (after April 2018). You can read more about Node's support cycle here: [Node Releases](https://github.com/nodejs/Release)
+
+#### Fixes
+* Minor doc fixes
 
 ## Release Notes for v0.1.5
 
