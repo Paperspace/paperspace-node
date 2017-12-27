@@ -97,7 +97,7 @@ Previously Node 4.2.3 or later was required, but that version of Node will soon 
 
 ## Getting started
 
-Your system will need [Node.js](https://nodejs.org) v4+ installed. Check that you have a recent enough version by running `node -v` in your terminal. Node.js comes bundled with `npm`, the Node.js package management tool, which you'll use to install this package.
+Your system will need [Node.js](https://nodejs.org) v8+ installed. Check that you have a recent enough version by running `node -v` in your terminal. Node.js comes bundled with `npm`, the Node.js package management tool, which you'll use to install this package.
 
 ### Installation
 
