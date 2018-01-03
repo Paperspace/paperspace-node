@@ -458,21 +458,24 @@ If no specifc file or directory is specified all artifact files will be retrieve
     <h5>Examples</h5>
     
     <pre class="prettyprint"><code>paperspace.jobs.artifactsGet({
-  jobId: 'j123abc',
-  files: 'myfiles*' // optional
+  jobId: 'j123abc'
 }, function(err, res) {
   // handle error or result
 });</code></pre>
 
     <pre class="prettyprint"><code>$ paperspace jobs artifactsGet \
-    --jobId "j123abc" \
-    --files "myfiles*"</code></pre>
+    --jobId "j123abc"</code></pre>
 
     <pre class="prettyprint"><code># HTTP request:
 https://api.paperspace.io
 GET /jobs/artifactsGet?jobId=j123abc&amp;files=myfiles*
 x-api-key: 1ba4f98e7c0...
 # Returns 200 on success</code></pre>
+
+    <pre class="prettyprint"><code>//Example output:
+Downloading myoutput1.txt
+Downloading myoutput2.txt
+Downloads finished</code></pre>
 
 
 
@@ -803,18 +806,31 @@ x-api-key: 1ba4f98e7c0...
     
     <pre class="prettyprint"><code>paperspace.jobs.artifactsList({
   jobId: 'j123abc',
+  size: true
 }, function(err, res) {
   // handle error or result
 });</code></pre>
 
     <pre class="prettyprint"><code>$ paperspace jobs artifactsList \
-    --jobId "j123abc"</code></pre>
+    --jobId "j123abc" \
+    --size true</code></pre>
 
     <pre class="prettyprint"><code># HTTP request:
 https://api.paperspace.io
 GET /jobs/artifactsList?jobId=j123abc
 x-api-key: 1ba4f98e7c0...
-# Returns 200 on success</code></pre>
+# Returns 200 on success
+//Example return value:
+[
+  {
+    "file": "myoutput1.txt"
+    "size": 443141
+  },
+  {
+    "file": "myoutput2.txt"
+    "size": 1456
+  }
+]</code></pre>
 
 
 
@@ -1121,8 +1137,31 @@ x-api-key: 1ba4f98e7c0...
     <pre class="prettyprint"><code>//Example return value:
 {
   "id": "j345abc",
-  "name": "My Job",
-  "state": "running",
+  "name": "job for project myproject",
+  "state": "Pending",
+  "workspaceUrl": "myproject.zip",
+  "workingDirectory": "/paperspace",
+  "artifactsDirectory": "/artifacts",
+  "entrypoint": "echo Hello Paperspace",
+  "projectId": "pr456def",
+  "project": "myproject",
+  "container": "http://dockerhub.com/mycontainer",
+  "machineType": "P5000",
+  "cluster": "Jobs",
+  "usageRate": "P5000 hourly",
+  "startedByUserId": "u789ghi",
+  "parentJobId": "j123abc",
+  "jobError": null,
+  "dtCreated": "2017-11-30T19:20:38.956Z",
+  "dtModified": "2017-11-30T19:20:39.744Z",
+  "dtProvisioningStarted": null,
+  "dtProvisioningFinished": null,
+  "dtStarted": null,
+  "dtFinished": null,
+  "dtTeardownStarted": null,
+  "dtTeardownFinished": null,
+  "dtDeleted": null,
+  "exitCode": null
 }</code></pre>
 
 
@@ -1342,11 +1381,11 @@ x-api-key: 1ba4f98e7c0...
 
     <pre class="prettyprint"><code>$ paperspace jobs create \
     --container "http://dockerhub.com/mycontainer" \
-    --machineType "P6000"</code></pre>
+    --machineType "P5000"</code></pre>
 
     <pre class="prettyprint"><code># HTTP request:
 https://api.paperspace.io
-POST /jobs/createJob { "container": "http://dockerhub.com/mycontainer", "machineType": "P6000" }
+POST /jobs/createJob { "container": "http://dockerhub.com/mycontainer", "machineType": "P5000" }
 x-api-key: 1ba4f98e7c0...
 # Returns 201 on success</code></pre>
 
@@ -1362,9 +1401,9 @@ x-api-key: 1ba4f98e7c0...
   "projectId": "pr456def",
   "project": "myproject",
   "container": "http://dockerhub.com/mycontainer",
-  "machineType": "P6000",
+  "machineType": "P5000",
   "cluster": "Jobs",
-  "usageRate": "P6000 hourly",
+  "usageRate": "P5000 hourly",
   "startedByUserId": "u789ghi",
   "parentJobId": null,
   "jobError": null,
@@ -2163,6 +2202,32 @@ x-api-key: 1ba4f98e7c0...
     "id": "j123abc",
     "name": "My Job",
     "state": "running"
+    "id": "j123abc",
+    "name": "job for project myproject",
+    "state": "Stopped",
+    "workspaceUrl": "myproject.zip",
+    "workingDirectory": "/paperspace",
+    "artifactsDirectory": "/artifacts",
+    "entrypoint": "echo Hello Paperspace",
+    "projectId": "pr456def",
+    "project": "myproject",
+    "container": "http://dockerhub.com/mycontainer",
+    "machineType": "P5000",
+    "cluster": "Jobs",
+    "usageRate": "P5000 hourly",
+    "startedByUserId": "u789ghi",
+    "parentJobId": null,
+    "jobError": null,
+    "dtCreated": "2017-11-30T18:46:10.394Z",
+    "dtModified": "2017-11-30T18:46:10.394Z",
+    "dtProvisioningStarted": "2017-11-30T18:46:50.467Z",
+    "dtProvisioningFinished": "2017-11-30T18:47:12.508Z",
+    "dtStarted": "2017-11-30T18:47:14.636Z",
+    "dtFinished": "2017-11-30T18:52:44.209Z",
+    "dtTeardownStarted": "2017-11-30T18:52:56.889Z",
+    "dtTeardownFinished": "2017-11-30T18:53:31.734Z",
+    "dtDeleted": null,
+    "exitCode": 0
   }
 ]</code></pre>
 
@@ -2707,6 +2772,12 @@ GET /jobs/getLogs?jobId=j123abc
 x-api-key: 1ba4f98e7c0...
 # Returns 200 on success</code></pre>
 
+    <pre class="prettyprint"><code>//Example output:
+Hello Paperspace
+Creating file /artifacts/myoutput1.txt
+Creating file /artifacts/myoutput2.txt
+Finished; returning exit code 0</code></pre>
+
 
 
 
@@ -3085,8 +3156,31 @@ x-api-key: 1ba4f98e7c0...
     <pre class="prettyprint"><code>//Example return value:
 {
   "id": "j123abc",
-  "name": "My Job",
-  "state": "running",
+  "name": "job for project myproject",
+  "state": "Running",
+  "workspaceUrl": "myproject.zip",
+  "workingDirectory": "/paperspace",
+  "artifactsDirectory": "/artifacts",
+  "entrypoint": "echo Hello Paperspace",
+  "projectId": "pr456def",
+  "project": "myproject",
+  "container": "http://dockerhub.com/mycontainer",
+  "machineType": "P5000",
+  "cluster": "Jobs",
+  "usageRate": "P5000 hourly",
+  "startedByUserId": "u789ghi",
+  "parentJobId": null,
+  "jobError": null,
+  "dtCreated": "2017-11-30T18:46:10.394Z",
+  "dtModified": "2017-11-30T18:46:10.394Z",
+  "dtProvisioningStarted": "2017-11-30T18:46:50.467Z",
+  "dtProvisioningFinished": "2017-11-30T18:47:12.508Z",
+  "dtStarted": "2017-11-30T18:47:14.636Z",
+  "dtFinished": null,
+  "dtTeardownStarted": null,
+  "dtTeardownFinished": null,
+  "dtDeleted": null,
+  "exitCode": null
 }</code></pre>
 
 
@@ -3570,8 +3664,31 @@ has transitioned into the given state, or to the 'Error' state. States available
     <pre class="prettyprint"><code>//Example return value:
 {
   "id": "j123abc",
-  "name": "My Job",
-  "state": "Stopped"
+  "name": "job for project myproject",
+  "state": "Stopped",
+  "workspaceUrl": "myproject.zip",
+  "workingDirectory": "/paperspace",
+  "artifactsDirectory": "/artifacts",
+  "entrypoint": "echo Hello Paperspace",
+  "projectId": "pr456def",
+  "project": "myproject",
+  "container": "http://dockerhub.com/mycontainer",
+  "machineType": "P5000",
+  "cluster": "Jobs",
+  "usageRate": "P5000 hourly",
+  "startedByUserId": "u789ghi",
+  "parentJobId": null,
+  "jobError": null,
+  "dtCreated": "2017-11-30T18:46:10.394Z",
+  "dtModified": "2017-11-30T18:46:10.394Z",
+  "dtProvisioningStarted": "2017-11-30T18:46:50.467Z",
+  "dtProvisioningFinished": "2017-11-30T18:47:12.508Z",
+  "dtStarted": "2017-11-30T18:47:14.636Z",
+  "dtFinished": "2017-11-30T18:52:44.209Z",
+  "dtTeardownStarted": "2017-11-30T18:52:56.889Z",
+  "dtTeardownFinished": "2017-11-30T18:53:31.734Z",
+  "dtDeleted": null,
+  "exitCode": 0
 }</code></pre>
 
 
@@ -3775,7 +3892,7 @@ has transitioned into the given state, or to the 'Error' state. States available
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Tue Dec 19 2017 23:31:24 GMT-0500 (EST) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Tue Jan 02 2018 20:38:44 GMT-0500 (EST) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>
