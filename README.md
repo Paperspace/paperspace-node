@@ -1,4 +1,4 @@
-# Paperspace API (v0.1.6)
+# Paperspace API (v0.1.7)
 
 ![image](https://user-images.githubusercontent.com/585865/27562775-26b8acc6-5a9c-11e7-8270-2b80ca895bc5.png)
 
@@ -15,10 +15,22 @@ The **Paperspace API** is the official devkit for automating your [Paperspace](h
 * [API documentation](https://paperspace.github.io/paperspace-node)
 * [Script Guide](scripts.md) for creating and using startup scripts
 
+## Release Notes for v0.1.7
+
+#### New features
+* New states on returned machine objects: starting, stopping, restarting, serviceready, and upgrading
+* Ability to wait on state serviceready when calling machines waitfor method
+* New property on returned machine objects: updatesPending
+* New releasePublicIp option on machines destroy method
+
+#### Fixes
+* Fix for jobs completing too quickly could cause jobs create output to hang
+* Minor doc fixes
+
 ## Release Notes for v0.1.6
 
 #### New Features
-* Pre-built binaries are now available for [Windows](https://s3.amazonaws.com/paperspace-node/v0.1.6/win/paperspace.exe), [Mac](https://s3.amazonaws.com/paperspace-node/v0.1.6/mac/paperspace), and [Linux](https://s3.amazonaws.com/paperspace-node/v0.1.6/linux/paperspace).  These binaries enable you to run the paperspace-node command line tool without having to install Nodejs or any additional node modules.
+* Pre-built binaries are now available for Windows, Mac, and Linux.  These binaries enable you to run the paperspace-node command line tool without having to install Nodejs or any additional node modules.
 * New methods for early access to jobs.  Please contact hello@paperspace.com for more information.
 
 #### Breaking Changes
@@ -97,15 +109,25 @@ Previously Node 4.2.3 or later was required, but that version of Node will soon 
 
 ## Getting started
 
-Your system will need [Node.js](https://nodejs.org) v8+ installed. Check that you have a recent enough version by running `node -v` in your terminal. Node.js comes bundled with `npm`, the Node.js package management tool, which you'll use to install this package.
-
 ### Installation
 
-Install the package from npm:
+Option 1: Install the paperspace-node package from npm:
+
+For this option your system will need [Node.js](https://nodejs.org) v8+ installed. Check that you have a recent enough version by running `node -v` in your terminal. Node.js comes bundled with `npm`, the Node.js package management tool, which you'll use to install this package.  Install the package using the -g option as follows:
 
     $ npm install -g paperspace-node
 
-The reason we recommend installing it globally is so the `paperspace` command will be available on your command line everywhere on your system. If you only want to make it available within an individual Node.js project, you can install it locally by omitting the `-g` flag.
+The reason we recommend installing it globally is so the `paperspace` command will be available on your command line everywhere on your system. If you only want to make it available only within an individual Node.js project, you can install it locally by omitting the `-g` flag.
+
+Option 2: Download the pre-build binary for your plaftorm:
+
+Pre-built binaries are available for:
+* [Windows](https://s3.amazonaws.com/paperspace-node/v0.1.7/win/paperspace.exe)
+* [Mac](https://s3.amazonaws.com/paperspace-node/v0.1.7/mac/paperspace)
+* [Linux](https://s3.amazonaws.com/paperspace-node/v0.1.7/linux/paperspace)
+
+After downloading, make sure the binary is permitted to run on your system by marking is permissions appropriately.
+Also, add the directory containing the paperspace binary to your path using a method appropriate for your platform.
 
 ### Setup
 
@@ -227,4 +249,4 @@ This project is open source, under the ISC license. See LICENSE.txt.
 
 ## Copyright
 
-Copyright :copyright: 2017 Paperspace - All Rights Reserved
+Copyright 2018 Paperspace Co. - All Rights Reserved
