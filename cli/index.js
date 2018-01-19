@@ -94,9 +94,9 @@ if (!foundMethod) {
 	process.exit(1);
 }
 
-if (argv.help) {
+if (argv.help && givenNamespace !== 'login') {
 	console.log(methodHint(foundMethod));
-	process.exit();
+	process.exit(1);
 }
 
 function safeJSON(obj) {
