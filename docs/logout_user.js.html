@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>jobs/index.js - Documentation</title>
+    <title>logout/user.js - Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -27,7 +27,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">jobs/index.js</h1>
+    <h1 class="page-title">logout/user.js</h1>
     
 
     
@@ -39,24 +39,31 @@
         <article>
             <pre class="prettyprint source linenums"><code>'use strict';
 
+var userConfig = require('./../userConfig');
+
 /**
- * @namespace jobs
+ * @memberof logout
+ * @method user
+ * @description Logs out the user (removes any cached API key)
+ * @param {function} cb - Node-style error-first callback function
+ * @example
+ * paperspace.logout.user(function(err, res) {
+ *   // handle error or result
+ * });
+ * @example
+ * $ paperspace logout
+ * @example
+ * # HTTP request:
+ * # Note: there is no HTTP request corresponding to 'paperspace logout'.
  */
 
-module.exports = {
-	artifactsDestroy: require('./artifactsDestroy'),
-	artifactsGet: require('./artifactsGet'),
-	artifactsList: require('./artifactsList'),
-	clone: require('./clone'),
-	create: require('./create'),
-	destroy: require('./destroy'),
-	list: require('./list'),
-	logs: require('./logs'),
-	show: require('./show'),
-	stop: require('./stop'),
-	waitfor: require('./waitfor'),
-};
-</code></pre>
+function user(params, cb) {
+	userConfig.clear();
+	return cb();
+}
+
+
+module.exports = user;</code></pre>
         </article>
     </section>
 
