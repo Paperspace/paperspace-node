@@ -117,7 +117,8 @@ foundMethod.method(argv, function _methodCb(methodErr, methodResp) {
 		};
 		if (!global.paperspace_cli) errorSummary.response = methodErr.response;
 
-		process.stdout.write(safeJSON(errorSummary));
+		if (methodResp === 'nojson') process.stdout.write('Error: ' + errorSummary.error + '\n');
+		else process.stdout.write(safeJSON(errorSummary));
 
 		process.exit(1);
 	}
