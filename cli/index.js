@@ -19,6 +19,8 @@ for (var arg in argv) {
 
 var givenNamespace = argv._[0];
 var givenName = argv._[1];
+if (givenNamespace === 'login') givenName = 'user';
+if (givenNamespace === 'logout') givenName = 'user';
 
 // Packages
 var chalk = require('chalk');
