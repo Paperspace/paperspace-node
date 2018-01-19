@@ -1,4 +1,4 @@
-# Paperspace API (v0.1.7)
+# Paperspace API (v0.1.8)
 
 ![image](https://user-images.githubusercontent.com/585865/27562775-26b8acc6-5a9c-11e7-8270-2b80ca895bc5.png)
 
@@ -14,6 +14,16 @@ The **Paperspace API** is the official devkit for automating your [Paperspace](h
 * [CLI](#cli)
 * [API documentation](https://paperspace.github.io/paperspace-node)
 * [Script Guide](scripts.md) for creating and using startup scripts
+
+## Release Notes for v0.1.8
+
+#### New features
+* New paperspace login method for acquiring and caching api tokens from the command line
+* New paperspace logout method
+* Support for downloading job containers from private docker repositories on job create
+
+#### Fixes
+* Minor doc fixes
 
 ## Release Notes for v0.1.7
 
@@ -122,9 +132,9 @@ The reason we recommend installing it globally is so the `paperspace` command wi
 Option 2: Download the pre-build binary for your plaftorm:
 
 Pre-built binaries are available for:
-* [Windows](https://s3.amazonaws.com/paperspace-node/v0.1.7/win/paperspace.exe)
-* [Mac](https://s3.amazonaws.com/paperspace-node/v0.1.7/mac/paperspace)
-* [Linux](https://s3.amazonaws.com/paperspace-node/v0.1.7/linux/paperspace)
+* [Windows](https://s3.amazonaws.com/paperspace-node/v0.1.8/win/paperspace.exe)
+* [Mac](https://s3.amazonaws.com/paperspace-node/v0.1.8/mac/paperspace)
+* [Linux](https://s3.amazonaws.com/paperspace-node/v0.1.8/linux/paperspace)
 
 After downloading, make sure the binary is permitted to run on your system by marking is permissions appropriately.
 Also, add the directory containing the paperspace binary to your path using a method appropriate for your platform.
