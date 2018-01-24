@@ -10,8 +10,8 @@
 
 The **Paperspace API** is the official devkit for automating your [Paperspace](https://www.paperspace.com) account. It's currently available in JavaScript, and we plan to offer other languages and integrations in the future. For v0, we are offering basic actions such as creating machines and managing team members. This repo includes:
 
-* [JavaScript API client](#programmatic) (for Node.js and the browser)
-* [CLI](#cli)
+* [Paperspace CLI](#Paperspace CLI)
+* [JavaScript API client](#Programmatic access via Paperspace-Node) (for Nodejs and web browsers)
 * [API documentation](https://paperspace.github.io/paperspace-node)
 * [Script Guide](scripts.md) for creating and using startup scripts
 
@@ -121,7 +121,17 @@ Previously Node 4.2.3 or later was required, but that version of Node will soon 
 
 ### Installation
 
-Option 1: Install the paperspace-node package from npm:
+Option 1: Download the pre-build binary for your plaftorm:
+
+Pre-built binaries are available for:
+* [Windows](https://s3.amazonaws.com/paperspace-node/v0.1.8/win/paperspace.exe)
+* [Mac](https://s3.amazonaws.com/paperspace-node/v0.1.8/mac/paperspace)
+* [Linux](https://s3.amazonaws.com/paperspace-node/v0.1.8/linux/paperspace)
+
+After downloading, make sure the binary is permitted to run on your system by marking its permissions appropriately.
+Also, add the directory containing the paperspace binary to your path using a method appropriate for your platform.
+
+Option 2: Install the paperspace-node package from npm:
 
 For this option your system will need [Node.js](https://nodejs.org) v8+ installed. Check that you have a recent enough version by running `node -v` in your terminal. Node.js comes bundled with `npm`, the Node.js package management tool, which you'll use to install this package.  Install the package using the -g option as follows:
 
@@ -129,31 +139,81 @@ For this option your system will need [Node.js](https://nodejs.org) v8+ installe
 
 The reason we recommend installing it globally is so the `paperspace` command will be available on your command line everywhere on your system. If you only want to make it available only within an individual Node.js project, you can install it locally by omitting the `-g` flag.
 
-Option 2: Download the pre-build binary for your plaftorm:
-
-Pre-built binaries are available for:
-* [Windows](https://s3.amazonaws.com/paperspace-node/v0.1.8/win/paperspace.exe)
-* [Mac](https://s3.amazonaws.com/paperspace-node/v0.1.8/mac/paperspace)
-* [Linux](https://s3.amazonaws.com/paperspace-node/v0.1.8/linux/paperspace)
-
-After downloading, make sure the binary is permitted to run on your system by marking is permissions appropriately.
-Also, add the directory containing the paperspace binary to your path using a method appropriate for your platform.
-
-### Setup
+### Setup a Paperspace Account
 
 Before you can use this tool, you'll need a [Paperspace account](https://paperspace.com). You'll use this account to obtain Paperspace API keys.
 
 ### Obtaining an API key
 
-First, sign in to your [Paperspace account](https://paperspace.com). Click 'Launch Console' at top right. From your admin console, you should find an 'Account Info' section. There, you'll find a form where you can create API keys. You'll use the API keys you generate here to authenticate your requests.
+After you have set up a Paperspace account, you can create your first API token and key by logging into your account via the Paperspace CLI: 
+
+    $ paperspace login
+
+   -or-
+
+    $ paperspace login [<user@domain.com>] [<password>] [--apiToken <api token name>]
+
+If you don't already have an api token in your paperspace account, this command will generate one.  If you already have and api key, the
+first one listed in your account is downloaded.  If you have more than one you can use the `--apiToken` option to specify the one to
+download.
+
+Note: for security, please make sure access to the file `~/.papersapce/config.json` is protected in your environment.
+
+You can clear your locally cached api key at any time by executing:
+
+    $ paperspace logout
+
+Alternatively you can create an API key by signing in to your [Paperspace account](https://paperspace.com). Click 'Launch Console' at top right. From your admin console, you should find an 'Account Info' section. There, you'll find a form where you can create API keys. You'll use the API keys you generate here to authenticate your requests.  You will need to pick and API token name for your API key, and also provide a description.
 
 ![image](https://user-images.githubusercontent.com/585865/27563650-f2bc289e-5aa0-11e7-990f-4ed6f9bd39e7.png)
 
+Note: when creating an API token and key this way you need to copy the API key value immedately, as the API key value will not be visble
+in the web user interface later.
+
 ## Usage
 
-You can interact with Paperspace's API in three ways: programatically (from within JavaScript), from the command line (using the Paperspace CLI), or using an HTTP client of your choice and the Paperspace API HTTP enpoints documented here. The JavaScript library and the CLI are backed by the same underlying API client.
+You can interact with Paperspace's API in three ways: from the command line using the Paperspace CLI, programatically (from within a Javascript Nodejs application), or by using an HTTP client of your choice and the Paperspace API HTTP enpoints documented here.
 
-### Programmatic
+### Authentication 
+
+For authenticated requests, the Paperspace CLI and Paperspace-Node module will look in three places for an api key:
+
+1) Locally in the file `~/.papersapce/config.json`, which can be created via the Paperspace CLI by executing:
+
+    $ paperspace login
+
+(See the previous section on Obtaining and API Key for more information.)
+
+2) An environment variable: `PAPERSPACE_API_KEY`.  Example:
+
+    $ export PAPERSPACE_API_KEY=1ba4f98e7c0...
+    $ paperspace machines show --machineId "ps123abc"
+
+3) A command argument: `--apiKey`.  Example:
+
+    $ paperspace machines show --apiKey "1ba4f98e7c0..." --machineId "ps123abc"
+
+### Paperspace CLI
+
+Assuming you've installed the `paperspace-node` package or downloaded one of the pre-built executables, you can invoke the Paperspace CLI with:
+
+    $ paperspace --help
+
+You can check the version of the Paperspace CLI with:
+
+    $ paperspace --version
+
+#### Calling methods with the Paperspace CLI
+
+The CLI provides all methods as subcommands, using this scheme: `paperspace <namespace> <subcommand>`. For example:
+
+    $ paperspace machines create --apiKey "1ba4f98e7c0..." --machineName "My Machine" --size 50 ...
+
+For information on all the methods available, see the [API documentation](https://paperspace.github.io/paperspace-node).
+
+### Programmatic access via Paperspace-Node
+
+You can use the Paperspace APIs programmatically by creating a Javascript Nodejs application and importing the Paperspace-Node module.
 
 We'll be illustrating all examples using [ES5](http://speakingjs.com/es5/ch01.html) syntax and the CommonJS module format. For other systems like Asynchronous Module Definition, consider using a bundler such as Browserify.
 
@@ -165,11 +225,21 @@ Within your node.js app you can import the package with:
 
     var paperspace_node = require('paperspace-node');
 
-Then create an instance of the client, passing in your authentication credentials:
+Then create an instance of the client, optionally passing in your API key:
 
     var paperspace = paperspace_node({
       apiKey: '1ba4f98e7c0...' // <- paste your api key here
     });
+
+   -or-
+
+    var paperspace = paperspace_node();
+
+If you do not pass an apiKey parameter when creating the paperspace object the paperspace-node module will look for the environment variable value named`PAPERSPACE_API_KEY` for an API key, or in the cached api key location created by the `paperspace login` command, `~/.paperspace/config.json`.  See the [Authentication](#Authentication) section above for more information.
+
+You can get the paperspace-node version programmatically via the VERSION attribute:
+
+    var version = paperspace_node.VERSION;
 
 #### Calling the API programmatically
 
@@ -185,47 +255,19 @@ That is, the first argument is parameters object, and the second is a error-firs
 
 For information on all the methods available, see the [API documentation](https://paperspace.github.io/paperspace-node).
 
-### CLI
+## Paperspace API HTTP endpoints
 
-Assuming you've installed the `paperspace-node` package, you can invoke the Paperspace CLI with:
-
-    $ paperspace --help
-
-For authenticated requests, the Paperspace CLI will look in two places for an api key:
-
-1) A command argument: `--apiKey`.  Example:
-
-    $ paperspace machines show --apiKey "1ba4f98e7c0..." --machineId "ps123abc"
-
-2) An environment variable: `PAPERSPACE_API_KEY`.  Example:
-
-    $ export PAPERSPACE_API_KEY=1ba4f98e7c0...
-    $ paperspace machines show --machineId "ps123abc"
-
-
-#### Calling the API with the CLI
-
-The CLI provides all methods as subcommands, using this scheme: `paperspace <namespace> <subcommand>`. For example:
-
-    $ paperspace machines create --apiKey "1ba4f98e7c0..." --machineName "My Machine" --size 50 ...
-
-For information on all the methods available, see the [API documentation](https://paperspace.github.io/paperspace-node).
-
-## [API Documentation](https://paperspace.github.io/paperspace-node)
-
-## HTTP endpoints
-
-If you'd prefer to interact with our HTTP API directly, and roll your own client instead of using ours, our HTTP endpoints are also described in our [API documentation](https://paperspace.github.io/paperspace-node).
+If you'd prefer to build your own client instead of using the Paperspace-Node library, you can use the Paperspace API HTTP endpoints directly, as described in the [API documentation](https://paperspace.github.io/paperspace-node).
 
 NOTE: the HTTP endpoints are subject to change in the future.  We recommend using one of the programmatic APIs whenever possible to maintain forward compatibility.
 
-### Address for HTTP endpoints
+### Address for the Paperspace API HTTP endpoints
 
-If making HTTP requests directly to the Paperspace HTTP endpoints use the following address for each request: `https://api.paperspace.io`
+If making HTTP requests directly to the Paperspace API endpoints use the following address for each request: `https://api.paperspace.io`
 
-### Authenticating to HTTP endpoints
+### Authenticating to the Paperspace API
 
-In order to use the HTTP API directly you must specify the `x-api-key` header with the value of the API key obtained using the procedure above.
+In order to use the HTTP API directly you must specify the `x-api-key` header with the value of your API key.
 
 ## Other clients
 
