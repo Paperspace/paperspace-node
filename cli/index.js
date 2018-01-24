@@ -24,7 +24,7 @@ if (givenNamespace === 'logout') givenName = 'user';
 
 // Packages
 var chalk = require('chalk');
-var pkginfo = require('pkginfo')(module, 'version');;
+var pkginfo = require('pkginfo')(module, 'version'); // eslint-disable-line no-unused-vars
 
 // Ours
 var paperspace = require('./../lib/paperspace');
