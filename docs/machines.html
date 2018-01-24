@@ -449,10 +449,14 @@ x-api-key: 1ba4f98e7c0...
 <div class="description">
     <p>Create a new Paperspace virtual machine. If you are using an individual account,
 you will be assigned as the owner of the machine. If you are a team administrator, you must
-specify who the machine should belong to, either by their user id, or their email address.
-If you pass a full set of user parameters, we will create a user within your team and assign
-them the machine. This action can only be performed by the account owner. (Team members cannot
-create machines themselves; only the team administrator may do so.)</p>
+specify the user that should be assigned to the machine, either by specifing a user id, or by providing an email address, password, first name and
+last name for the creation of a new user on the team.  (The email address must not already be associated with a Paperspace account, otherwise a user creation error is returned.)</p>
+<p>Note: if you attempt to create a new user along with the machine, the user creation step is executed before the creation of the machine.
+Therefore, if an error occurs, the user creation step may or may not have succeeded.  To deal with this, if an error object is returned from the <code>machines create</code>
+method, subsquently call the <code>users list</code> method (with a search filter specifying the email address) to check if the user creation step succeeded.</p>
+<p>Note: machine creation is not always guaranteed to succeed, due to various possible issues such as machine availability, billing issues, resource issues, or system errors.
+However you can call the <code>machines availability</code> method to check for current point-in-time availability of a given machine type.</p>
+<p>This machine create action can only be performed by the account owner. (Team members cannot create machines themselves; only the team administrator may do so.)</p>
 </div>
 
 
@@ -475,7 +479,6 @@ create machines themselves; only the team administrator may do so.)</p>
   assignPublicIp: true, // optional - assign a new public ip address
   networkId: 'n123abc', // optional - only if creating on a specific network
   teamId: 'te456def', // optional - required if creating this machine for a team
-  userId: 'u123abc', // optional - required if assigning to an existing user other than yourself
   email: 'example@example.com', // optional - if creating a new user
   password: 'secret123', // optional - if creating a new user
   firstName: 'Jon', // optional - if creating a new user
@@ -506,7 +509,7 @@ create machines themselves; only the team administrator may do so.)</p>
 
     <pre class="prettyprint"><code># HTTP request:
 https://api.paperspace.io
-POST /machines/createSingleMachinePublic {"region": "East Coast (NY2)", "machineType": "Air", "size": 50, "billingType": "monthly", "machineName": "My Machine 1", "templateId": "t123abc", "assignPublicIp": true, "networkId": "n123abc", "teamId": "te456def", "userId": "u123abc", "email": "example@example.com", "password": "secret123", "firstName": "Jon", "lastName": "Snow", "notificationEmail": "example@example.com"}
+POST /machines/createSingleMachinePublic {"region": "East Coast (NY2)", "machineType": "Air", "size": 50, "billingType": "monthly", "machineName": "My Machine 1", "templateId": "t123abc", "assignPublicIp": true, "networkId": "n123abc", "teamId": "te456def", "email": "example@example.com", "password": "secret123", "firstName": "Jon", "lastName": "Snow", "notificationEmail": "example@example.com"}
 x-api-key: 1ba4f98e7c0...
 # Returns 201 on success</code></pre>
 
@@ -926,7 +929,7 @@ Ubuntu os templates cannot be used to create GRID GPU machine types: 'Air', 'Sta
 
             
 
-            <td class="description last"><p>If assigning to an existing user other than yourself, specify the user id</p></td>
+            <td class="description last"><p>If assigning to an existing user other than yourself, specify the user id (mutually exclusive with email, password, firstName, lastName)</p></td>
         </tr>
 
     
@@ -959,7 +962,7 @@ Ubuntu os templates cannot be used to create GRID GPU machine types: 'Air', 'Sta
 
             
 
-            <td class="description last"><p>If creating a new user for this machine, specify their email address</p></td>
+            <td class="description last"><p>If creating a new user for this machine, specify their email address (mutually exclusive with userId)</p></td>
         </tr>
 
     
@@ -992,7 +995,7 @@ Ubuntu os templates cannot be used to create GRID GPU machine types: 'Air', 'Sta
 
             
 
-            <td class="description last"><p>If creating a new user, specify their password</p></td>
+            <td class="description last"><p>If creating a new user, specify their password (mutually exclusive with userId)</p></td>
         </tr>
 
     
@@ -1025,7 +1028,7 @@ Ubuntu os templates cannot be used to create GRID GPU machine types: 'Air', 'Sta
 
             
 
-            <td class="description last"><p>If creating a new user, specify their first name</p></td>
+            <td class="description last"><p>If creating a new user, specify their first name (mutually exclusive with userId)</p></td>
         </tr>
 
     
@@ -1058,7 +1061,7 @@ Ubuntu os templates cannot be used to create GRID GPU machine types: 'Air', 'Sta
 
             
 
-            <td class="description last"><p>If creating a new user, specify their last name</p></td>
+            <td class="description last"><p>If creating a new user, specify their last name (mutually exclusive with userId)</p></td>
         </tr>
 
     
@@ -4614,7 +4617,7 @@ has transitioned into the given state. States available to check for are:</p>
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Fri Jan 19 2018 02:36:55 GMT-0500 (EST) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Wed Jan 24 2018 16:37:57 GMT-0500 (EST) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>
