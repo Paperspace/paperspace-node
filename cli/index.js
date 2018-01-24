@@ -24,6 +24,7 @@ if (givenNamespace === 'logout') givenName = 'user';
 
 // Packages
 var chalk = require('chalk');
+var pkginfo = require('pkginfo')(module, 'version');;
 
 // Ours
 var paperspace = require('./../lib/paperspace');
@@ -62,7 +63,16 @@ function methodHints() {
 	return hints;
 }
 
+function versionStr() {
+	return 'Paperspace CLI ' + module.exports.version;
+}
+if (givenNamespace === 'version' || ((argv.version === true || argv.v === true)) && givenNamespace === undefined) {
+	console.log(versionStr());
+	process.exit();
+}
+
 if (!givenNamespace && !givenName) {
+	console.log(versionStr());
 	console.log();
 	console.log('    ' + chalk.bold('paperspace') + ' <namespace> <command> [...flags]');
 	console.log();
@@ -90,7 +100,8 @@ paperspace.eachEndpoint(function _each(namespace, name, method) {
 });
 
 if (!foundMethod) {
-	console.error('No such command `' + givenNamespace + ' ' + givenName + '`');
+	if (givenName === undefined) console.error('No such namespace: `' + givenNamespace + '`');
+	else console.error('No such command: `' + givenNamespace + ' ' + givenName + '`');
 	process.exit(1);
 }
 
