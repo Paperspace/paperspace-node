@@ -64,7 +64,7 @@ function methodHints() {
 }
 
 function versionStr() {
-	return 'Paperspace CLI ' + module.exports.version;
+	return 'paperspace cli ' + module.exports.version;
 }
 if (givenNamespace === 'version' || ((argv.version === true || argv.v === true)) && givenNamespace === undefined) {
 	console.log(versionStr());
