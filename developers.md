@@ -28,7 +28,7 @@ The actual documentation contents are written as source code comments in the Jav
 The source code in this repo handles two use cases:
 
 * CLI
-* Programmatic usage via a JavaScript client
+* Programmatic usage via a JavaScript/Nodejs client
 
 ##### CLI
 
@@ -46,7 +46,29 @@ Although the JavaScript entry module loads these individual implementations into
 
 ###### Configuration
 
-There is a small config file at `lib/config.js`. Parts of this are loaded conditionally depending on the current `NODE_ENV`. To connect to the production Paperspace API web service, the `NODE_ENV` should be `production`.
+There is a small config file at `lib/config.js`. Parts of this are loaded conditionally depending on the current `NODE_ENV`. To connect to the production Paperspace API web service, the `NODE_ENV` should be `production`.  The values for the production api and logs server names can be overriden with these enviroment variables:
+
+PAPERSPACE_CONFIG_HOST
+PAPERSPACE_CONFIG_LOG_HOST
+
+#### Building
+
+The paperspace cli requires node 8.6.3 or later, and uses a `package.json` and `package.json-lock` file to maintain a list of required dependencies.
+Upon cloning the repository from github, or pulling a new version, run the following in the root of the repository to update the runtime and development dependencies:
+
+    npm install
+
+Note: if you already have a different version installed locally or globally, you may need to run these commands first:
+
+    npm uninstall paperspace
+    npm uninstall -g paperspace
+
+##### Building binaries
+
+The npm module `pkg` is used to build the paperspace cli binaries for linux, macos, and windows.
+You can build local versions of the binaries by running the following at the root of the repository:
+
+    pkg .
 
 ###### Tests
 
