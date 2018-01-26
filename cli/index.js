@@ -119,7 +119,7 @@ if (!foundMethod) {
 
 if (argv.help || argv.h) {
 	if (givenNamespace === 'login' || givenNamespace == 'logout') {
-		console.log('Usage: paperspace login [[--email] <user@domain.com> [[--password] "<secretpw>" ]] [[--apiToken] "<name>"]]]');
+		console.log('Usage: paperspace login [[--email] <user@domain.com>] [[--password] "<secretpw>" ]] [[--apiToken] "<api token name>"]');
 		console.log('       paperspace logout');
 	} else console.log(methodHint(foundMethod));
 	process.exit();
