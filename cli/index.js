@@ -19,8 +19,10 @@ for (var arg in argv) {
 
 var givenNamespace = argv._[0];
 var givenName = argv._[1];
-if (givenNamespace === 'login') givenName = 'user';
-if (givenNamespace === 'logout') givenName = 'user';
+if (givenNamespace === 'login' || givenNamespace === 'logout') {
+	if (givenName === 'help' || (givenName === 'user' && argv._[2] === 'help')) argv.help = true;
+	givenName = 'user';
+}
 
 // Packages
 var chalk = require('chalk');
@@ -66,15 +68,11 @@ function methodHints() {
 function versionStr() {
 	return 'paperspace cli ' + module.exports.version;
 }
-if (givenNamespace === 'version' || ((argv.version === true || argv.v === true)) && givenNamespace === undefined) {
-	console.log(versionStr());
-	process.exit();
-}
 
-if (!givenNamespace && !givenName) {
+function usage() {
 	console.log(versionStr());
 	console.log();
-	console.log('    ' + chalk.bold('paperspace') + ' <namespace> <command> [...flags]');
+	console.log('    ' + chalk.bold('paperspace') + ' <namespace> <command> [options...]');
 	console.log();
 	console.log('    ' + chalk.dim('Commands:'));
 	console.log();
@@ -83,31 +81,48 @@ if (!givenNamespace && !givenName) {
 	console.log('    ---');
 	console.log('    ' + chalk.dim(DEETS_NOTE));
 	console.log('');
+}
 
+if (givenNamespace === 'version' || ((argv.version === true || argv.v === true)) && givenNamespace === undefined) {
+	console.log(versionStr());
 	process.exit();
 }
 
-var foundMethod;
+if ((!givenNamespace && !givenName) || givenNamespace === 'help') {
+	usage()
+	process.exit();
+}
+
+var foundMethod = false;
+var foundNamespace = false;
 
 paperspace.eachEndpoint(function _each(namespace, name, method) {
-	if (namespace === givenNamespace && name == givenName) {
-		foundMethod = {
-			namespace: namespace,
-			name: name,
-			method: method,
-		};
+	if (namespace === givenNamespace) {
+		foundNamespace = true;
+		if (name === givenName) {
+			foundMethod = {
+				namespace: namespace,
+				name: name,
+				method: method,
+			};
+		}
 	}
 });
 
 if (!foundMethod) {
-	if (givenName === undefined) console.error('No such namespace: `' + givenNamespace + '`');
-	else console.error('No such command: `' + givenNamespace + ' ' + givenName + '`');
+	if (foundNamespace) {
+		if (givenName === undefined) console.error('Error: no command provided for: `' + givenNamespace + '`');
+		else console.error('Error: no such command: `' + givenNamespace + ' ' + givenName + '`');
+	} else console.error('Error: no such namespace: `' + givenNamespace + '`');
 	process.exit(1);
 }
 
-if (argv.help && givenNamespace !== 'login') {
-	console.log(methodHint(foundMethod));
-	process.exit(1);
+if (argv.help || argv.h) {
+	if (givenNamespace === 'login' || givenNamespace == 'logout') {
+		console.log('Usage: paperspace login [[--email] <user@domain.com> [[--password] "<secretpw>" ]] [[--apiToken] "<name>"]]]');
+		console.log('       paperspace logout');
+	} else console.log(methodHint(foundMethod));
+	process.exit();
 }
 
 function safeJSON(obj) {
