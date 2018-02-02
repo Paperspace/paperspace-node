@@ -7,7 +7,7 @@
 * New paperspace logout method
 * Support for downloading job containers from private docker repositories on job create
 * Support for downloading job workspace from private git repositories on job create
-* paperspace --version option to check the version of the CLI tool
+* Added paperspace --version option to check the version of the CLI tool
 
 #### Fixes
 * Minor doc fixes
