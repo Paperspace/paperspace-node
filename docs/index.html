@@ -53,34 +53,37 @@
 <p>The <strong>Paperspace API</strong> is the official devkit for automating your <a href="https://www.paperspace.com">Paperspace</a> account. It's currently available in JavaScript, and we plan to offer other languages and integrations in the future. For v0, we are offering basic actions such as creating machines and managing team members. This repo includes:</p>
 <ul>
 <li><a href="#Paperspace CLI">Paperspace CLI</a></li>
-<li><a href="#Programmatic access via Paperspace-Node">JavaScript API client</a> (for Nodejs and web browsers)</li>
+<li><a href="#Programmatic access via Paperspace-Node">JavaScript API client</a> (for Node.js and web browsers)</li>
 <li><a href="https://paperspace.github.io/paperspace-node">API documentation</a></li>
 <li><a href="scripts.md">Script Guide</a> for creating and using startup scripts</li>
 </ul>
-<h2><a href="releasenotes.md">Release Notes</a></h2><h2>Getting started</h2><h3>Installation</h3><p>Option 1: Download the pre-build binary for your plaftorm:</p>
-<p>Pre-built binaries are available for:</p>
+<h2><a href="releasenotes.md">Release Notes</a></h2><h2>Getting started</h2><h3>Installation</h3><h4>Option 1: Download the pre-built 'paperspace' binary for your plaftorm</h4><p>Pre-built 'paperspace' binaries are available for:</p>
 <ul>
 <li><a href="https://s3.amazonaws.com/paperspace-node/v0.1.8/win/paperspace.exe">Windows</a></li>
 <li><a href="https://s3.amazonaws.com/paperspace-node/v0.1.8/mac/paperspace">Mac</a></li>
 <li><a href="https://s3.amazonaws.com/paperspace-node/v0.1.8/linux/paperspace">Linux</a></li>
 </ul>
-<p>After downloading, make sure the binary is permitted to run on your system by marking its permissions appropriately.
-Also, add the directory containing the paperspace binary to your path using a method appropriate for your platform.</p>
-<p>Option 2: Install the paperspace-node package from npm:</p>
-<p>For this option your system will need <a href="https://nodejs.org">Node.js</a> v8+ installed. Check that you have a recent enough version by running <code>node -v</code> in your terminal. Node.js comes bundled with <code>npm</code>, the Node.js package management tool, which you'll use to install this package.  Install the package using the -g option as follows:</p>
-<pre class="prettyprint source"><code>$ npm install -g paperspace-node</code></pre><p>The reason we recommend installing it globally is so the <code>paperspace</code> command will be available on your command line everywhere on your system. If you only want to make it available only within an individual Node.js project, you can install it locally by omitting the <code>-g</code> flag.</p>
-<h3>Setup a Paperspace Account</h3><p>Before you can use this tool, you'll need a <a href="https://paperspace.com">Paperspace account</a>. You'll use this account to obtain Paperspace API keys.</p>
-<h3>Obtaining an API key</h3><p>After you have set up a Paperspace account, you can create your first API token and key by logging into your account via the Paperspace CLI: </p>
+<p>After downloading, make sure the 'paperspace' binary is permitted to run on your system by marking its permissions appropriately.
+Also, add the directory containing the 'paperspace' binary to your path using a method appropriate for your platform.</p>
+<h4>Option 2: Install the paperspace-node package from npm</h4><p>For this option you will need <a href="https://nodejs.org">Node.js</a> v8.9.3 or later. Check your Node.js version by running <code>node -v</code>. Node.js comes bundled with <code>npm</code>, the Node.js package management tool, which you'll use to install this package.  Install the package using the -g option as follows:</p>
+<pre class="prettyprint source"><code>$ npm install -g paperspace-node</code></pre><p>We recommend installing the paperspace-node package globally so that the <code>paperspace</code> command will be available on your command line everywhere on your system. If you want to make it available only within an individual Node.js project, you can install it for use only in the current directory by omitting the <code>-g</code> flag.</p>
+<h3>Setup a Paperspace Account</h3><p>Before you can use this tool, you'll need a <a href="https://paperspace.com">Paperspace account</a>. You'll use this account request access to the Paperspace API/Gradient Beta, and to obtain a Paperspace API key.</p>
+<p>After creating your Paperspace account check your email to confirm your account before logging in.</p>
+<h3>Request Access to the Paperspace API and Gradient Beta</h3><p>To use the Paperspace API or Gradient tools you will need to request access to the <em>Paperspace API and Gradient Beta</em>.  To do this first log into your <a href="https://paperspace.com">Paperspace account</a>.  Then go to the <a href="https://www.paperspace.com/console/gradient">Gradient console</a> and fill out the form to request access.</p>
+<p>You will subsequently receive an email confirmation when your acess request is approved (usually within 24 hours).</p>
+<h3>Obtaining an API key</h3><p>Once you have been approved for access to the <em>Paperspace API and Gradient Beta</em>  you will need to obtain a API key.</p>
+<p>Your API key allows you to access the Paperspace APIs and Gradient features from the command line, or from within apps that you develop.  Each API key has an API Token name associated with it.</p>
+<p>There are two ways to create an API key, either via the Paperspace CLI, or from within the <a href="(https://www.paperspace.com/console/account/api">API</a>) section of your Paperspace console.</p>
+<h4>Option 1: Obtain an API key via Paperspace CLI</h4><p>You can create your first API key by logging into your account via the Paperspace CLI: </p>
 <pre class="prettyprint source"><code>$ paperspace login</code></pre><p>   -or-</p>
-<pre class="prettyprint source"><code>$ paperspace login [&lt;user@domain.com>] [&lt;password>] [--apiToken &lt;api token name>]</code></pre><p>If you don't already have an api token in your paperspace account, this command will generate one.  If you already have and api key, the
-first one listed in your account is downloaded.  If you have more than one you can use the <code>--apiToken</code> option to specify the one to
-download.</p>
-<p>Note: for security, please make sure access to the file <code>~/.papersapce/config.json</code> is protected in your environment.</p>
-<p>You can clear your locally cached api key at any time by executing:</p>
-<pre class="prettyprint source"><code>$ paperspace logout</code></pre><p>Alternatively you can create an API key by signing in to your <a href="https://paperspace.com">Paperspace account</a>. Click 'Launch Console' at top right. From your admin console, you should find an 'Account Info' section. There, you'll find a form where you can create API keys. You'll use the API keys you generate here to authenticate your requests.  You will need to pick and API token name for your API key, and also provide a description.</p>
+<pre class="prettyprint source"><code>$ paperspace login [&lt;user@domain.com>] [&lt;password>] [--apiToken &lt;api token name>]</code></pre><p>If you don't already have an API key in your paperspace account, this command will generate one and give it a default API token name of 'API token'.
+If you already have one or more API keys, the API key associated with the first API token listed in your account is downloaded.  If you want to use a particular API key you can specify the associated API token name using the '--apiToken' option.</p>
+<p>Note: your API key is cached in a file in your home directory: <code>~/.papersapce/config.json</code>. For security, please make sure access to the file is protected so only you can access it.</p>
+<p>You can clear your locally cached API key at any time by executing:</p>
+<pre class="prettyprint source"><code>$ paperspace logout</code></pre><h4>Option 2: Obtain an API key via your Paperspace Console</h4><p>Alternatively you can create an API key from withn your <a href="https://www.paperspace.com/console">Paperspace console</a> API section. Under the API section in the left navigation bar, click <a href="https://www.paperspace.com/console/account/api">CREATE AN API KEY</a>.  Follow the instructions there.</p>
+<p>You will need to pick and API token name for your API key, and also provide a description.  You can copy actual the API key value associated with the API token name only at the time of initial creation.  If you need to access your API key in the future, you can instead access it by API token name using the 'paperspace login' command.</p>
 <p><img src="https://user-images.githubusercontent.com/585865/27563650-f2bc289e-5aa0-11e7-990f-4ed6f9bd39e7.png" alt="image"></p>
-<p>Note: when creating an API token and key this way you need to copy the API key value immedately, as the API key value will not be visble
-in the web user interface later.</p>
+<p>You'll use the API keys generate here to authenticate your requests.</p>
 <h2>Usage</h2><p>You can interact with Paperspace's API in three ways: from the command line using the Paperspace CLI, programatically (from within a Javascript Nodejs application), or by using an HTTP client of your choice and the Paperspace API HTTP enpoints documented here.</p>
 <h3>Authentication</h3><p>For authenticated requests, the Paperspace CLI and Paperspace-Node module will look in three places for an api key:</p>
 <p>1) Locally in the file <code>~/.papersapce/config.json</code>, which can be created via the Paperspace CLI by executing:</p>
@@ -135,7 +138,7 @@ $ paperspace machines show --machineId &quot;ps123abc&quot;</code></pre><p>3) A 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Thu Jan 25 2018 17:51:29 GMT-0500 (EST) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Fri Feb 02 2018 14:28:04 GMT-0500 (EST) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>
