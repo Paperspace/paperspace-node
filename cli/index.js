@@ -89,7 +89,7 @@ if (givenNamespace === 'version' || ((argv.version === true || argv.v === true))
 }
 
 if ((!givenNamespace && !givenName) || givenNamespace === 'help') {
-	usage()
+	usage();
 	process.exit();
 }
 
