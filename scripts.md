@@ -10,7 +10,7 @@ This feature is similar to `user_data` in other cloud provider frameworks.
 ### A note on security
 
 The running of scripts automatically can be a path for malware to get access to your machine.
-Make sure your account and paperspace apiKey are kept secure, and review your scripts closely to make sure the software you are running is safe.  Paperspace supports two-factor authentication for securing your paperspace account info.  This can add an extra level of security to you account to help keep your apiKeys, scripts, and script assignments secure.
+Make sure your account and paperspace apiKey are kept secure, and review your scripts closely to make sure the software you are running is safe.  Paperspace supports two-factor authentication for securing your paperspace account info.  This can add an extra level of security to your account to help keep your apiKeys, scripts, and script assignments secure.
 
 Paperspace stores scripts within a secure area associated with your account, and encrypts and protects  scripts while they are being downloaded to machines during startup.  Scripts cannot be modified once uploaded to paperspace, however a new script can be defined and assigned to a machine using your apiKey.  Hence the importance of keeping your apiKey and account secure.
 
