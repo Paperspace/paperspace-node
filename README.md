@@ -153,7 +153,7 @@ Then create an instance of the client, optionally passing in your API key:
 
     var paperspace = paperspace_node();
 
-If you do not pass an apiKey parameter when creating the paperspace object the paperspace-node module will look for the environment variable value named`PAPERSPACE_API_KEY` for an API key, or in the cached api key location created by the `paperspace login` command, `~/.paperspace/config.json`.  See the [Authentication](#Authentication) section above for more information.
+If you do not pass an apiKey parameter when creating the paperspace object the paperspace-node module will look for the environment variable value named`PAPERSPACE_API_KEY` for an API key, or in the cached api key location created by the `paperspace login` command, `~/.paperspace/config.json`.  See the [Authentication](#authentication) section above for more information.
 
 You can get the paperspace-node version programmatically via the VERSION attribute:
 
