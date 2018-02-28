@@ -4,11 +4,11 @@
 
 - - - -
 
-**Heads up! This project is under construction!** We're offering this early, unstable, pre-alpha release to get early feedback and to see how it might get used in the wild. Use caution: Until we ship a release >= v1.0, expect to encounter bugs, and expect our documentation to be missing or inaccurate in places. We welcome your bug reports and suggestions via GitHub Issues!
+**Heads up! This project is under construction!** We welcome your bug reports and suggestions via GitHub Issues!
 
 - - - -
 
-The **Paperspace API** is the official devkit for automating your [Paperspace](https://www.paperspace.com) account. It's currently available in JavaScript, and we plan to offer other languages and integrations in the future. For v0, we are offering basic actions such as creating machines and managing team members. This repo includes:
+The **Paperspace API** is the official devkit for automating your [Paperspace](https://www.paperspace.com) account. It's currently available in JavaScript, and we plan to offer other languages and integrations in the future. Currently we are offering basic actions such as creating Paperspace machines and Gradient jobs. This repo includes:
 
 * [Paperspace CLI](#Paperspace CLI)
 * [JavaScript API client](#Programmatic access via Paperspace-Node) (for Node.js and web browsers)
