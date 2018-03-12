@@ -1,5 +1,14 @@
 # Paperspace API Release Notes
 
+## Release Notes for v0.1.9
+
+#### New features
+* New jobs machineTypes method for discovering available job machine types.
+
+#### Fixes
+* Fix for paperspace cached api key overriding an explicit api key parameter in paperspace-node apps.
+* Minor doc fixes
+
 ## Release Notes for v0.1.8
 
 #### New features
