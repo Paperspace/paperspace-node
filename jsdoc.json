@@ -20,5 +20,8 @@
   "templates": {
     "cleverLinks": false,
     "monospaceLinks": false
+  },
+  "markdown": {
+      "idInHeadings": true
   }
 }
