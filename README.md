@@ -8,9 +8,9 @@
 
 - - - -
 
-The **Paperspace API** is the official devkit for automating your [Paperspace](https://www.paperspace.com) account. It's currently available in JavaScript, and we plan to offer other languages and integrations in the future. Currently we are offering basic actions such as creating Paperspace machines and Gradient jobs. This repo includes:
+The **Paperspace API** is the official devkit for automating your [Paperspace](https://www.paperspace.com) account. It is currently available in [JavaScript](#programmatic-access-via-paperspace-node) and [Python](https://github.com/Paperspace/paperspace-python), and we plan to offer other languages and integrations in the future. Currently we are offering basic actions such as creating Paperspace machines and Gradient jobs. This repository includes:
 
-* [Paperspace CLI](#paperspace-cli)
+* [Paperspace CLI](#paperspace-cli) (command line interface)
 * [JavaScript API client](#programmatic-access-via-paperspace-node) (for Node.js and web browsers)
 * [API documentation](https://paperspace.github.io/paperspace-node)
 * [Script Guide](scripts.md) for creating and using startup scripts
@@ -41,23 +41,17 @@ We recommend installing the paperspace-node package globally so that the `papers
 
 ### Setup a Paperspace Account
 
-Before you can use this tool, you'll need a [Paperspace account](https://paperspace.com). You'll use this account request access to the Paperspace API/Gradient Beta, and to obtain a Paperspace API key.
+Before you can use this tool, you'll need a [Paperspace account](https://paperspace.com). You'll use this account to obtain a Paperspace API key.
 
 After creating your Paperspace account check your email to confirm your account before logging in.
 
-### Request Access to the Paperspace API and Gradient Beta
-
-To use the Paperspace API or Gradient tools you will need to request access to the *Paperspace API and Gradient Beta*.  To do this first log into your [Paperspace account](https://paperspace.com).  Then go to the [Gradient console](https://www.paperspace.com/console/gradient) and fill out the form to request access.
-
-You will subsequently receive an email confirmation when your acess request is approved (usually within 24 hours).
-
 ### Obtaining an API key
 
-Once you have been approved for access to the *Paperspace API and Gradient Beta*  you will need to obtain a API key.
+Once you have created a Paperspace Account you will need to obtain a API key.
 
 Your API key allows you to access the Paperspace APIs and Gradient features from the command line, or from within apps that you develop.  Each API key has an API Token name associated with it.
 
-There are two ways to create an API key, either via the Paperspace CLI, or from within the [API]((https://www.paperspace.com/console/account/api)) section of your Paperspace console.
+There are two ways to create an API key, either via the Paperspace CLI, or from within the [API](https://www.paperspace.com/console/account/api) section of your Paperspace console.
 
 #### Option 1: Obtain an API key via Paperspace CLI
 
@@ -70,7 +64,8 @@ You can create your first API key by logging into your account via the Paperspac
     $ paperspace login [<user@domain.com>] [<password>] [--apiToken <api token name>]
 
 If you don't already have an API key in your paperspace account, this command will generate one and give it a default API token name of 'API token'.
-If you already have one or more API keys, the API key associated with the first API token listed in your account is downloaded.  If you want to use a particular API key you can specify the associated API token name using the '--apiToken' option.
+
+If you already have one or more API keys in your account, the API key associated with the first API token listed in your account is downloaded.  If you want to use a particular API key you can specify the associated API token name using the '--apiToken' option.
 
 Note: your API key is cached in a file in your home directory: `~/.papersapce/config.json`. For security, please make sure access to the file is protected so only you can access it.
 
@@ -80,11 +75,11 @@ You can clear your locally cached API key at any time by executing:
 
 #### Option 2: Obtain an API key via your Paperspace Console
 
-Alternatively you can create an API key from withn your [Paperspace console](https://www.paperspace.com/console) API section. Under the API section in the left navigation bar, click [CREATE AN API KEY](https://www.paperspace.com/console/account/api).  Follow the instructions there.
+Alternatively you can create an API key from withn your Paperspace console under the [API](https://www.paperspace.com/console/account/api) section. Login to your [Paperspace console](https://www.paperspace.com/console), scroll to the API section in the left navigation bar, and click [CREATE AN API KEY](https://www.paperspace.com/console/account/api). Follow the instructions there.
 
 You will need to pick and API token name for your API key, and also provide a description.  You can copy actual the API key value associated with the API token name only at the time of initial creation.  If you need to access your API key in the future, you can instead access it by API token name using the 'paperspace login' command.
 
-![image](https://user-images.githubusercontent.com/585865/27563650-f2bc289e-5aa0-11e7-990f-4ed6f9bd39e7.png)
+![image](https://user-images.githubusercontent.com/11018661/37693302-1f5d9100-2c95-11e8-9fa8-d000f1d40421.png)
 
 You'll use the API keys generate here to authenticate your requests.
 
@@ -100,7 +95,7 @@ For authenticated requests, the Paperspace CLI and Paperspace-Node module will l
 
     $ paperspace login
 
-(See the previous section on Obtaining and API Key for more information.)
+See the previous section on [Obtaining an API key](#obtaining-an-api-key) for more information.
 
 2) An environment variable: `PAPERSPACE_API_KEY`.  Example:
 
@@ -189,11 +184,11 @@ In order to use the HTTP API directly you must specify the `x-api-key` header wi
 
 ## Other clients
 
-If you've created an API client in a language other than JavaScript, please [let us know](mailto:support@paperspace.com) and we will link to it here.
+If you've created an API client in a language other than JavaScript, please let us know at [support@paperspace.com](mailto:support@paperspace.com) and we will link to it here.
 
 ## Sample Apps
 
-See the directory [samples](samples/) for a few simple samples of using the node API, and the CLI in a bash script.  Note: the [jq](https://stedolan.github.io/jq/) tool is used in the bash sample for parsing JSON data.
+See the directory [samples](https://github.com/Paperspace/paperspace-node/tree/master/samples) for a few simple samples of using the node API, and the CLI in a bash script.  Note: the [jq](https://stedolan.github.io/jq/) tool is used in the bash sample for parsing JSON data.
 
 ## Contributing
 
