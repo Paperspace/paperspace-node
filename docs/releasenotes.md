@@ -1,5 +1,16 @@
 # Paperspace API Release Notes
 
+## Release Notes for v0.1.10
+
+#### New features
+* New dynamicPublicIp parameter for machines create and machines update methods.
+* New ports parameter for jobs.  Also displays links to exposed ports in jobs create output.
+* Improved job logging responsiveness.
+
+#### Fixes
+* Fix for NODE_ENV settings from other projects breaking paperspace-node config
+* Minor doc fixes
+
 ## Release Notes for v0.1.9
 
 #### New features
