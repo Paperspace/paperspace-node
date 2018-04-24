@@ -1,4 +1,4 @@
-# Paperspace API (v0.1.9)
+# Paperspace API (v0.1.10)
 
 ![image](https://user-images.githubusercontent.com/585865/27562775-26b8acc6-5a9c-11e7-8270-2b80ca895bc5.png)
 
@@ -24,9 +24,9 @@ The **Paperspace API** is the official devkit for automating your [Paperspace](h
 #### Option 1: Download the pre-built 'paperspace' binary for your plaftorm
 
 Pre-built 'paperspace' binaries are available for:
-* [Windows](https://s3.amazonaws.com/paperspace-node/v0.1.9/win/paperspace.exe)
-* [Mac](https://s3.amazonaws.com/paperspace-node/v0.1.9/mac/paperspace)
-* [Linux](https://s3.amazonaws.com/paperspace-node/v0.1.9/linux/paperspace)
+* [Windows](https://s3.amazonaws.com/paperspace-node/v0.1.10/win/paperspace.exe)
+* [Mac](https://s3.amazonaws.com/paperspace-node/v0.1.10/mac/paperspace)
+* [Linux](https://s3.amazonaws.com/paperspace-node/v0.1.10/linux/paperspace)
 
 After downloading, make sure the 'paperspace' binary is permitted to run on your system by marking its permissions appropriately.
 Also, add the directory containing the 'paperspace' binary to your path using a method appropriate for your platform.
@@ -55,7 +55,7 @@ There are two ways to create an API key, either via the Paperspace CLI, or from 
 
 #### Option 1: Obtain an API key via Paperspace CLI
 
-You can create your first API key by logging into your account via the Paperspace CLI: 
+You can create your first API key by logging into your account via the Paperspace CLI:
 
     $ paperspace login
 
@@ -87,7 +87,7 @@ You'll use the API keys generate here to authenticate your requests.
 
 You can interact with Paperspace's API in three ways: from the command line using the Paperspace CLI, programatically (from within a Javascript Nodejs application), or by using an HTTP client of your choice and the Paperspace API HTTP enpoints documented here.
 
-### Authentication 
+### Authentication
 
 For authenticated requests, the Paperspace CLI and Paperspace-Node module will look in three places for an api key:
 
