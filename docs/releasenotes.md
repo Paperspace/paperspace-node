@@ -4,7 +4,8 @@
 
 #### New features
 * New dynamicPublicIp parameter for machines create and machines update methods.
-* New ports parameter for jobs.  Also displays links to exposed ports in jobs create output.
+* New ports parameter for jobs create to allow network services to be exposed through jobs while they are running.  Also displays links to the exposed endpoints in the jobs create output.
+* New summary parameter for jobs list which formats the output as a text table.
 * Improved job logging responsiveness.
 
 #### Fixes

@@ -1519,7 +1519,7 @@ x-api-key: 1ba4f98e7c0...
 
             
 
-            <td class="description last"><p>A required reference to a container name or container link to be used for the job.</p></td>
+            <td class="description last"><p>A required reference to a docker image in a public or private docker registry, or a container name provided by Paperspace.  Docker image repository references must be in lowercase and may include a tag and a hostname prefix followed by a slash; if ommitted the hostname defaults to that of the public Docker Hub registry.  An example docker image reference: 'docker.io/mynamespace/myimage:mytag'.  A container name may be mixed case.  (Designated container names are currently only provided as part of various Gradient tutorials and samples.)</p></td>
         </tr>
 
     
@@ -1552,7 +1552,7 @@ x-api-key: 1ba4f98e7c0...
 
             
 
-            <td class="description last"><p>An optional machine type to run the job on: either 'GPU+', 'P4000', 'P5000', 'P6000', 'V100', 'K80', or 'P100'.<p>Defaults to 'K80'. <P>Note: the 'K80' and 'P100' machineTypes run on Google Cloud Platform (GCP).  The other machineTypes run on the Paperspace Cloud.  Google Cloud platform and Paperspace Cloud have distict Job Storage spaces;  Job storage is not currently shared between these two cloud environments.</p></td>
+            <td class="description last"><p>An optional machine type to run the job on: either 'GPU+', 'P4000', 'P5000', 'P6000', 'V100', 'K80', 'P100', or 'TPU'.<p>Defaults to 'K80'. <P>Note: the 'K80', 'P100', and 'TPU' machineTypes run on Google Cloud Platform (GCP).  The other machineTypes run on the Paperspace Cloud.  Google Cloud platform and Paperspace Cloud have distict Job Storage spaces;  Job storage is not currently shared between these two cloud environments.</p></td>
         </tr>
 
     
@@ -1585,7 +1585,7 @@ x-api-key: 1ba4f98e7c0...
 
             
 
-            <td class="description last"><p>An optional name or description for this job.  If ommitted, the job name defaults to 'job for project [projectname]'.</p></td>
+            <td class="description last"><p>An optional name or description for this job.  If ommitted, the job name defaults to 'job N' where N represents the Nth job instance for the given project.</p></td>
         </tr>
 
     
@@ -1717,7 +1717,7 @@ x-api-key: 1ba4f98e7c0...
 
             
 
-            <td class="description last"><p>An optional path to a workspace, or link to a git repository to upload and merge with the container.  If a zip file name is provided it is uploaded instead.  If no workspace is provided the current directory is zipped up and transferred.  If the workspace is 'none', no workspace is merged and the container is run as-is. To download a git repository provide an https repository link and prefix it with 'git+', e.g. 'git+https://github.com/MyProjects/MyRepo.git'.  S3 links are also supported using the schema 's3://bucketname/objectname'.</p></td>
+            <td class="description last"><p>An optional path to a workspace, or link to a git repository to upload and merge with the container.  If a zip file name is provided it is uploaded instead.  If no workspace is provided the current directory is zipped up and transferred.  If the workspace is 'none', no workspace is merged and the container is run as-is. To download a git repository provide an https repository link and optionally prefix it with 'git+', e.g. 'https://github.com/MyProjects/MyRepo.git'.  If the 'git+' prefix is not specified, it is added at the time of download to the job runner machine.  S3 links are also supported using the schema 's3://bucketname/objectname'.</p></td>
         </tr>
 
     
@@ -2284,7 +2284,7 @@ x-api-key: 1ba4f98e7c0...
 
     
 
-    <h4 class="name" id=".list"><span class="type-signature">(static) </span>list<span class="signature">(filter<span class="signature-attributes">opt</span>, cb)</span><span class="type-signature"> &rarr; {array}</span></h4>
+    <h4 class="name" id=".list"><span class="type-signature">(static) </span>list<span class="signature">(filter<span class="signature-attributes">opt</span>, summary<span class="signature-attributes">opt</span>, cb)</span><span class="type-signature"> &rarr; {array}</span></h4>
 
     
 
@@ -2296,7 +2296,7 @@ x-api-key: 1ba4f98e7c0...
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="jobs_list.js.html">jobs/list.js</a>, <a href="jobs_list.js.html#line8">line 8</a>
+        <a href="jobs_list.js.html">jobs/list.js</a>, <a href="jobs_list.js.html#line9">line 9</a>
     </li></ul></dd>
     
 
@@ -2357,7 +2357,7 @@ The list method takes an optional first argument to limit the returned job objec
   // handle error or result
 });</code></pre>
 
-    <pre class="prettyprint"><code>$ paperspace jobs list --project "MyProject"</code></pre>
+    <pre class="prettyprint"><code>$ paperspace jobs list --project "MyProject" --state Running --summary</code></pre>
 
     <pre class="prettyprint"><code># HTTP request:
 https://api.paperspace.io
@@ -2778,10 +2778,76 @@ x-api-key: 1ba4f98e7c0...
         </tr>
 
     
+
+        <tr>
+            
+                <td class="name"><code>dataset</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Optional dataset to match on</p></td>
+        </tr>
+
+    
     </tbody>
 </table>
 
             </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>summary</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Optional (command line argument only). Format output as a summary table.</p></td>
         </tr>
 
     
@@ -2936,7 +3002,7 @@ x-api-key: 1ba4f98e7c0...
     --jobId "j123abc"</code></pre>
 
     <pre class="prettyprint"><code># HTTP request:
-https://api.paperspace.io
+https://logs.paperspace.io
 GET /jobs/logs?jobId=j123abc
 x-api-key: 1ba4f98e7c0...
 # Returns 200 on success</code></pre>
@@ -4469,7 +4535,7 @@ has transitioned into the given state, or to the 'Error' state. States available
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Tue Apr 24 2018 16:35:08 GMT-0400 (EDT) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Wed Apr 25 2018 01:17:36 GMT-0400 (EDT) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>
