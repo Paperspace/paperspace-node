@@ -20,6 +20,7 @@
     "npm": ">=5.5.1"
   },
   "dependencies": {
+    "ajv": "^6.4.0",
     "archiver": "^2.1.0",
     "async": "1.5.2",
     "aws-sdk": "^2.169.0",
@@ -40,6 +41,7 @@
     "readline-sync": "^1.4.7",
     "route-parser": "0.0.5",
     "superagent": "3.8.1",
+    "table": "^4.0.3",
     "yargs": "^5.0.0"
   },
   "devDependencies": {
