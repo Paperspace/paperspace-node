@@ -1,15 +1,29 @@
 # Paperspace API Release Notes
 
+## Release Notes for v0.1.11
+
+#### New features
+* New cluster and machineType functionality supported: send jobs to a gradient-node based on the cluster name or clusterId
+    * For more information on running gradient-node see the [Gradient Private Cloud](https://docs.paperspace.com/gradient/private-cloud/about) docs
+* Send jobs to a specific node by specifying node attributes
+* Changed default handling of machineType: cluster preferences come first
+* Jobs create automatically records the git commit hash for local workspaces using git
+* Raised job workspace upload limit to 500 MB
+
+### Fixes
+* Fix for job create returning before final job state known but after logs received 
+
 ## Release Notes for v0.1.10
 
 #### New features
 * New dynamicPublicIp parameter for machines create and machines update methods.
 * New ports parameter for jobs create to allow network services to be exposed through jobs while they are running.  Also displays links to the exposed endpoints in the jobs create output.
 * New summary parameter for jobs list which formats the output as a text table.
+* Added Google TPU machineType for Gradient jobs create.
 * Improved job logging responsiveness.
 
 #### Fixes
-* Fix for NODE_ENV settings from other projects breaking paperspace-node config
+* Fix for NODE_ENV settings from other projects overriding paperspace-node config defaults
 * Minor doc fixes
 
 ## Release Notes for v0.1.9
