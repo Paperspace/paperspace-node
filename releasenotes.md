@@ -1,5 +1,17 @@
 # Paperspace API Release Notes
 
+## Release Notes for v0.1.11
+
+#### New features
+* New cluster and machineType functionality supported: send jobs to a gradient-node based on the cluster name or clusterId
+* Send jobs to a specific node by specifying node attributes
+* Changed default handling of machineType: cluster preferences come first
+* CLI now recognizes git commit hash for workspace projects using git
+* Raised job workspace upload limit to 500 MB
+
+### Fixes
+* Fix for job create returning before final job state known but after logs received 
+
 ## Release Notes for v0.1.10
 
 #### New features
