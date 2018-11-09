@@ -1,4 +1,4 @@
-# Paperspace API (v0.1.10)
+# Paperspace API (v0.1.11)
 
 ![image](https://user-images.githubusercontent.com/585865/27562775-26b8acc6-5a9c-11e7-8270-2b80ca895bc5.png)
 
