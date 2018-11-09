@@ -11,7 +11,7 @@
 The **Paperspace API** is the official devkit for automating your [Paperspace](https://www.paperspace.com) account. It is currently available in [JavaScript](#programmatic-access-via-paperspace-node) and [Python](https://github.com/Paperspace/paperspace-python), and we plan to offer other languages and integrations in the future. Currently we are offering basic actions such as creating Paperspace machines and Gradient jobs. This repository includes:
 
 * [Paperspace CLI](#paperspace-cli) (command line interface)
-* [JavaScript API client](#programmatic-access-via-paperspace-node) (for Node.js and web browsers)
+* [JavaScript API client](#programmatic-access-via-paperspace-node) (for Node.js)
 * [API documentation](https://paperspace.github.io/paperspace-node)
 * [Script Guide](scripts.md) for creating and using startup scripts
 
