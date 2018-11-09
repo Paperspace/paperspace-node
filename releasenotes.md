@@ -4,9 +4,10 @@
 
 #### New features
 * New cluster and machineType functionality supported: send jobs to a gradient-node based on the cluster name or clusterId
+    * For more information on running gradient-node see the [Gradient Private Cloud](https://docs.paperspace.com/gradient/private-cloud/about) docs
 * Send jobs to a specific node by specifying node attributes
 * Changed default handling of machineType: cluster preferences come first
-* CLI now recognizes git commit hash for workspace projects using git
+* Jobs create automatically records the git commit hash for local workspaces using git
 * Raised job workspace upload limit to 500 MB
 
 ### Fixes
