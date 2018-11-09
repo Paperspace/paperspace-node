@@ -48,6 +48,7 @@ var os = require('os');
 var fs = require('fs');
 var archiver = require('archiver');
 var ProgressBar = require('progress');
+var child_process = require('child_process');
 var projectConfig = require('./../projectConfig');
 var jobs_logs = require('./../jobs/logs.js');
 var jobs_waitfor = require('./../jobs/waitfor.js');
@@ -60,18 +61,23 @@ const chalk = require('chalk');
  * @description Create a new Paperspace job, and tail its log output if run at the command line. To disable the tailing behavior specify '--tail false'.  Note: if a project is not defined for the current working directory, and you are running in command line mode, a project configuration settings file will be created.  Use '--init false' or specify '--project [projectname]' to override this behavior.
  * @param {object} params - Job creation parameters
  * @param {string} params.container - A required reference to a docker image in a public or private docker registry, or a container name provided by Paperspace.  Docker image repository references must be in lowercase and may include a tag and a hostname prefix followed by a slash; if ommitted the hostname defaults to that of the public Docker Hub registry.  An example docker image reference: 'docker.io/mynamespace/myimage:mytag'.  A container name may be mixed case.  (Designated container names are currently only provided as part of various Gradient tutorials and samples.)
- * @param {string} [params.machineType] - An optional machine type to run the job on: either 'GPU+', 'P4000', 'P5000', 'P6000', 'V100', 'K80', 'P100', or 'TPU'.&lt;p>Defaults to 'K80'. &lt;P>Note: the 'K80', 'P100', and 'TPU' machineTypes run on Google Cloud Platform (GCP).  The other machineTypes run on the Paperspace Cloud.  Google Cloud platform and Paperspace Cloud have distict Job Storage spaces;  Job storage is not currently shared between these two cloud environments.
+ * @param {string} [params.cluster] - An optional cluster name of a cluster to run the job on. Only one of cluster or clusterId may be specified.
+ * @param {string} [params.clusterId] - An optional cluster id of a cluster to run the job on. Only one of cluster or clusterId may be specified.
+ * @param {string} [params.machineType] - An optional machine type to run the job on: either 'GPU+', 'P4000', 'P5000', 'P6000', 'V100', 'K80', 'P100', 'TPU', or 'GradientNode'.&lt;p>Defaults to 'K80'. &lt;P>Note: the 'K80', 'P100', and 'TPU' machineTypes run on Google Cloud Platform (GCP).  The other machineTypes run on the Paperspace Cloud.  Google Cloud platform and Paperspace Cloud have distict Job Storage spaces;  Job storage is not currently shared between these two cloud environments.
  * @param {string} [params.name] - An optional name or description for this job.  If ommitted, the job name defaults to 'job N' where N represents the Nth job instance for the given project.
  * @param {string} [params.project] - The name of the project for this job.  If not provided, this is taken from the .ps_project/config.json file, or the current directory name.
  * @param {string} [params.projectId] - The poject id of an existing project for this job.  Note: if projectId is specified, the project parameter cannot be specified.
  * @param {string} [params.command] - An optional command to run within the workspace or container.
  * @param {string} [params.workspace] - An optional path to a workspace, or link to a git repository to upload and merge with the container.  If a zip file name is provided it is uploaded instead.  If no workspace is provided the current directory is zipped up and transferred.  If the workspace is 'none', no workspace is merged and the container is run as-is. To download a git repository provide an https repository link and optionally prefix it with 'git+', e.g. 'https://github.com/MyProjects/MyRepo.git'.  If the 'git+' prefix is not specified, it is added at the time of download to the job runner machine.  S3 links are also supported using the schema 's3://bucketname/objectname'.
+ * @param {string} [params.codeCommit] - An optional reference to git commit hash if local workspace is a git repository. Found at runtime. 
  * @param {string} [params.dataset] - An optional reference to a dataset to be merged with the container.
  * @param {string} [params.registryUsername] - An optional username for accessing an image hosted on a private container registry.  Note: you must specify this option every time a private image is specified for the container.
  * @param {string} [params.registryPassword] - An optional password for accessing an image hosted on a private container registry.  Note: you must specify this option every time a private image is specified for the container.
  * @param {string} [params.workspaceUsername] - An optional username for accessing a private git repository.  Note: you must specify this option every time a private git repository is specified for the workspace.
  * @param {string} [params.workspacePassword] - An optional password for accessing a private git repository.  We recommned using an OAuth token (GitHub instructions can be found &lt;a href="https://help.github.com/articles/creating-a-personal-access-token-for-the-command-line/">here&lt;/a>).  Note: you must specify this option every time a private git repository is specified for the workspace.
  * @param {string} [params.ports] - An optional list of port mappings to open on the job cluster machine while the job is running.  The port mappings are specified as 'XXXX:YYYY' where XXXX is an external port number and YYYY is an internal port number.  Mulitple port mappings can be provided as a comma separated list. Port numbers must be greater than 1023. Note: only /tcp protocol usage is supported.
+ * @param {number} [params.sharedMemMBytes] - Optional; shared memory size for the job container in megabytes (1 megabyte = 1024 * 1024 bytes).  Cannot exceed total memory size for the given machine type.
+ * @param {number} [params.nodeAttrs] - Optional; a JSON expression describing the node attributes for a compatible GradientNode machine to run this job.  See the Gradient-Node documentation for more info.
  * @param {boolean} [params.tail] - Optional; defaults to true in command line mode only.  Specify false to disable automatic tailing.
  * @param {boolean} [params.json] - Optional; if true, do not write progress to standard out.  '--json' with no value is equivalent to true.
  * @param {function} cb - Node-style error-first callback function
@@ -202,7 +208,7 @@ function LinksFromIpPortMappings(ipAddress, ports) {
   return result;
 }
 
-var MAX_UPLOAD_SIZE = 104857600; // 100MB
+var MAX_UPLOAD_SIZE = 536870912; // 512MB
 
 function create(params, cb) {
 	var json = false;
@@ -261,27 +267,23 @@ function create(params, cb) {
 	if (params.container &amp;&amp; typeof params.container !== 'string') return ifCliPrintErrorOnly(new Error('Parameter `container` expected to be a string'));
 	if (params.workspace &amp;&amp; typeof params.workspace !== 'string') return ifCliPrintErrorOnly(new Error('Parameter `workspace` expected to be a string'));
 
-	if (params.machineType) projectConfig.setMachineType(params.project, params.machineType);
-	else params.machineType = projectConfig.getMachineType();
+	projectConfig.setMachineType(params.project, params.machineType);
 
-	if (params.container) projectConfig.setContainer(params.project, params.container);
-	else params.container = projectConfig.getContainer();
+	projectConfig.setContainer(params.project, params.container);
 
-	if (params.command) projectConfig.setCommand(params.project, params.command);
-	else params.command = projectConfig.getCommand();
+	projectConfig.setCommand(params.project, params.command);
 
-	if (params.workspace) projectConfig.setWorkspace(params.project, params.workspace);
-	else params.workspace = projectConfig.getWorkspace();
+	projectConfig.setName(params.project, params.name);
 
-	if (params.name) projectConfig.setName(params.project, params.name);
-	else params.name = projectConfig.getName();
+	projectConfig.setDataset(params.project, params.dataset);
 
-	if (params.dataset) projectConfig.setDataset(params.project, params.dataset);
-	else params.dataset = projectConfig.getDataset();
+	projectConfig.setCluster(params.project, params.cluster);
 
 	if (!params.container) return ifCliPrintErrorOnly(new Error('Missing required parameter `container`'));
 
 	if (!params.workspace) params.workspace = cwd;
+
+	projectConfig.setWorkspace(params.project, params.workspace);
 
 	function ifCliPrintErrorOnly(err) {
 		if (global.paperspace_cli &amp;&amp; !json) {
@@ -298,6 +300,7 @@ function create(params, cb) {
 			var jobId = res.id;
 			console.log('New jobId: ' + res.id);
 			console.log('Cluster: ' + res.cluster);
+			if (res.codeCommit) console.log('Git commit: ' + res.codeCommit);
 			console.log('Job ' + res.state);
 			if (res.state === 'Pending') console.log('Waiting for job to run...');
 			return jobs_waitfor({ jobId: jobId, state: 'Running' }, function _waitforCb(err, res) {
@@ -326,12 +329,17 @@ function create(params, cb) {
 				console.log('Awaiting logs...');
 				return jobs_logs({ jobId: jobId, tail: true  }, function _logsCb(err) {
 					if (err) return cb(err);
-					return jobs_show({ jobId: jobId }, function _showCb(err, res) {
+					return jobs_waitfor({ jobId: jobId, state: 'Stopped' }, function _waitforCb(err, res) {
 						if (err) return cb(err);
 						if (!res.state) return new Error('Job state not found.');
-						console.log('Job ' + res.state + (res.exitCode || res.exitCode === 0 ? ', exitCode ' + res.exitCode : ''));
-						if (res.state === 'Error' || res.jobError) console.log('Error: ' + res.jobError);
-						return cb();
+						var state = res.state;
+						return jobs_show({ jobId: jobId }, function _showCb(err, res) {
+							if (err) return cb(err);
+							if (!res.state) return new Error('Job state not found.');
+							console.log('Job ' + res.state + (res.exitCode || res.exitCode === 0 ? ', exitCode ' + res.exitCode : ''));
+							if (res.state === 'Error' || res.jobError) console.log('Error: ' + res.jobError);
+							return cb();
+						});
 					});
 				});
 			});
@@ -353,6 +361,22 @@ function create(params, cb) {
 		if (!stat.isDirectory() &amp;&amp; !stat.isFile()) {
 			return ifCliPrintErrorOnly(new Error('Error: workspace is not a file or directory.'));
 		}
+
+		//get git hash commit 
+		fs.stat(params.workspace + "/.git", function (err, stats) {
+			if (err) {
+				//pass - not a git repo
+				return
+			}
+			try {
+				var revision = child_process.execSync('git rev-parse --short HEAD', {cwd:params.workspace, stdio:['pipe', 'pipe', 'ignore']})
+				.toString().trim();
+			} catch (error) {
+				//pass - git issue
+				return
+			}
+			params.codeCommit = revision
+		})
 
 		// zip the workspace file if it is not already a zip file
 		if (!params.workspace.endsWith('.zip') &amp;&amp; !params.workspace.endsWith('.gz')) {
@@ -514,7 +538,7 @@ module.exports = create;
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Wed Apr 25 2018 01:17:36 GMT-0400 (EDT) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Fri Nov 09 2018 18:00:52 GMT-0500 (EST) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>
