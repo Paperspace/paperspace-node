@@ -1,116 +1,69 @@
 // Assumes you have installed the paperspace-node package globally.
 // Use "require('../../paperspace-node')" if running from the repository tree.
-var paperspace_node = require('paperspace-node');
+const paperspace_node = require('paperspace-node');
 
 // Set apkKey for use of the paperspace api
-var paperspace = paperspace_node({
-  apiKey: '1be4f97...' // Substitue your actual apiKey here
+const paperspace = paperspace_node({
+  apiKey: process.env.PAPERSPACE_API_KEY // DON'T Substitute your actual apiKey here - use environment variables
 });
 
-// Retrieve a list of all the templates as a json array
-console.log('\npaperspace.tempates.list(...);');
+const {
+  promisify
+} = require('util');
 
-paperspace.templates.list(
-  function(err, res) {
-    if (err) {
-      console.log(res);
-      process.exit(1);
-    }
-    console.log(res);
 
-    // Search the result for a template with the label 'Ubuntu 14.04 Server'
-    // NOTE: to use the 'ML in a Box' template substitute 'ML in a Box' for 'Ubuntu 14.04 Server'
-    // and substitute 'GPU+' or 'P5000' for the machineType value.  The 'C1' machineType is CPU-only.
-    var t_label = 'Ubuntu 14.04 Server'; // or 'ML in a Box'
-    var m_machineType = 'C1'; // or 'GPU+' or 'P5000' if choosing the 'ML in a Box' template
+function logResponse(res) {
+  console.log(res);
+  return res;
+}
 
-    var t_id;
-    for(var i = 0; i < res.length; i++) {
-      if(res[i].label === t_label) {
-        t_id = res[i].id;
-        break;
-      }
-    }
-    if (!t_id) {
-      console.log('Error: \'' + t_label + '\' template not found.');
-      process.exit(1);
-    }
+(async function main() {
 
-    // Create a machine using the found template id, and the specified machine typ from above
-    console.log('\npaperspace.machines.create({\n  region: \'East Coast (NY2)\',\n  machineType: \'' + m_machineType + '\',');
-    console.log('  size: 50,\n  billingType: \'hourly\',\n  machineName: \'Test Machine\',');
-    console.log('  templateId: \'' + t_id + '\'}, ...);');
+  // Retrieve a list of all the templates as a json array
+  console.log('\npaperspace.tempates.list();');
+  const templates = await promisify(paperspace.templates.list)();
 
-    paperspace.machines.create({
-        region: 'East Coast (NY2)',
-        machineType: m_machineType,
-        size: 50,
-        billingType: 'hourly',
-        machineName: 'Test Machine',
-        templateId: t_id,
-      }, function(err, res) {
-        if (err) {
-          console.log(err);
-          process.exit(1);
-        }
-        console.log(res);
+  // Search the result for a template with the label 'Ubuntu 14.04 Server'
+  // NOTE: to use the 'ML in a Box' template substitute 'ML in a Box' for 'Ubuntu 14.04 Server'
+  // and substitute 'GPU+' or 'P5000' for the machineType value.  The 'C1' machineType is CPU-only.
+  var t_label = 'Ubuntu 14.04 Server'; // or 'ML in a Box'
+  var m_machineType = 'C1'; // or 'GPU+' or 'P5000' if choosing the 'ML in a Box' template
 
-        var id = res.id;  // Get the id of the newly created machine
+  const templateId = (templates.find(t => t.label === t_label) || {}).id
 
-        // Wait for machine to enter the 'ready' state
-        console.log('\npaperspace.machines.waitfor({machineId: \'' + id + '\', state: \'ready\'}, ...);');
+  if (!templateId) throw new Error(`Error: '${t_label}' template not found.`);
 
-        paperspace.machines.waitfor({
-            machineId: id,
-            state: "ready",
-          }, function(err, res) {
-            if (err) {
-              console.log(err);
-              process.exit(1);
-            }
-            console.log(res);
+  const createMachineParams = {
+    region: 'East Coast (NY2)',
+    machineType: m_machineType,
+    size: 50,
+    billingType: 'hourly',
+    machineName: 'Test Machine',
+    templateId
+  };
 
-            // Stop the machine
-            console.log('\npaperspace.machines.stop({machineId: \'' + id + '\'}, ...);');
+  console.log(`paperspace.machines.create(${JSON.stringify(createMachineParams)}`);
+  const {
+    id: machineId
+  } = await promisify(paperspace.machines.create)(createMachineParams).then(logResponse);
 
-            paperspace.machines.stop({
-                machineId: id,
-              }, function(err, res) {
-                 if (err) {
-                   console.log(res);
-                   process.exit(1);
-                 }
-                 console.log(res);
+  console.log(`paperspace.machines.waitfor({ machineId: ${machineId}, stateId: "ready" })`)
+  await promisify(paperspace.machines.waitfor)({
+    machineId,
+    state: "ready",
+  }).then(logResponse);
 
-                 // Wait for machine to enter the 'off' state
-                 console.log('\npaperspace.machines.waitfor({machineId: \'' + id + '\', state: \'off\'}, ...);');
+  console.log(`paperspace.machines.stop({ machineId: ${machineId} })`)
+  await promisify(paperspace.machines.stop)({
+    machineId
+  }).then(logResponse);
 
-                 paperspace.machines.waitfor({
-                     machineId: id,
-                     state: "off",
-                   }, function(err, res) {
-                     if (err) {
-                       console.log(res);
-                       process.exit(1);
-                     }
-                     console.log(res);
 
-                     // Destroy the machine
-                     console.log('\npaperspace.machines.destroy({machineId: \'' + id + '\'}, ...);');
+  console.log(`paperspace.machines.destroy({ machineId: ${machineId} })`)
+  await promisify(paperspace.machines.destroy)({
+    machineId
+  }).then(logResponse);
 
-                     paperspace.machines.destroy({
-                         machineId: id,
-                       }, function(err, res) {
-                         if (err) {
-                           console.log(res);
-                           process.exit(1);
-                         }
-                         console.log(res);
+  console.log('done.')
 
-                         console.log('\ndone');
-                      });
-                  });
-              });
-          });
-      });
-  });
+})().catch(error => console.error(error))
