@@ -1,5 +1,15 @@
 # Paperspace API Release Notes
 
+## Release Notes for v0.1.12
+
+#### New features
+* Send jobs to preeemptible instances by using the new `--isPreemptible` flag to save up to 65% on jobs! See https://support.paperspace.com/hc/en-us/articles/360015388374 for more info. 
+
+* Ability to ignore certain files in your workspace directory using the new `--ignoreFiles` flag
+
+### Fixes
+* Fix for when workspace uploaded includes many 1000s of files and triggered OS file handle limits
+
 ## Release Notes for v0.1.11
 
 #### New features
