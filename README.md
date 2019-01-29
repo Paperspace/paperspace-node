@@ -73,9 +73,12 @@ You can clear your locally cached API key at any time by executing:
 
     $ paperspace logout
 
+> Note: Currently only email login is supported in the CLI - if you're using AD, SAML or GitHub to login to Paperspace, you will need t obtain an API key to log in with the CLI. 
+
+
 #### Option 2: Obtain an API key via your Paperspace Console
 
-Alternatively you can create an API key from withn your Paperspace console under the [API](https://www.paperspace.com/console/account/api) section. Login to your [Paperspace console](https://www.paperspace.com/console), scroll to the API section in the left navigation bar, and click [CREATE AN API KEY](https://www.paperspace.com/console/account/api). Follow the instructions there.
+Alternatively you can create an API key from within your Paperspace console under the [API](https://www.paperspace.com/console/account/api) section. Login to your [Paperspace console](https://www.paperspace.com/console), scroll to the API section in the left navigation bar, and click [CREATE AN API KEY](https://www.paperspace.com/console/account/api). Follow the instructions there.
 
 You will need to pick and API token name for your API key, and also provide a description.  You can copy actual the API key value associated with the API token name only at the time of initial creation.  If you need to access your API key in the future, you can instead access it by API token name using the 'paperspace login' command.
 
@@ -91,7 +94,7 @@ You can interact with Paperspace's API in three ways: from the command line usin
 
 For authenticated requests, the Paperspace CLI and Paperspace-Node module will look in three places for an api key:
 
-1) Locally in the file `~/.papersapce/config.json`, which can be created via the Paperspace CLI by executing:
+1) Locally in the file `~/.paperspace/config.json`, which can be created via the Paperspace CLI by executing:
 
     $ paperspace login
 
@@ -105,6 +108,8 @@ See the previous section on [Obtaining an API key](#obtaining-an-api-key) for mo
 3) A command argument: `--apiKey`.  Example:
 
     $ paperspace machines show --apiKey "1ba4f98e7c0..." --machineId "ps123abc"
+    
+
 
 ### Paperspace CLI
 
