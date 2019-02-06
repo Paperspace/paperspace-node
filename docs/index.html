@@ -77,9 +77,9 @@ Also, add the directory containing the 'paperspace' binary to your path using a 
 <p>Before you can use this tool, you'll need a <a href="https://paperspace.com">Paperspace account</a>. You'll use this account to obtain a Paperspace API key.</p>
 <p>After creating your Paperspace account check your email to confirm your account before logging in.</p>
 <h3 id="obtaining-an-api-key">Obtaining an API key</h3>
-<p>Once you have created a Paperspace Account you will need to obtain a API key.</p>
+<p>Once you have created a Paperspace Account you will need to obtain an API key.</p>
 <p>Your API key allows you to access the Paperspace APIs and Gradient features from the command line, or from within apps that you develop.  Each API key has an API Token name associated with it.</p>
-<p>There are two ways to create an API key, either via the Paperspace CLI, or from within the <a href="https://www.paperspace.com/console/account/api">API</a> section of your Paperspace console.</p>
+<p>There are two ways to create an API key, either via the Paperspace CLI, or from within the <a href="https://www.paperspace.com/console/account/api">API</a> section of your Paperspace console. If you have MFA enabled on your Paperspace account (recommended), use Option 2.</p>
 <h4 id="option-1-obtain-an-api-key-via-paperspace-cli">Option 1: Obtain an API key via Paperspace CLI</h4>
 <p>You can create your first API key by logging into your account via the Paperspace CLI:</p>
 <pre class="prettyprint source"><code>$ paperspace login</code></pre><p>   -or-</p>
@@ -88,10 +88,10 @@ Also, add the directory containing the 'paperspace' binary to your path using a 
 <p>Note: your API key is cached in a file in your home directory: <code>~/.papersapce/config.json</code>. For security, please make sure access to the file is protected so only you can access it.</p>
 <p>You can clear your locally cached API key at any time by executing:</p>
 <pre class="prettyprint source"><code>$ paperspace logout</code></pre><h4 id="option-2-obtain-an-api-key-via-your-paperspace-console">Option 2: Obtain an API key via your Paperspace Console</h4>
-<p>Alternatively you can create an API key from withn your Paperspace console under the <a href="https://www.paperspace.com/console/account/api">API</a> section. Login to your <a href="https://www.paperspace.com/console">Paperspace console</a>, scroll to the API section in the left navigation bar, and click <a href="https://www.paperspace.com/console/account/api">CREATE AN API KEY</a>. Follow the instructions there.</p>
-<p>You will need to pick and API token name for your API key, and also provide a description.  You can copy actual the API key value associated with the API token name only at the time of initial creation.  If you need to access your API key in the future, you can instead access it by API token name using the 'paperspace login' command.</p>
+<p>Alternatively you can create an API key from within your Paperspace console under the <a href="https://www.paperspace.com/console/account/api">API</a> section. Login to your <a href="https://www.paperspace.com/console">Paperspace console</a>, scroll to the API section in the left navigation bar, and click <a href="https://www.paperspace.com/console/account/api">CREATE AN API KEY</a>. Follow the instructions there.</p>
+<p>You will need to pick an API token name for your API key, and also provide a description.  You can copy actual the API key value associated with the API token name only at the time of initial creation.  If you need to access your API key in the future, you can instead access it by API token name using the 'paperspace login' command.</p>
 <p><img src="https://user-images.githubusercontent.com/11018661/37693302-1f5d9100-2c95-11e8-9fa8-d000f1d40421.png" alt="image"></p>
-<p>You'll use the API keys generate here to authenticate your requests.</p>
+<p>You'll use the API keys generated here to authenticate your requests.</p>
 <h2 id="usage">Usage</h2>
 <p>You can interact with Paperspace's API in three ways: from the command line using the Paperspace CLI, programatically (from within a Javascript Nodejs application), or by using an HTTP client of your choice and the Paperspace API HTTP enpoints documented here.</p>
 <h3 id="authentication">Authentication</h3>
