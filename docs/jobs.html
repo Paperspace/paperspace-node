@@ -1519,7 +1519,7 @@ x-api-key: 1ba4f98e7c0...
 
             
 
-            <td class="description last"><p>A required reference to a docker image in a public or private docker registry, or a container name provided by Paperspace.  Docker image repository references must be in lowercase and may include a tag and a hostname prefix followed by a slash; if ommitted the hostname defaults to that of the public Docker Hub registry.  An example docker image reference: 'docker.io/mynamespace/myimage:mytag'.  A container name may be mixed case.  (Designated container names are currently only provided as part of various Gradient tutorials and samples.)</p></td>
+            <td class="description last"><p>A reference to a docker image in a public or private docker registry, or a container name provided by Paperspace.  Docker image repository references must be in lowercase and may include a tag and a hostname prefix followed by a slash; if ommitted the hostname defaults to that of the public Docker Hub registry.  An example docker image reference: 'docker.io/mynamespace/myimage:mytag'.  A container name may be mixed case.  (Designated container names are currently only provided as part of various Gradient tutorials and samples.)</p></td>
         </tr>
 
     
@@ -2212,7 +2212,205 @@ x-api-key: 1ba4f98e7c0...
 
             
 
-            <td class="description last"><p>Optional; if included job will be sent to a preemptible VM only. Defaults to false.</p></td>
+            <td class="description last"><p>Optional; if true job will be sent to a preemptible VM only. Defaults to false.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>useDockerfile</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Optional; if true the job will use the Dockerfile provided in the workspace to build a docker image and optionally run the resulting image as a container</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>buildOnly</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Optional; if this option is selected the job will build the Dockerfile and push to a selected remote registry only, without actually running the container. A registry target must be provided.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>registryTarget</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Optional; a location to push docker images built from a Dockerfile. Must be included with a buildOnly flag. If useDockerfile is true and registryTarget is false the built container will be run but not pushed to a remote registry.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>registryTargetUsername</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Optional; username credential for remote registry target</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>registryTargetPassword</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Optional; password credential for remote registry target</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>relDockerfilePath</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Optional; relative location of Dockefile in the workspace. Defaults to the top level &quot;./Dockerfile&quot; if not specified.</p></td>
         </tr>
 
     
@@ -4766,7 +4964,7 @@ has transitioned into the given state, or to the 'Error' state. States available
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Mon Jan 14 2019 10:51:10 GMT-0500 (EST) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Mon Feb 11 2019 13:09:54 GMT-0500 (EST) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>
