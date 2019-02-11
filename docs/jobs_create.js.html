@@ -60,7 +60,7 @@ const chalk = require('chalk');
  * @method create
  * @description Create a new Paperspace job, and tail its log output if run at the command line. To disable the tailing behavior specify '--tail false'.  Note: if a project is not defined for the current working directory, and you are running in command line mode, a project configuration settings file will be created.  Use '--init false' or specify '--project [projectname]' to override this behavior.
  * @param {object} params - Job creation parameters
- * @param {string} params.container - A required reference to a docker image in a public or private docker registry, or a container name provided by Paperspace.  Docker image repository references must be in lowercase and may include a tag and a hostname prefix followed by a slash; if ommitted the hostname defaults to that of the public Docker Hub registry.  An example docker image reference: 'docker.io/mynamespace/myimage:mytag'.  A container name may be mixed case.  (Designated container names are currently only provided as part of various Gradient tutorials and samples.)
+ * @param {string} params.container - A reference to a docker image in a public or private docker registry, or a container name provided by Paperspace.  Docker image repository references must be in lowercase and may include a tag and a hostname prefix followed by a slash; if ommitted the hostname defaults to that of the public Docker Hub registry.  An example docker image reference: 'docker.io/mynamespace/myimage:mytag'.  A container name may be mixed case.  (Designated container names are currently only provided as part of various Gradient tutorials and samples.)
  * @param {string} [params.cluster] - An optional cluster name of a cluster to run the job on. Only one of cluster or clusterId may be specified.
  * @param {string} [params.clusterId] - An optional cluster id of a cluster to run the job on. Only one of cluster or clusterId may be specified.
  * @param {string} [params.machineType] - An optional machine type to run the job on: either 'GPU+', 'P4000', 'P5000', 'P6000', 'V100', 'K80', 'P100', 'TPU', or 'GradientNode'.&lt;p>Defaults to 'K80'. &lt;P>Note: the 'K80', 'P100', and 'TPU' machineTypes run on Google Cloud Platform (GCP).  The other machineTypes run on the Paperspace Cloud.  Google Cloud platform and Paperspace Cloud have distict Job Storage spaces;  Job storage is not currently shared between these two cloud environments.
@@ -81,7 +81,13 @@ const chalk = require('chalk');
  * @param {number} [params.nodeAttrs] - Optional; a JSON expression describing the node attributes for a compatible GradientNode machine to run this job.  See the Gradient-Node documentation for more info.
  * @param {boolean} [params.tail] - Optional; defaults to true in command line mode only.  Specify false to disable automatic tailing.
  * @param {boolean} [params.json] - Optional; if true, do not write progress to standard out.  '--json' with no value is equivalent to true.
- * @param {boolean} [params.isPreemptible] - Optional; if included job will be sent to a preemptible VM only. Defaults to false. 
+ * @param {boolean} [params.isPreemptible] - Optional; if true job will be sent to a preemptible VM only. Defaults to false.
+ * @param {boolean} [params.useDockerfile] - Optional; if true the job will use the Dockerfile provided in the workspace to build a docker image and optionally run the resulting image as a container 
+ * @param {boolean} [params.buildOnly] - Optional; if this option is selected the job will build the Dockerfile and push to a selected remote registry only, without actually running the container. A registry target must be provided.  
+ * @param {string} [params.registryTarget] - Optional; a location to push docker images built from a Dockerfile. Must be included with a buildOnly flag. If useDockerfile is true and registryTarget is false the built container will be run but not pushed to a remote registry. 
+ * @param {string} [params.registryTargetUsername] - Optional; username credential for remote registry target 
+ * @param {string} [params.registryTargetPassword] - Optional; password credential for remote registry target 
+ * @param {string} [params.relDockerfilePath] - Optional; relative location of Dockefile in the workspace. Defaults to the top level "./Dockerfile" if not specified.  
  * @param {function} cb - Node-style error-first callback function
  * @returns {object} job - The created job JSON object
  * @example
@@ -229,11 +235,20 @@ function create(params, cb) {
 		delete params.tail;
 	}
 
+	if (params.useDockerfile &amp;&amp; !params.buildOnly &amp;&amp; !params.command) {
+		return ifCliPrintErrorOnly(new Error('Missing required parameter: --command. Use the buildOnly flag or pass a command to execute against the container.'));
+	} else if (params.useDockerfile &amp;&amp; params.buildOnly) {
+		params.command = null
+	} else if (params.command) {
+		params.command = Buffer.from(params.command).toString('base64');
+	} else {
+		return ifCliPrintErrorOnly(new Error('Missing required parameter: --command'));
+	}
+
 	// XXX TODO trim leading/trailing spaces from input paths
 	// XXX TODO whitelist git services
 	// XXX TODO convert to gzip
 	// XXX TODO stream compress
-
 	var cwd = process.cwd();
 	if (!params.project &amp;&amp; !params.projectId) {
 		// default to name of project in .ps_project/config.json or name of current directory
@@ -271,7 +286,7 @@ function create(params, cb) {
 
 	projectConfig.setMachineType(params.project, params.machineType);
 
-	projectConfig.setContainer(params.project, params.container);
+	projectConfig.setContainer(params.project, params.container, params.useDockerfile);
 
 	projectConfig.setCommand(params.project, params.command);
 
@@ -281,7 +296,7 @@ function create(params, cb) {
 
 	projectConfig.setCluster(params.project, params.cluster);
 
-	if (!params.container) return ifCliPrintErrorOnly(new Error('Missing required parameter `container`'));
+	if (!params.container &amp;&amp; !params.useDockerfile) return ifCliPrintErrorOnly(new Error('Missing required parameter `container`'));
 
 	if (!params.workspace) params.workspace = cwd;
 
@@ -548,9 +563,6 @@ assign(create, {
 	name: 'create',
 	method: 'post',
 	route: '/jobs/createJob',
-	requires: {
-		container: 'string',
-	},
 	file: 'workspace',
 	returns: {},
 });
@@ -568,7 +580,7 @@ module.exports = create;
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Mon Jan 14 2019 10:51:10 GMT-0500 (EST) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Mon Feb 11 2019 13:09:54 GMT-0500 (EST) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>

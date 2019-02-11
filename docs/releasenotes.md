@@ -1,5 +1,17 @@
 # Paperspace API Release Notes
 
+## Release Notes for v0.1.13
+
+#### New features
+* Run gradient jobs from custom Dockerfile built containers (see: https://docs.paperspace.com/gradient/jobs/create-a-job#new-run-jobs-from-dockerfiles)
+
+* Push GPU-enabled container images to a registry of your choice 
+
+* Add support for yarn package manager 
+
+### Fixes
+* Add custom headers to requests 
+
 ## Release Notes for v0.1.12
 
 #### New features
