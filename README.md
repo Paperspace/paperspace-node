@@ -23,10 +23,7 @@ The **Paperspace API** is the official devkit for automating your [Paperspace](h
 
 #### Option 1: Download the pre-built 'paperspace' binary for your plaftorm
 
-Pre-built 'paperspace' binaries are available for:
-* [Windows](https://s3.amazonaws.com/paperspace-node/v0.1.10/win/paperspace.exe)
-* [Mac](https://s3.amazonaws.com/paperspace-node/v0.1.10/mac/paperspace)
-* [Linux](https://s3.amazonaws.com/paperspace-node/v0.1.10/linux/paperspace)
+Head over to the [releases](https://github.com/Paperspace/paperspace-node/releases) section to download the latest version of the paperspace CLI for Linux, Mac, and Windows.
 
 After downloading, make sure the 'paperspace' binary is permitted to run on your system by marking its permissions appropriately.
 Also, add the directory containing the 'paperspace' binary to your path using a method appropriate for your platform.
