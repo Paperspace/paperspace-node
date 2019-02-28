@@ -206,7 +206,7 @@ Other issues, such as those related to your Paperspace account, your team or tea
 
 ## Security
 
-Think you've discovered a security flaw or exploit? We offer bug bounties for responsible vulnerability disclosures that match our criteria. Please contact us directly at [support@paperspace.com](mailto:support@paperspace.com) and we will respond as quickly as we can.
+Think you've discovered a security flaw or exploit? Please contact us directly at [support@paperspace.com](mailto:support@paperspace.com) and we will respond as quickly as we can.
 
 ## Disclaimer
 
