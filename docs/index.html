@@ -46,7 +46,7 @@
 
 
     <section class="readme">
-        <article><h1 id="paperspace-api-v0-1-13-">Paperspace API (v0.1.13)</h1>
+        <article><h1 id="paperspace-api-v0-2-0-">Paperspace API (v0.2.0)</h1>
 <p><img src="https://user-images.githubusercontent.com/585865/27562775-26b8acc6-5a9c-11e7-8270-2b80ca895bc5.png" alt="image"></p>
 <hr>
 <p><strong>Heads up! This project is under construction!</strong> We welcome your bug reports and suggestions via GitHub Issues!</p>
@@ -58,16 +58,11 @@
 <li><a href="https://paperspace.github.io/paperspace-node">API documentation</a></li>
 <li><a href="scripts.md">Script Guide</a> for creating and using startup scripts</li>
 </ul>
-<h2 id="-release-notes-releasenotes-md-"><a href="releasenotes.md">Release Notes</a></h2>
+<h2 id="release-notes"><a href="releasenotes.md">Release Notes</a></h2>
 <h2 id="getting-started">Getting started</h2>
 <h3 id="installation">Installation</h3>
 <h4 id="option-1-download-the-pre-built-paperspace-binary-for-your-plaftorm">Option 1: Download the pre-built 'paperspace' binary for your plaftorm</h4>
-<p>Pre-built 'paperspace' binaries are available for:</p>
-<ul>
-<li><a href="https://s3.amazonaws.com/paperspace-node/v0.1.10/win/paperspace.exe">Windows</a></li>
-<li><a href="https://s3.amazonaws.com/paperspace-node/v0.1.10/mac/paperspace">Mac</a></li>
-<li><a href="https://s3.amazonaws.com/paperspace-node/v0.1.10/linux/paperspace">Linux</a></li>
-</ul>
+<p>Head over to the <a href="https://github.com/Paperspace/paperspace-node/releases">releases</a> section to download the latest version of the paperspace CLI for Linux, Mac, and Windows.</p>
 <p>After downloading, make sure the 'paperspace' binary is permitted to run on your system by marking its permissions appropriately.
 Also, add the directory containing the 'paperspace' binary to your path using a method appropriate for your platform.</p>
 <h4 id="option-2-install-the-paperspace-node-package-from-npm">Option 2: Install the paperspace-node package from npm</h4>
@@ -87,8 +82,11 @@ Also, add the directory containing the 'paperspace' binary to your path using a 
 <p>If you already have one or more API keys in your account, the API key associated with the first API token listed in your account is downloaded.  If you want to use a particular API key you can specify the associated API token name using the '--apiToken' option.</p>
 <p>Note: your API key is cached in a file in your home directory: <code>~/.papersapce/config.json</code>. For security, please make sure access to the file is protected so only you can access it.</p>
 <p>You can clear your locally cached API key at any time by executing:</p>
-<pre class="prettyprint source"><code>$ paperspace logout</code></pre><h4 id="option-2-obtain-an-api-key-via-your-paperspace-console">Option 2: Obtain an API key via your Paperspace Console</h4>
-<p>Alternatively you can create an API key from withn your Paperspace console under the <a href="https://www.paperspace.com/console/account/api">API</a> section. Login to your <a href="https://www.paperspace.com/console">Paperspace console</a>, scroll to the API section in the left navigation bar, and click <a href="https://www.paperspace.com/console/account/api">CREATE AN API KEY</a>. Follow the instructions there.</p>
+<pre class="prettyprint source"><code>$ paperspace logout</code></pre><blockquote>
+<p>Note: Currently only email login is supported in the CLI - if you're using AD, SAML or GitHub to login to Paperspace, you will need t obtain an API key to log in with the CLI. </p>
+</blockquote>
+<h4 id="option-2-obtain-an-api-key-via-your-paperspace-console">Option 2: Obtain an API key via your Paperspace Console</h4>
+<p>Alternatively you can create an API key from within your Paperspace console under the <a href="https://www.paperspace.com/console/account/api">API</a> section. Login to your <a href="https://www.paperspace.com/console">Paperspace console</a>, scroll to the API section in the left navigation bar, and click <a href="https://www.paperspace.com/console/account/api">CREATE AN API KEY</a>. Follow the instructions there.</p>
 <p>You will need to pick and API token name for your API key, and also provide a description.  You can copy actual the API key value associated with the API token name only at the time of initial creation.  If you need to access your API key in the future, you can instead access it by API token name using the 'paperspace login' command.</p>
 <p><img src="https://user-images.githubusercontent.com/11018661/37693302-1f5d9100-2c95-11e8-9fa8-d000f1d40421.png" alt="image"></p>
 <p>You'll use the API keys generate here to authenticate your requests.</p>
@@ -96,7 +94,7 @@ Also, add the directory containing the 'paperspace' binary to your path using a 
 <p>You can interact with Paperspace's API in three ways: from the command line using the Paperspace CLI, programatically (from within a Javascript Nodejs application), or by using an HTTP client of your choice and the Paperspace API HTTP enpoints documented here.</p>
 <h3 id="authentication">Authentication</h3>
 <p>For authenticated requests, the Paperspace CLI and Paperspace-Node module will look in three places for an api key:</p>
-<p>1) Locally in the file <code>~/.papersapce/config.json</code>, which can be created via the Paperspace CLI by executing:</p>
+<p>1) Locally in the file <code>~/.paperspace/config.json</code>, which can be created via the Paperspace CLI by executing:</p>
 <pre class="prettyprint source"><code>$ paperspace login</code></pre><p>See the previous section on <a href="#obtaining-an-api-key">Obtaining an API key</a> for more information.</p>
 <p>2) An environment variable: <code>PAPERSPACE_API_KEY</code>.  Example:</p>
 <pre class="prettyprint source"><code>$ export PAPERSPACE_API_KEY=1ba4f98e7c0...
@@ -144,7 +142,7 @@ $ paperspace machines show --machineId &quot;ps123abc&quot;</code></pre><p>3) A 
 <p>For bugs with the API client, command-line utility, or the HTTP API, please file tickets using GitHub Issues on this repo. We'll do our best to respond as quickly as we can. Keep in mind that Paperspace is a small team and you may need to allow up to a week for a response.</p>
 <p>Other issues, such as those related to your Paperspace account, your team or team members, billing, or technical issues with your Paperspace machines should be directed to <a href="mailto:support@paperspace.com">support@paperspace.com</a>.</p>
 <h2 id="security">Security</h2>
-<p>Think you've discovered a security flaw or exploit? We offer bug bounties for responsible vulnerability disclosures that match our criteria. Please contact us directly at <a href="mailto:support@paperspace.com">support@paperspace.com</a> and we will respond as quickly as we can.</p>
+<p>Think you've discovered a security flaw or exploit? Please contact us directly at <a href="mailto:support@paperspace.com">support@paperspace.com</a> and we will respond as quickly as we can.</p>
 <h2 id="disclaimer">Disclaimer</h2>
 <p><strong>Use the Paperspace API with care.</strong> This tool is provided as-is (please see our LICENSE). Know that many actions provided via our public API can result in billing charges for Paperspace services. Please be aware of Paperspace's billing policies before performing any of these actions; you'll see charges reflected in your invoice at the end of the month. Some actions, such as deactivating machines, are irreversible, resulting in permanent loss of data. Paperspace cannot recover lost data such as mistakenly deleted account information, and may only be able to give limited assistance if an action is performed mistakenly. API access will be disabled for accounts not in good standing. Keeping your account credentials secret is your responsibility. You may only use Paperspace's API to store, retrieve, query, serve, and execute content that is owned, licensed or lawfully obtained by you.</p>
 <h2 id="license">License</h2>
@@ -163,7 +161,7 @@ $ paperspace machines show --machineId &quot;ps123abc&quot;</code></pre><p>3) A 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Mon Feb 11 2019 13:09:54 GMT-0500 (EST) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Fri Mar 01 2019 16:59:51 GMT-0500 (EST) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>
