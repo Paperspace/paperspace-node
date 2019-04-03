@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>templates - Documentation</title>
+    <title>resourceDelegations - Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -27,7 +27,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">templates</h1>
+    <h1 class="page-title">resourceDelegations</h1>
     
 
     
@@ -40,7 +40,7 @@
 <header>
     
         <h2>
-        templates
+        resourceDelegations
         </h2>
         
     
@@ -56,7 +56,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="templates_index.js.html">templates/index.js</a>, <a href="templates_index.js.html#line3">line 3</a>
+        <a href="resourceDelegations_index.js.html">resourceDelegations/index.js</a>, <a href="resourceDelegations_index.js.html#line3">line 3</a>
     </li></ul></dd>
     
 
@@ -120,7 +120,7 @@
 
     
 
-    <h4 class="name" id=".list"><span class="type-signature">(static) </span>list<span class="signature">(filter<span class="signature-attributes">opt</span>, cb)</span><span class="type-signature"> &rarr; {array}</span></h4>
+    <h4 class="name" id=".create"><span class="type-signature">(static) </span>create<span class="signature">(delegation<span class="signature-attributes">opt</span>, cb)</span><span class="type-signature"> &rarr; {object}</span></h4>
 
     
 
@@ -132,7 +132,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="templates_list.js.html">templates/list.js</a>, <a href="templates_list.js.html#line6">line 6</a>
+        <a href="resourceDelegations_create.js.html">resourceDelegations/create.js</a>, <a href="resourceDelegations_create.js.html#line6">line 6</a>
     </li></ul></dd>
     
 
@@ -172,9 +172,8 @@
 
 
 <div class="description">
-    <p>List information about all templates available to either the current
-authenticated user or the team, if the user belongs to a team.
-The list method takes an optional first argument to limit the returned template objects.</p>
+    <p>Create resourceDelegation with limited access, e.g. for users who needs to stream a machine you created.
+The create method takes a delegation object as the only argument with resource name as key and an object with ids to list resource ids to give access to.</p>
 </div>
 
 
@@ -187,39 +186,44 @@ The list method takes an optional first argument to limit the returned template 
 
     <h5>Examples</h5>
     
-    <pre class="prettyprint"><code>paperspace.templates.list(function(err, res) {
+    <pre class="prettyprint"><code>var delegation = {
+  machine: {
+    ids: ['m123abc', 'm456def']
+  }
+};
+paperspace.resourceDelegations.create(delegation, function(err, res) {
   // handle error or result
 });</code></pre>
 
-    <pre class="prettyprint"><code>$ paperspace templates list</code></pre>
+    <pre class="prettyprint"><code>$ paperspace resourceDelegations create</code></pre>
 
     <pre class="prettyprint"><code># HTTP request:
 https://api.paperspace.io
-GET /templates/getTemplates
+POST /resourceDelegations/create
 x-api-key: 1ba4f98e7c0...
+{
+  "machine": {
+    "ids": ["m123abc", "m456def"]
+  }
+}
 # Returns 200 on success</code></pre>
 
     <pre class="prettyprint"><code>// Example return value:
 [
- // A public template:
- {
-   "id": "t123abc",
-   "name": "paperspace/t123abc",
-   "label": "Windows 10",
-   "os": "Windows 10 (Server 2016)",
-   "dtCreated": "2017-01-03T23:41:06.801Z"
- },
- // A team-owned template:
- {
-   "id": "t456def",
-   "name": "t456def",
-   "label": "New Template 1",
-   "os": "Ubuntu 14.04.5 LTS; uname: 4.2.0-27-generic; distro: ubuntu; major: 14; minor: 04",
-   "teamId": "te456def",
-   "userId": null,
-   "region": "East Coast (NY2)",
-   "dtCreated": "2017-02-06T18:46:44.882Z"
- }
+  {
+    "delegation": {
+      "machine": {
+        "ids": [
+          "m123abc",
+          "m456def"
+        ]
+      }
+    },
+    "isEnabled": true,
+    "accessTokenId": "resource-delegation-token-123abc123abc123abc123abc123abc123abc123abc123abc123abc123abc",
+    "dtCreated": "2019-04-03T12:31:40.061Z",
+    "id": 123
+  }
 ]</code></pre>
 
 
@@ -252,7 +256,7 @@ x-api-key: 1ba4f98e7c0...
 
         <tr>
             
-                <td class="name"><code>filter</code></td>
+                <td class="name"><code>delegation</code></td>
             
 
             <td class="type">
@@ -278,7 +282,7 @@ x-api-key: 1ba4f98e7c0...
 
             
 
-            <td class="description last"><p>An optional filter object to limit the returned template objects</p>
+            <td class="description last"><p>A delegation object to grant access to reources</p>
                 <h6>Properties</h6>
                 
 
@@ -306,13 +310,13 @@ x-api-key: 1ba4f98e7c0...
 
         <tr>
             
-                <td class="name"><code>id</code></td>
+                <td class="name"><code>machine</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">string</span>
+<span class="param-type">object</span>
 
 
             
@@ -332,20 +336,41 @@ x-api-key: 1ba4f98e7c0...
 
             
 
-            <td class="description last"><p>Optional template id to match on</p></td>
-        </tr>
+            <td class="description last"><p>Optional resource 'machine' to grant access to.</p>
+                <h6>Properties</h6>
+                
 
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
     
 
         <tr>
             
-                <td class="name"><code>name</code></td>
+                <td class="name"><code>ids</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">string</span>
+<span class="param-type">array</span>
 
 
             
@@ -365,205 +390,14 @@ x-api-key: 1ba4f98e7c0...
 
             
 
-            <td class="description last"><p>Optional name to match on</p></td>
+            <td class="description last"><p>Optional list of machine ids to grant access to.</p></td>
         </tr>
 
     
+    </tbody>
+</table>
 
-        <tr>
-            
-                <td class="name"><code>label</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
             </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description last"><p>Optional label to match on</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>os</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description last"><p>Optional os to match on</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>dtCreated</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description last"><p>Optional datetime created value to match on</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>teamId</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description last"><p>Optional teamId to match on</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>userId</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description last"><p>Optional userId to match on</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>region</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description last"><p>Optional region to match on</p></td>
         </tr>
 
     
@@ -625,7 +459,11 @@ x-api-key: 1ba4f98e7c0...
 
         
 <div class="param-desc">
-    <p>[ template, ... ] - JSON array of template objects</p>
+    <p>{
+    delegation: { machine: ['m123abc', 'm456def', ... ] },
+    accessToken: 'resource-delegation-token-123abc...',
+    ...
+  } - JSON object with provided delegation and newly generated resourceDelegation accessToken</p>
 </div>
 
 
@@ -636,7 +474,7 @@ x-api-key: 1ba4f98e7c0...
     </dt>
     <dd>
         
-<span class="param-type">array</span>
+<span class="param-type">object</span>
 
 
     </dd>
