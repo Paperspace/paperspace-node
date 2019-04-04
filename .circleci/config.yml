@@ -1,0 +1,66 @@
+aliases:
+  - &npm_secret
+    name: Authenticate with NPM registry
+    command: echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc
+  - &install
+    name: Yarn install
+    command: |
+      yarn install --frozen-lockfile
+      yarn global add pkg
+  - &test
+    name: Yarn test
+    command: yarn test
+
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/node:8.12.0
+    working_directory: ~/paperspace-node
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - paperspace-node-{{ .Branch }}-{{ checksum "yarn.lock" }}
+            - paperspace-node-{{ .Branch }}
+      - run: *install
+      - run: *test
+      - save_cache:
+          key: paperspace-node-{{ .Branch }}-{{ checksum "yarn.lock" }}
+          paths:
+            - "~/.cache/yarn"
+  publish_npm:
+    working_directory: ~/paperspace-node
+    docker:
+      - image: circleci/node:8.12.0
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - paperspace-node-{{ .Branch }}-{{ checksum "yarn.lock" }}
+            - paperspace-node-{{ .Branch }}
+      - attach_workspace:
+          # Must be absolute path or relative path from working_directory
+          at: ~/paperspace-node
+      - run: *npm_secret
+      - run: *install
+      - run:
+          name: Publish package to NPM
+          command: npm publish --access=public
+
+workflows:
+  version: 2
+  pipeline:
+    jobs:
+      - build:
+          filters:
+            tags:
+              only: /^v.*/
+      - publish_npm:
+          requires:
+            - build
+          filters:
+            tags:
+              only: /^v.*/
+            branches:
+              ignore: /.*/
