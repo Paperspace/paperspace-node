@@ -30,7 +30,7 @@ Also, add the directory containing the 'paperspace' binary to your path using a 
 
 #### Option 2: Install the paperspace-node package from npm
 
-For this option you will need [Node.js](https://nodejs.org) v8.9.3 or later. Check your Node.js version by running `node -v`. Node.js comes bundled with `npm`, the Node.js package management tool, which you'll use to install this package.  Install the package using the -g option as follows:
+For this option you will need [Node.js](https://nodejs.org) v8.12.0 or later. Check your Node.js version by running `node -v`. Node.js comes bundled with `npm`, the Node.js package management tool, which you'll use to install this package.  Install the package using the -g option as follows:
 
     $ npm install -g paperspace-node
 

@@ -13,11 +13,12 @@
     "test": "tape ./test/*.test.js | tap-spec",
     "lint": "eslint .",
     "docs": "jsdoc ./index.js -R README.md -c jsdoc.json && cp releasenotes.md scripts.md developers.md docs/.",
-    "prettier": "prettier --single-quote --trailing-comma es5 --use-tabs --write lib/**/*.js"
+    "prettier": "prettier --single-quote --trailing-comma es5 --use-tabs --write lib/**/*.js",
+    "postversion": "git push origin refs/tags/v\"$npm_package_version\" && git push && echo \"✨ Successfully released version v$npm_package_version! The tag build process will publish it ✨\""
   },
   "engines": {
-    "node": ">=8.9.3",
-    "npm": ">=5.5.1"
+    "node": "8.12.0",
+    "yarn": "1.9.4"
   },
   "dependencies": {
     "ajv": "^6.4.0",
