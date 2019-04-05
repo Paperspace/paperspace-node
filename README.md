@@ -1,4 +1,4 @@
-# Paperspace API (v0.1.13)
+# Paperspace API (v0.1.14)
 
 ![image](https://user-images.githubusercontent.com/585865/27562775-26b8acc6-5a9c-11e7-8270-2b80ca895bc5.png)
 
@@ -70,7 +70,7 @@ You can clear your locally cached API key at any time by executing:
 
     $ paperspace logout
 
-> Note: Currently only email login is supported in the CLI - if you're using AD, SAML or GitHub to login to Paperspace, you will need t obtain an API key to log in with the CLI. 
+> Note: Currently only email login is supported in the CLI - if you're using AD, SAML or GitHub to login to Paperspace, you will need t obtain an API key to log in with the CLI.
 
 
 #### Option 2: Obtain an API key via your Paperspace Console
@@ -105,7 +105,7 @@ See the previous section on [Obtaining an API key](#obtaining-an-api-key) for mo
 3) A command argument: `--apiKey`.  Example:
 
     $ paperspace machines show --apiKey "1ba4f98e7c0..." --machineId "ps123abc"
-    
+
 
 
 ### Paperspace CLI
