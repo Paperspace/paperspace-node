@@ -10,6 +10,9 @@ aliases:
   - &test
     name: Yarn test
     command: yarn test
+  - &docs
+    name: Yarn docs
+    command: yarn docs
 
 version: 2
 jobs:
@@ -44,6 +47,7 @@ jobs:
           at: ~/paperspace-node
       - run: *npm_secret
       - run: *install
+      - run: *docs
       - run:
           name: Publish package to NPM
           command: npm publish --access=public
