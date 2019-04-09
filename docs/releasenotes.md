@@ -1,9 +1,16 @@
 # Paperspace API Release Notes
 
+## Release Notes for v0.1.15
+
+#### New features
+* Added examples to use resourceDelegations create with CLI
+
+#### Fixes
+* Ensure that resourceDelegations can get created through the CLI with JSON delegations as strings
+
 ## Release Notes for v0.1.14
 
 #### New features
-
 * Add support for resourceDelegations
 
 ## Release Notes for v0.1.13
