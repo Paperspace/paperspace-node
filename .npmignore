@@ -1,0 +1,6 @@
+# This file overrides .gitignore, for npm publishing
+.DS_Store
+node_modules
+.ps_project/
+*.log
+
