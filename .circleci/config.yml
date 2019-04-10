@@ -10,9 +10,9 @@ aliases:
   - &test
     name: Yarn test
     command: yarn test
-  - &docs
-    name: Yarn docs
-    command: yarn docs
+  - &github_pages
+    name: Deploy GitHub pages
+    command: yarn gh-pages-deploy
 
 version: 2
 jobs:
@@ -47,10 +47,24 @@ jobs:
           at: ~/paperspace-node
       - run: *npm_secret
       - run: *install
-      - run: *docs
       - run:
           name: Publish package to NPM
           command: npm publish --access=public
+  publish_github_pages:
+    working_directory: ~/paperspace-node
+    docker:
+      - image: circleci/node:8.12.0
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - paperspace-node-{{ .Branch }}-{{ checksum "yarn.lock" }}
+            - paperspace-node-{{ .Branch }}
+      - attach_workspace:
+          # Must be absolute path or relative path from working_directory
+          at: ~/paperspace-node
+      - run: *install
+      - run: *github_pages
 
 workflows:
   version: 2
@@ -60,6 +74,10 @@ workflows:
           filters:
             tags:
               only: /^v.*/
+      - publish_github_pages:
+          branches:
+            only:
+              - master
       - publish_npm:
           requires:
             - build
