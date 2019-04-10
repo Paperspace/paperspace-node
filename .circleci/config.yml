@@ -75,9 +75,11 @@ workflows:
             tags:
               only: /^v.*/
       - publish_github_pages:
-          branches:
-            only:
-              - master
+          requires:
+            - build
+          filters:
+            branches:
+              only: master
       - publish_npm:
           requires:
             - build
