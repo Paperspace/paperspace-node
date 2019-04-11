@@ -17,8 +17,7 @@
     "postversion": "git push origin refs/tags/v\"$npm_package_version\" && git push && echo \"✨ Successfully released version v$npm_package_version! The tag build process will publish it ✨\""
   },
   "engines": {
-    "node": "8.12.0",
-    "yarn": "1.9.4"
+    "node": ">=8.9.3"
   },
   "gh-pages-deploy": {
     "staticpath": "docs",
