@@ -11,12 +11,10 @@ aliases:
     name: Yarn test
     command: yarn test
   - &github_pages
-    name: Deploy GitHub pages
+    name: Deploy GitHub pages to gh-pages branch
     command: |
       yarn docs
-      git config user.email "${GITHUB_EMAIL}"
-      git config user.name "${GITHUB_USER}"
-      yarn gh-pages --dist docs
+      yarn gh-pages --dotfiles --message "[skip ci] Update Docs" --dist docs
 
 version: 2
 jobs:
@@ -67,6 +65,13 @@ jobs:
       - attach_workspace:
           # Must be absolute path or relative path from working_directory
           at: ~/paperspace-node
+      - run:
+          name: Configure dependencies
+          command: |
+            git config user.email "${GITHUB_EMAIL}"
+            git config user.name "${GITHUB_USER}"
+      - add_ssh_keys:
+          fingerprints: "ec:de:55:ff:b2:71:24:10:d5:52:1f:72:12:e5:1c:a6"
       - run: *install
       - run: *github_pages
 
