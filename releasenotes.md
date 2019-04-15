@@ -1,5 +1,15 @@
 # Paperspace API Release Notes
 
+## Release Notes for v0.1.17
+
+#### New features
+* Set up automatic docs publishing for tag builds
+
+## Release Notes for v0.1.16
+
+#### New features
+* Set up automatic NPM publishing for tag builds
+
 ## Release Notes for v0.1.15
 
 #### New features
