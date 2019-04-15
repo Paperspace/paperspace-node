@@ -96,6 +96,8 @@ $ git pull --rebase
 $ git checkout -b release_v<new-version>
 ```
 
+Add a new section in the [releasenotes.md](releasenotes.md) document and change the version in the head of [this](#note-for-developers).
+
 After this run `yarn version` (pro-tip: use `--patch`, `--minor` or `--major` flags to automatically increment the version) and type in the new version:
 ```
 $ yarn version
