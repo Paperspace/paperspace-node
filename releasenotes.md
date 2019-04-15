@@ -1,5 +1,10 @@
 # Paperspace API Release Notes
 
+## Release Notes for v0.1.16
+
+#### New features
+* Set up automatic doc and publishing builds
+
 ## Release Notes for v0.1.15
 
 #### New features
