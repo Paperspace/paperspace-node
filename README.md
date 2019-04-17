@@ -48,34 +48,11 @@ Once you have created a Paperspace Account you will need to obtain a API key.
 
 Your API key allows you to access the Paperspace APIs and Gradient features from the command line, or from within apps that you develop.  Each API key has an API Token name associated with it.
 
-There are two ways to create an API key, either via the Paperspace CLI, or from within the [API](https://www.paperspace.com/console/account/api) section of your Paperspace console.
+There is currently only one way to create an API key: from within the [API](https://www.paperspace.com/console/account/api) section of your Paperspace console.
 
-#### Option 1: Obtain an API key via Paperspace CLI
+#### Obtain an API key via your Paperspace Console
 
-You can create your first API key by logging into your account via the Paperspace CLI:
-
-    $ paperspace login
-
-   -or-
-
-    $ paperspace login [<user@domain.com>] [<password>] [--apiToken <api token name>]
-
-If you don't already have an API key in your paperspace account, this command will generate one and give it a default API token name of 'API token'.
-
-If you already have one or more API keys in your account, the API key associated with the first API token listed in your account is downloaded.  If you want to use a particular API key you can specify the associated API token name using the '--apiToken' option.
-
-Note: your API key is cached in a file in your home directory: `~/.papersapce/config.json`. For security, please make sure access to the file is protected so only you can access it.
-
-You can clear your locally cached API key at any time by executing:
-
-    $ paperspace logout
-
-> Note: Currently only email login is supported in the CLI - if you're using AD, SAML or GitHub to login to Paperspace, you will need t obtain an API key to log in with the CLI.
-
-
-#### Option 2: Obtain an API key via your Paperspace Console
-
-Alternatively you can create an API key from within your Paperspace console under the [API](https://www.paperspace.com/console/account/api) section. Login to your [Paperspace console](https://www.paperspace.com/console), scroll to the API section in the left navigation bar, and click [CREATE AN API KEY](https://www.paperspace.com/console/account/api). Follow the instructions there.
+You can create an API key from within your Paperspace console under the [API](https://www.paperspace.com/console/account/api) section. Login to your [Paperspace console](https://www.paperspace.com/console), scroll to the API section in the left navigation bar, and click [CREATE AN API KEY](https://www.paperspace.com/console/account/api). Follow the instructions there.
 
 You will need to pick and API token name for your API key, and also provide a description.  You can copy actual the API key value associated with the API token name only at the time of initial creation.  If you need to access your API key in the future, you can instead access it by API token name using the 'paperspace login' command.
 
