@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>scripts/show.js - Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Namespaces</h3><ul><li><a href="jobs.html">jobs</a><ul class='methods'><li data-type='method'><a href="jobs.html#.artifactsDestroy">artifactsDestroy</a></li><li data-type='method'><a href="jobs.html#.artifactsGet">artifactsGet</a></li><li data-type='method'><a href="jobs.html#.artifactsList">artifactsList</a></li><li data-type='method'><a href="jobs.html#.clone">clone</a></li><li data-type='method'><a href="jobs.html#.create">create</a></li><li data-type='method'><a href="jobs.html#.destroy">destroy</a></li><li data-type='method'><a href="jobs.html#.list">list</a></li><li data-type='method'><a href="jobs.html#.logs">logs</a></li><li data-type='method'><a href="jobs.html#.machineTypes">machineTypes</a></li><li data-type='method'><a href="jobs.html#.show">show</a></li><li data-type='method'><a href="jobs.html#.stop">stop</a></li><li data-type='method'><a href="jobs.html#.waitfor">waitfor</a></li></ul></li><li><a href="login.html">login</a><ul class='methods'><li data-type='method'><a href="login.html#.user">user</a></li></ul></li><li><a href="logout.html">logout</a><ul class='methods'><li data-type='method'><a href="logout.html#.user">user</a></li></ul></li><li><a href="machines.html">machines</a><ul class='methods'><li data-type='method'><a href="machines.html#.availability">availability</a></li><li data-type='method'><a href="machines.html#.create">create</a></li><li data-type='method'><a href="machines.html#.destroy">destroy</a></li><li data-type='method'><a href="machines.html#.list">list</a></li><li data-type='method'><a href="machines.html#.restart">restart</a></li><li data-type='method'><a href="machines.html#.show">show</a></li><li data-type='method'><a href="machines.html#.start">start</a></li><li data-type='method'><a href="machines.html#.stop">stop</a></li><li data-type='method'><a href="machines.html#.update">update</a></li><li data-type='method'><a href="machines.html#.utilization">utilization</a></li><li data-type='method'><a href="machines.html#.waitfor">waitfor</a></li></ul></li><li><a href="networks.html">networks</a><ul class='methods'><li data-type='method'><a href="networks.html#.list">list</a></li></ul></li><li><a href="project.html">project</a><ul class='methods'><li data-type='method'><a href="project.html#.clear">clear</a></li><li data-type='method'><a href="project.html#.init">init</a></li><li data-type='method'><a href="project.html#.show">show</a></li></ul></li><li><a href="resourceDelegations.html">resourceDelegations</a><ul class='methods'><li data-type='method'><a href="resourceDelegations.html#.create">create</a></li></ul></li><li><a href="scripts.html">scripts</a><ul class='methods'><li data-type='method'><a href="scripts.html#.create">create</a></li><li data-type='method'><a href="scripts.html#.destroy">destroy</a></li><li data-type='method'><a href="scripts.html#.list">list</a></li><li data-type='method'><a href="scripts.html#.show">show</a></li><li data-type='method'><a href="scripts.html#.text">text</a></li></ul></li><li><a href="templates.html">templates</a><ul class='methods'><li data-type='method'><a href="templates.html#.list">list</a></li></ul></li><li><a href="users.html">users</a><ul class='methods'><li data-type='method'><a href="users.html#.list">list</a></li></ul></li></ul>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">scripts/show.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>'use strict';
+
+var method = require('./../method');
+var assign = require('lodash.assign');
+
+/**
+ * @memberof scripts
+ * @method show
+ * @description Show information for the script with the given id, except for the script text.
+ * Use the [scripts text]{@link https://paperspace.github.io/paperspace-node/scripts.html#.text} method retrieve the script text.
+ * @param {object} params - Script show parameters
+ * @param {string} params.scriptId - Id of the script to show
+ * @param {function} cb - Node-style error-first callback function
+ * @returns {object} script - The script JSON object
+ * @example
+ * paperspace.scripts.show({
+ *   scriptId: 'sc123abc',
+ * }, function(err, res) {
+ *   // handle error or result
+ * });
+ * @example
+ * $ paperspace scripts show \
+ *     --scriptId "sc123abc"
+ * @example
+ * # HTTP request:
+ * https://api.paperspace.io
+ * GET /scripts/getScript?scriptId=sc123abc
+ * x-api-key: 1ba4f98e7c0...
+ * # Returns 200 on success
+ * @example
+ * //Example return value:
+ * {
+ *   "id": "sc123abc",
+ *   "ownerType": "user",
+ *   "ownerId": "u456def",
+ *   "name": "My Script",
+ *   "description": "original file: my_script.sh",
+ *   "dtCreated": "2017-05-30T14:49:16.724Z",
+ *   "isEnabled": true,
+ *   "runOnce": false
+ *   "machines": [
+ *     {
+ *       "machineId": "ps123abc",
+ *       "dtLastRun": "2017-07-06T12:38:17.325Z"
+ *     },
+ *     {
+ *       "machineId": "ps456def",
+ *       "dtLastRun": null
+ *     }
+ *   ]
+ * }
+ */
+
+function show(params, cb) {
+	return method(show, params, cb);
+}
+
+assign(show, {
+	auth: true,
+	group: 'scripts',
+	name: 'show',
+	method: 'get',
+	route: '/scripts/getScript',
+	requires: {
+		scriptId: 'string',
+	},
+	returns: {},
+});
+
+module.exports = show;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Thu Apr 18 2019 15:04:12 GMT-0400 (EDT) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+</body>
+</html>

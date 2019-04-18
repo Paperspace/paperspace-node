@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>jobs/list.js - Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Namespaces</h3><ul><li><a href="jobs.html">jobs</a><ul class='methods'><li data-type='method'><a href="jobs.html#.artifactsDestroy">artifactsDestroy</a></li><li data-type='method'><a href="jobs.html#.artifactsGet">artifactsGet</a></li><li data-type='method'><a href="jobs.html#.artifactsList">artifactsList</a></li><li data-type='method'><a href="jobs.html#.clone">clone</a></li><li data-type='method'><a href="jobs.html#.create">create</a></li><li data-type='method'><a href="jobs.html#.destroy">destroy</a></li><li data-type='method'><a href="jobs.html#.list">list</a></li><li data-type='method'><a href="jobs.html#.logs">logs</a></li><li data-type='method'><a href="jobs.html#.machineTypes">machineTypes</a></li><li data-type='method'><a href="jobs.html#.show">show</a></li><li data-type='method'><a href="jobs.html#.stop">stop</a></li><li data-type='method'><a href="jobs.html#.waitfor">waitfor</a></li></ul></li><li><a href="login.html">login</a><ul class='methods'><li data-type='method'><a href="login.html#.user">user</a></li></ul></li><li><a href="logout.html">logout</a><ul class='methods'><li data-type='method'><a href="logout.html#.user">user</a></li></ul></li><li><a href="machines.html">machines</a><ul class='methods'><li data-type='method'><a href="machines.html#.availability">availability</a></li><li data-type='method'><a href="machines.html#.create">create</a></li><li data-type='method'><a href="machines.html#.destroy">destroy</a></li><li data-type='method'><a href="machines.html#.list">list</a></li><li data-type='method'><a href="machines.html#.restart">restart</a></li><li data-type='method'><a href="machines.html#.show">show</a></li><li data-type='method'><a href="machines.html#.start">start</a></li><li data-type='method'><a href="machines.html#.stop">stop</a></li><li data-type='method'><a href="machines.html#.update">update</a></li><li data-type='method'><a href="machines.html#.utilization">utilization</a></li><li data-type='method'><a href="machines.html#.waitfor">waitfor</a></li></ul></li><li><a href="networks.html">networks</a><ul class='methods'><li data-type='method'><a href="networks.html#.list">list</a></li></ul></li><li><a href="project.html">project</a><ul class='methods'><li data-type='method'><a href="project.html#.clear">clear</a></li><li data-type='method'><a href="project.html#.init">init</a></li><li data-type='method'><a href="project.html#.show">show</a></li></ul></li><li><a href="resourceDelegations.html">resourceDelegations</a><ul class='methods'><li data-type='method'><a href="resourceDelegations.html#.create">create</a></li></ul></li><li><a href="scripts.html">scripts</a><ul class='methods'><li data-type='method'><a href="scripts.html#.create">create</a></li><li data-type='method'><a href="scripts.html#.destroy">destroy</a></li><li data-type='method'><a href="scripts.html#.list">list</a></li><li data-type='method'><a href="scripts.html#.show">show</a></li><li data-type='method'><a href="scripts.html#.text">text</a></li></ul></li><li><a href="templates.html">templates</a><ul class='methods'><li data-type='method'><a href="templates.html#.list">list</a></li></ul></li><li><a href="users.html">users</a><ul class='methods'><li data-type='method'><a href="users.html#.list">list</a></li></ul></li></ul>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">jobs/list.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>'use strict';
+
+var method = require('./../method');
+var projectConfig = require('./../projectConfig');
+var assign = require('lodash.assign');
+var path = require('path');
+var Table = require('table');
+
+/**
+ * @memberof jobs
+ * @method list
+ * @description List information about all jobs available to either the current
+ * authenticated user or the team, if the user belongs to a team.
+ * The list method takes an optional first argument to limit the returned job objects.
+ * @param {object} [filter] - An optional filter object to limit the returned job objects
+ * @param {string} [filter.project] - Optional project to match on.  If neither project nor projectId are provided, this is taken from the .ps_project/config.json file, or the current directory name.  Specify 'all' to list jobs for all projects associated with the user or team if the user is on a team.
+ * @param {string} [filter.projectId] - Optional projectId to match on
+ * @param {string} [filter.name] - Optional job name to match on
+ * @param {string} [filter.machineType] - Optional machineType to match on
+ * @param {string} [filter.state] - Optional state value to match on
+ * @param {string} [filter.container] - Optional container to match on
+ * @param {string} [filter.command] - Optional command to match on
+ * @param {string} [filter.workspace] - Optional workspace path to match on.  Note: the original workspace path will be modified on upload to point to a temporary location.
+ * @param {string} [filter.dataset] - Optional dataset to match on
+ * @param {string} [filter.dataset] - Optional dataset to match on
+ * @param {boolean} [summary] - Optional (command line argument only). Format output as a summary table.
+ * @param {function} cb - Node-style error-first callback function
+ * @returns {array} [ job, ... ] - JSON array of job objects
+ * @example
+ * paperspace.jobs.list(
+ *   project: 'MyProject'
+ * }, function(err, res) {
+ *   // handle error or result
+ * });
+ * @example
+ * $ paperspace jobs list --project "MyProject" --state Running --summary
+ * @example
+ * # HTTP request:
+ * https://api.paperspace.io
+ * GET /jobs/getJobs?project=MyProject
+ * x-api-key: 1ba4f98e7c0...
+ * # Returns 200 on success
+ * @example
+ * //Example return value:
+ * [
+ *   {
+ *     "id": "j123abc",
+ *     "name": "My Job",
+ *     "state": "running"
+ *     "id": "j123abc",
+ *     "name": "job for project myproject",
+ *     "state": "Stopped",
+ *     "workspaceUrl": "myproject.zip",
+ *     "workingDirectory": "/paperspace",
+ *     "artifactsDirectory": "/artifacts",
+ *     "entrypoint": "echo Hello Paperspace",
+ *     "projectId": "pr456def",
+ *     "project": "myproject",
+ *     "container": "http://dockerhub.com/mycontainer",
+ *     "machineType": "P5000",
+ *     "cluster": "PS Jobs",
+ *     "usageRate": "P5000 hourly",
+ *     "startedByUserId": "u789ghi",
+ *     "parentJobId": null,
+ *     "jobError": null,
+ *     "dtCreated": "2017-11-30T18:46:10.394Z",
+ *     "dtModified": "2017-11-30T18:46:10.394Z",
+ *     "dtProvisioningStarted": "2017-11-30T18:46:50.467Z",
+ *     "dtProvisioningFinished": "2017-11-30T18:47:12.508Z",
+ *     "dtStarted": "2017-11-30T18:47:14.636Z",
+ *     "dtFinished": "2017-11-30T18:52:44.209Z",
+ *     "dtTeardownStarted": "2017-11-30T18:52:56.889Z",
+ *     "dtTeardownFinished": "2017-11-30T18:53:31.734Z",
+ *     "dtDeleted": null,
+ *     "exitCode": 0
+ *   }
+ * ]
+ */
+
+function list(params, cb) {
+	var summary = false;
+	if (params.summary) {
+		summary = params.summary;
+		delete params.summary;
+	}
+	if (!params.project &amp;&amp; !params.projectId) {
+		// default to name of project in .ps_project/config or name of current directory
+		params.project = projectConfig.getProject();
+		if (!params.project) {
+			var cwd = process.cwd();
+			params.project = path.basename(cwd);
+			if (params.project == '/') {
+				var err = new Error('Error: cannot list project jobs from root directory.  Please specify a project name or run from a project directory other than root.');
+				if (global.paperspace_cli) {
+					console.log(err.message);
+					return cb();
+				}
+				return cb(err);
+			}
+		}
+	}
+	return method(list, params, function listCb(err, data) {
+		if (global.paperspace_cli &amp;&amp; summary) {
+			var tableConfig = {
+				columns: {
+					0: {
+						alignment: 'left'
+					},
+					1: {
+						alignment: 'left'
+					},
+					2: {
+						alignment: 'left'
+					},
+					3: {
+						alignment: 'left'
+					},
+					4: {
+						alignment: 'left'
+					},
+					5: {
+						alignment: 'left'
+					},
+					6: {
+						alignment: 'left',
+						width: 30
+					}
+				}
+			};
+			var tableData = [];
+
+			if (err) return cb(err);
+			if (data &amp;&amp; data.length) {
+				tableData.push(['jobId', 'project', 'name', 'state', 'dtCreated', 'exitCode', 'entrypoint']);
+				data.forEach(function itemFunc(item) {
+					if (item.id) {
+						tableData.push([item.id, item.project, item.name, item.state, item.dtCreated, item.exitCode, item.entrypoint]);
+					}
+				});
+				var output = Table.table(tableData, tableConfig);
+				console.log(output);
+			}
+			return cb();
+		} else return cb(err, data);
+	});
+}
+
+assign(list, {
+	auth: true,
+	group: 'jobs',
+	name: 'list',
+	method: 'get',
+	route: '/jobs/getJobs',
+	requires: {},
+	returns: {},
+});
+
+module.exports = list;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Thu Apr 18 2019 15:04:12 GMT-0400 (EDT) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+</body>
+</html>

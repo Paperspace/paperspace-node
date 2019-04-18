@@ -1,0 +1,4697 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>machines - Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Namespaces</h3><ul><li><a href="jobs.html">jobs</a><ul class='methods'><li data-type='method'><a href="jobs.html#.artifactsDestroy">artifactsDestroy</a></li><li data-type='method'><a href="jobs.html#.artifactsGet">artifactsGet</a></li><li data-type='method'><a href="jobs.html#.artifactsList">artifactsList</a></li><li data-type='method'><a href="jobs.html#.clone">clone</a></li><li data-type='method'><a href="jobs.html#.create">create</a></li><li data-type='method'><a href="jobs.html#.destroy">destroy</a></li><li data-type='method'><a href="jobs.html#.list">list</a></li><li data-type='method'><a href="jobs.html#.logs">logs</a></li><li data-type='method'><a href="jobs.html#.machineTypes">machineTypes</a></li><li data-type='method'><a href="jobs.html#.show">show</a></li><li data-type='method'><a href="jobs.html#.stop">stop</a></li><li data-type='method'><a href="jobs.html#.waitfor">waitfor</a></li></ul></li><li><a href="login.html">login</a><ul class='methods'><li data-type='method'><a href="login.html#.user">user</a></li></ul></li><li><a href="logout.html">logout</a><ul class='methods'><li data-type='method'><a href="logout.html#.user">user</a></li></ul></li><li><a href="machines.html">machines</a><ul class='methods'><li data-type='method'><a href="machines.html#.availability">availability</a></li><li data-type='method'><a href="machines.html#.create">create</a></li><li data-type='method'><a href="machines.html#.destroy">destroy</a></li><li data-type='method'><a href="machines.html#.list">list</a></li><li data-type='method'><a href="machines.html#.restart">restart</a></li><li data-type='method'><a href="machines.html#.show">show</a></li><li data-type='method'><a href="machines.html#.start">start</a></li><li data-type='method'><a href="machines.html#.stop">stop</a></li><li data-type='method'><a href="machines.html#.update">update</a></li><li data-type='method'><a href="machines.html#.utilization">utilization</a></li><li data-type='method'><a href="machines.html#.waitfor">waitfor</a></li></ul></li><li><a href="networks.html">networks</a><ul class='methods'><li data-type='method'><a href="networks.html#.list">list</a></li></ul></li><li><a href="project.html">project</a><ul class='methods'><li data-type='method'><a href="project.html#.clear">clear</a></li><li data-type='method'><a href="project.html#.init">init</a></li><li data-type='method'><a href="project.html#.show">show</a></li></ul></li><li><a href="resourceDelegations.html">resourceDelegations</a><ul class='methods'><li data-type='method'><a href="resourceDelegations.html#.create">create</a></li></ul></li><li><a href="scripts.html">scripts</a><ul class='methods'><li data-type='method'><a href="scripts.html#.create">create</a></li><li data-type='method'><a href="scripts.html#.destroy">destroy</a></li><li data-type='method'><a href="scripts.html#.list">list</a></li><li data-type='method'><a href="scripts.html#.show">show</a></li><li data-type='method'><a href="scripts.html#.text">text</a></li></ul></li><li><a href="templates.html">templates</a><ul class='methods'><li data-type='method'><a href="templates.html#.list">list</a></li></ul></li><li><a href="users.html">users</a><ul class='methods'><li data-type='method'><a href="users.html#.list">list</a></li></ul></li></ul>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">machines</h1>
+    
+
+    
+
+
+
+
+<section>
+
+<header>
+    
+        <h2>
+        machines
+        </h2>
+        
+    
+</header>
+
+<article>
+    <div class="container-overview">
+    
+        
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="machines_index.js.html">machines/index.js</a>, <a href="machines_index.js.html#line3">line 3</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+        
+
+        
+    
+    </div>
+
+    
+
+    
+
+    
+
+     
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        
+            
+
+    
+
+    <h4 class="name" id=".availability"><span class="type-signature">(static) </span>availability<span class="signature">(params, cb)</span><span class="type-signature"> &rarr; {object}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="machines_availability.js.html">machines/availability.js</a>, <a href="machines_availability.js.html#line6">line 6</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Get machine availability for the given region and machine type.  Note: availability is only provided for the dedicated GPU machine types.  Also, not all machine types are available in all regions.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Examples</h5>
+    
+    <pre class="prettyprint"><code>paperspace.machines.availability({
+  region: 'East Coast (NY2)',
+  machineType: 'GPU+',
+}, function(err, res) {
+  // handle error or result
+});</code></pre>
+
+    <pre class="prettyprint"><code>$ paperspace machines availability \
+    --region "East Coast (NY2)" \
+    --machineType "GPU+"</code></pre>
+
+    <pre class="prettyprint"><code># HTTP request:
+https://api.paperspace.io
+GET /machines/getAvailability?region=East%20Coast%20(NY2)&amp;machineType=GPU%2B
+x-api-key: 1ba4f98e7c0...
+# Returns 200 on success</code></pre>
+
+    <pre class="prettyprint"><code>//Example return value:
+{
+  "available": true
+}</code></pre>
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>params</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Machine utilization parameters</p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>region</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Name of the region: either 'East Coast (NY2)', 'West Coast (CA1)', or 'Europe (AMS1)'</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>machineType</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Machine type: either 'GPU+', 'P4000', 'P5000', 'P6000', or 'V100'<p></p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>cb</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Node-style error-first callback function</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>availability - The availability JSON object, containing a single boolean attribute, &quot;available&quot;.  A value of true for &quot;available&quot; means machines of that type can currently be requested in that region.  A value of false means that requests for that machine type are not currently available in that region.</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">object</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".create"><span class="type-signature">(static) </span>create<span class="signature">(params, cb)</span><span class="type-signature"> &rarr; {object}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="machines_create.js.html">machines/create.js</a>, <a href="machines_create.js.html#line6">line 6</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Create a new Paperspace virtual machine. If you are using an individual account,
+you will be assigned as the owner of the machine. If you are a team administrator, you must
+specify the user that should be assigned to the machine, either by specifing a user id, or by providing an email address, password, first name and
+last name for the creation of a new user on the team.  (The email address must not already be associated with a Paperspace account, otherwise a user creation error is returned.)</p>
+<p>Note: if you attempt to create a new user along with the machine, the user creation step is executed before the creation of the machine.
+Therefore, if an error occurs, the user creation step may or may not have succeeded.  To deal with this, if an error object is returned from the <code>machines create</code>
+method, subsquently call the <code>users list</code> method (with a search filter specifying the email address) to check if the user creation step succeeded.</p>
+<p>Note: machine creation is not always guaranteed to succeed, due to various possible issues such as machine availability, billing issues, resource issues, or system errors.
+However you can call the <code>machines availability</code> method to check for current point-in-time availability of a given machine type.</p>
+<p>This machine create action can only be performed by the account owner. (Team members cannot create machines themselves; only the team administrator may do so.)</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Examples</h5>
+    
+    <pre class="prettyprint"><code>paperspace.machines.create({
+  region: 'East Coast (NY2)',
+  machineType: 'Air',
+  size: 50,
+  billingType: 'hourly',
+  machineName: 'My Machine 1',
+  templateId: 't123abc',
+  assignPublicIp: true, // optional - assign a new public ip address
+  networkId: 'n123abc', // optional - only if creating on a specific network
+  teamId: 'te456def', // optional - required if creating this machine for a team
+  email: 'example@example.com', // optional - if creating a new user
+  password: 'secret123', // optional - if creating a new user
+  firstName: 'Jon', // optional - if creating a new user
+  lastName: 'Snow', // optional - if creating a new user
+  notificationEmail: 'example@example.com', // optional - address to send a notification when complete
+  scriptId: 'sc123abc', // optional - a script to be run on startup
+}, function(err, res) {
+  // handle error or result
+});</code></pre>
+
+    <pre class="prettyprint"><code>$ paperspace machines create \
+    --region "East Coast (NY2)" \
+    --machineType "Air" \
+    --size 50 \
+    --billingType "hourly" \
+    --machineName "My Machine 1" \
+    --templateId "t123abc" \
+    --assignPublicIp true \
+    --networkId "n123abc" \
+    --teamId "te456def" \
+    --userId "u123abc" \
+    --email "example@example.com" \
+    --password "secret123" \
+    --firstName "Jon" \
+    --lastName "Snow" \
+    --notificationEmail "example@example.com" \
+    --scriptId "sc123abc"</code></pre>
+
+    <pre class="prettyprint"><code># HTTP request:
+https://api.paperspace.io
+POST /machines/createSingleMachinePublic {"region": "East Coast (NY2)", "machineType": "Air", "size": 50, "billingType": "monthly", "machineName": "My Machine 1", "templateId": "t123abc", "assignPublicIp": true, "networkId": "n123abc", "teamId": "te456def", "email": "example@example.com", "password": "secret123", "firstName": "Jon", "lastName": "Snow", "notificationEmail": "example@example.com"}
+x-api-key: 1ba4f98e7c0...
+# Returns 201 on success</code></pre>
+
+    <pre class="prettyprint"><code>// Example return value:
+{
+  "id": "ps123abc",
+  "name": "My Machine",
+  "os": null,
+  "ram": null,
+  "cpus": 1,
+  "gpu": null,
+  "storageTotal": null,
+  "storageUsed": null,
+  "usageRate": "Air hourly",
+  "shutdownTimeoutInHours": 24,
+  "shutdownTimeoutForces": false,
+  "performAutoSnapshot": false,
+  "autoSnapshotFrequency": null,
+  "autoSnapshotSaveCount": null,
+  "agentType": "WindowsDesktop",
+  "dtCreated": "2017-02-16T20:26:54.880Z",
+  "state": "provisioning",
+  "updatesPending": false,
+  "networkId": null,
+  "privateIpAddress": null,
+  "publicIpAddress": "169.255.255.254",
+  "region": null,
+  "userId": "u123abc",
+  "teamId": "te456def",
+  "scriptId": "sc123abc",
+  "dtLastRun": null,
+  "dynamicPublicIp": null
+}</code></pre>
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>params</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Machine creation parameters</p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>region</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Name of the region: either 'East Coast (NY2)', 'West Coast (CA1)', or 'Europe (AMS1)'</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>machineType</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Machine type: either 'Air', 'Standard', 'Pro', 'Advanced', 'GPU+', 'P4000', 'P5000', 'P6000', 'V100', 'C1', 'C2', 'C3', 'C4', 'C5', 'C6', 'C7', 'C8', 'C9', or 'C10'<p>
+Note:<br>
+Windows os templates cannot be used to create CPU-only machine types 'C1' - 'C10'.<br>
+Ubuntu os templates cannot be used to create GRID GPU machine types: 'Air', 'Standard', 'Pro', or 'Advanced'.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>size</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Storage size for the machine in GB</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>billingType</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Either 'monthly' or 'hourly' billing</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>machineName</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>A memorable name for this machine</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>templateId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Template id of the template to use for creating this machine</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>assignPublicIp</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Assign a new public ip address on machine creation. Cannot be used with dynamicPublicIp.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>dynamicPublicIp</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Assigns a new public ip address on machine start and releases it from the account on machine stop. Cannot be used with assignPublicIp.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>networkId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>If creating on a specific network, specify its id</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>teamId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>If creating the machine for a team, specify the team id</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>userId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>If assigning to an existing user other than yourself, specify the user id (mutually exclusive with email, password, firstName, lastName)</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>email</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>If creating a new user for this machine, specify their email address (mutually exclusive with userId)</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>password</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>If creating a new user, specify their password (mutually exclusive with userId)</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>firstName</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>If creating a new user, specify their first name (mutually exclusive with userId)</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>lastName</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>If creating a new user, specify their last name (mutually exclusive with userId)</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>notificationEmail</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Send a notification to this email address when complete</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>scriptId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The script id of a script to be run on startup.  See the <a href="https://paperspace.github.io/paperspace-node/scripts.md">Script Guide</a> for more info on using scripts.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>cb</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Node-style error-first callback function</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>machine - The created machine JSON object</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">object</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".destroy"><span class="type-signature">(static) </span>destroy<span class="signature">(params, cb)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="machines_destroy.js.html">machines/destroy.js</a>, <a href="machines_destroy.js.html#line6">line 6</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Destroy the machine with the given id. When this action is performed,
+the machine is immediately shut down and marked for deletion from the datacenter.
+Any snapshots that were derived from the machine are also deleted. Access to the machine
+is terminated immediately and billing for the machine is prorated to the hour.
+This action can only be performed by the user who owns the machine, or in the case of
+a team, the team administrator.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Examples</h5>
+    
+    <pre class="prettyprint"><code>paperspace.machines.destroy({
+  machineId: 'ps123abc',
+}, function(err, res) {
+  // handle error or result
+});</code></pre>
+
+    <pre class="prettyprint"><code>$ paperspace machines destroy --machineId "ps123abc"</code></pre>
+
+    <pre class="prettyprint"><code># HTTP request:
+https://api.paperspace.io
+POST /machines/ps123abc/destroyMachine
+x-api-key: 1ba4f98e7c0...
+# Returns 204 on success</code></pre>
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>params</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Machine destroy parameters</p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>machineId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The id of the machine to destroy</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>releasePublicIp</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>releases any assigned public ip address for the machine; defaults to false</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>cb</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Node-style error-first callback function</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".list"><span class="type-signature">(static) </span>list<span class="signature">(filter<span class="signature-attributes">opt</span>, cb)</span><span class="type-signature"> &rarr; {array}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="machines_list.js.html">machines/list.js</a>, <a href="machines_list.js.html#line6">line 6</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>List information about all machines available to either the current
+authenticated user or the team, if the user belongs to a team.
+The list method takes an optional first argument to limit the returned machine objects.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Examples</h5>
+    
+    <pre class="prettyprint"><code>paperspace.machines.list(function(err, res) {
+  // handle error or result
+});</code></pre>
+
+    <pre class="prettyprint"><code>$ paperspace machines list</code></pre>
+
+    <pre class="prettyprint"><code># HTTP request:
+https://api.paperspace.io
+GET /machines/getMachines
+x-api-key: 1ba4f98e7c0...
+# Returns 200 on success</code></pre>
+
+    <pre class="prettyprint"><code>//Example return value:
+[
+  {
+    "id": "ps123abc",
+    "name": "My Machine",
+    "os": "Microsoft Windows Server 2016 Datacenter",
+    "ram": "8589938688",
+    "cpus": 4,
+    "gpu": "GRID K160Q (2GB)",
+    "storageTotal": "53687091200",
+    "storageUsed": "110080",
+    "usageRate": "Air monthly",
+    "shutdownTimeoutInHours": 168,
+    "shutdownTimeoutForces": false,
+    "performAutoSnapshot": false,
+    "autoSnapshotFrequency": null,
+    "autoSnapshotSaveCount": null,
+    "agentType": "WindowsDesktop",
+    "dtCreated": "2016-11-18T05:18:29.533Z",
+    "state": "ready",
+    "updatesPending": false,
+    "networkId": "n789ghi",
+    "privateIpAddress": "10.64.21.47",
+    "publicIpAddress": null,
+    "region": "East Coast (NY2)",
+    "userId": "u123abc",
+    "teamId": "te456def",
+    "scriptId": "sc123abc",
+    "dtLastRun": "2017-06-30T07:22:49.763Z",
+    "dynamicPublicIp": null
+  }
+]</code></pre>
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>filter</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>An optional filter object to limit the returned machine objects</p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>machineId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Optional machine id to match on. Note: must be specified as &quot;machineId&quot;, not &quot;id&quot;.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>name</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Optional name to match on</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>os</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Optional os to match on</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>ram</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Optional ram value to match on</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>cpus</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Optional cpu count to match on</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>gpu</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Optional gpu to match on</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>storageTotal</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Optional storageTotal value to match on</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>storageUsed</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Optional storageUsed value to match on</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>usageRate</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Optional usageRate value to match on</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>shutdownTimeoutInHours</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Optional shutdownTimeoutInHours value to match on</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>performAutoSnapshot</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Optional performAutoSnapshot value to match on, either true or false</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>autoSnapshotFrequency</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Optional autoSnapshotFrequency value to match on</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>autoSnapshotSaveCount</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Optional autoSnapshotSaveCount value to match on</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>agentType</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Optional agentType value to match on</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>dtCreated</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Optional datetime created value to match on</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>state</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Optional state value to match on</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>updatesPending</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Optional updatesPending value to match on</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>networkId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Optional networkId to match on</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>privateIpAddress</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Optional privateIpAddress to match on</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>publicIpAddress</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Optional publicIpAddress to match on</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>region</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Optional region to match on</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>userId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Optional userId to match on</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>teamId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Optional teamId to match on</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>scriptId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Optional scriptId to match on</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>dtLastRun</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Optional script datetime last run value to match on</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>cb</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Node-style error-first callback function</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>[ machine, ... ] - JSON array of machine objects</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">array</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".restart"><span class="type-signature">(static) </span>restart<span class="signature">(params, cb)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="machines_restart.js.html">machines/restart.js</a>, <a href="machines_restart.js.html#line6">line 6</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Restart an individual machine. If the machine is already restarting,
+this action will request the machine be restarted again.
+This action can only be performed by the user who owns the machine.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Examples</h5>
+    
+    <pre class="prettyprint"><code>paperspace.machines.restart({
+  machineId: 'ps123abc',
+}, function(err, res) {
+  // handle error or result
+});</code></pre>
+
+    <pre class="prettyprint"><code>$ paperspace machines restart --machineId "ps123abc"</code></pre>
+
+    <pre class="prettyprint"><code># HTTP request:
+https://api.paperspace.io
+POST /machines/ps123abc/restart
+x-api-key: 1ba4f98e7c0...
+# Returns 204 on success</code></pre>
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>params</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Machine restart parameters</p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>machineId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Id of the machine to restart</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>cb</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Node-style error-first callback function</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".show"><span class="type-signature">(static) </span>show<span class="signature">(params, cb)</span><span class="type-signature"> &rarr; {object}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="machines_show.js.html">machines/show.js</a>, <a href="machines_show.js.html#line6">line 6</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Show machine information for the machine with the given id.</p>
+<p>The state property can take on the follow values:</p>
+<ul>
+<li>off</li>
+<li>starting  - machine is in the process of changing to the ready or serviceready state</li>
+<li>stopping  - machine is in the process of changing to the off state</li>
+<li>restarting  - combines stopping follow immediately by starting</li>
+<li>serviceready  - services are running on the machine but the Paperspace agent is not yet available</li>
+<li>ready  - services are running on machine and the Paperspace agent is ready to stream or accept logins</li>
+<li>upgrading   - the machine specification are being upgraded, which involves a shutdown and startup sequence</li>
+<li>provisioning  - the machine is in the process of being created for the first time</li>
+</ul>
+<p>The updatesPending property is either true or false and reflects whether the operating system has scheduled updates
+for the next machine state transition, e.g, stopping, starting, restarting or upgrading.</p>
+<p>Note: in some cases the operating system can force installation of critical updates immediately upon a state
+transition, or automatically restart a machine to install updates.  In such cases the updatesPending property
+may not always be set accurately by the underlying os.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Examples</h5>
+    
+    <pre class="prettyprint"><code>paperspace.machines.show({
+  machineId: 'ps123abc',
+}, function(err, res) {
+  // handle error or result
+});</code></pre>
+
+    <pre class="prettyprint"><code>$ paperspace machines show \
+    --machineId "ps123abc"</code></pre>
+
+    <pre class="prettyprint"><code># HTTP request:
+https://api.paperspace.io
+GET /machines/getMachinePublic?machineId=ps123abc
+x-api-key: 1ba4f98e7c0...
+# Returns 200 on success</code></pre>
+
+    <pre class="prettyprint"><code>//Example return value:
+{
+  "id": "ps123abc",
+  "name": "My Machine",
+  "os": "Microsoft Windows Server 2016 Datacenter",
+  "ram": "8589938688",
+  "cpus": 4,
+  "gpu": "GRID K160Q (2GB)",
+  "storageTotal": "53687091200",
+  "storageUsed": "110080",
+  "usageRate": "Air monthly",
+  "shutdownTimeoutInHours": 168,
+  "shutdownTimeoutForces": false,
+  "performAutoSnapshot": false,
+  "autoSnapshotFrequency": null,
+  "autoSnapshotSaveCount": null,
+  "agentType": "WindowsDesktop",
+  "dtCreated": "2016-11-18T05:18:29.533Z",
+  "state": "ready",
+  "updatesPending": false,
+  "networkId": "n789ghi",
+  "privateIpAddress": "10.64.21.47",
+  "publicIpAddress": null,
+  "region": "East Coast (NY2)",
+  "userId": "u123abc",
+  "teamId": "te456def",
+  "scriptId": "sc123abc",
+  "dtLastRun": "2017-06-30T07:22:49.763Z",
+  "dynamicPublicIp": null,
+  "events": [
+    {
+      "name": "start",
+      "state": "done",
+      "errorMsg": "",
+      "handle": "8ebe43dd-57c8-4bd4-b770-86b7fd0202e4",
+      "dtModified": "2017-08-16T14:36:24.802Z",
+      "dtFinished": null,
+      "dtCreated": "2017-08-16T14:36:18.373Z"
+    },
+    {
+      "name": "start",
+      "state": "error",
+      "errorMsg": "Uh oh. This machine type can't start due to insufficient capacity or higher than normal demand. Please try again later.",
+      "handle": "f6adb486-f5ae-4ab3-9a1a-51c19df5b337",
+      "dtModified": "2017-06-09T15:32:38.115Z",
+      "dtFinished": "2017-06-09T15:32:38.115Z",
+      "dtCreated": "2017-06-09T15:32:37.019Z"
+    },
+    {
+      "name": "stop",
+      "state": "done",
+      "errorMsg": "",
+      "handle": "e352ad96-734f-4a26-8829-007c2f1d89f2",
+      "dtModified": "2017-06-03T04:14:01.327Z",
+      "dtFinished": null,
+      "dtCreated": "2017-06-03T04:13:47.885Z"
+    }
+  ]
+}</code></pre>
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>params</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Machine show parameters</p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>machineId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Id of the machine to show</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>cb</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Node-style error-first callback function</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>machine - The machine JSON object</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">object</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".start"><span class="type-signature">(static) </span>start<span class="signature">(params, cb)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="machines_start.js.html">machines/start.js</a>, <a href="machines_start.js.html#line6">line 6</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Start up an individual machine. If the machine is already started,
+this action is a no-op. If the machine is off, it will be booted up.
+This action can only be performed by the user who owns the machine.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Examples</h5>
+    
+    <pre class="prettyprint"><code>paperspace.machines.start({
+  machineId: 'ps123abc',
+}, function(err, res) {
+  // handle error or result
+});</code></pre>
+
+    <pre class="prettyprint"><code>$ paperspace machines start --machineId "ps123abc"</code></pre>
+
+    <pre class="prettyprint"><code># HTTP request:
+https://api.paperspace.io
+POST /machines/ps123abc/start
+x-api-key: 1ba4f98e7c0...
+# Returns 204 on success</code></pre>
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>params</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Machine start parameters</p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>machineId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Id of the machine to start</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>cb</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Node-style error-first callback function</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".stop"><span class="type-signature">(static) </span>stop<span class="signature">(params, cb)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="machines_stop.js.html">machines/stop.js</a>, <a href="machines_stop.js.html#line6">line 6</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Stop an individual machine. If the machine is already stopped
+or has been shut down, this action is a no-op. If the machine is running, it
+will be stopped and any users logged in will be immediately kicked out.
+This action can only be performed by the user who owns the machine.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Examples</h5>
+    
+    <pre class="prettyprint"><code>paperspace.machines.stop({
+  machineId: 'ps123abc',
+}, function(err, res) {
+  // handle error or result
+});</code></pre>
+
+    <pre class="prettyprint"><code>$ paperspace machines stop --machineId "ps123abc"</code></pre>
+
+    <pre class="prettyprint"><code># HTTP request:
+https://api.paperspace.io
+POST /machines/ps123abc/stop
+x-api-key: 1ba4f98e7c0...
+# Returns 204 on success</code></pre>
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>params</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Machine stop parameters</p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>machineId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Id of the machine to shut down</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>cb</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Node-style error-first callback function</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".update"><span class="type-signature">(static) </span>update<span class="signature">(params, cb)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="machines_update.js.html">machines/update.js</a>, <a href="machines_update.js.html#line6">line 6</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Update attributes of a machine.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Examples</h5>
+    
+    <pre class="prettyprint"><code>paperspace.machines.update({
+  machineId: 'ps123abc',
+  machineName: 'New Machine Name',
+  shutdownTimeoutInHours: 24,
+  shutdownTimeoutForces: true,
+  performAutoSnapshot: true,
+  autoSnapshotFrequency: 'week',
+  autoSnapshotSaveCount: 4
+}, function(err, res) {
+  // handle error or result
+});</code></pre>
+
+    <pre class="prettyprint"><code>$ paperspace machines update --machineId "ps123abc"
+    --machineName "New Machine Name" \
+    --shutdownTimeoutInHours 24 \
+    --shutdownTimeoutForces true \
+    --performAutoSnapshot true \
+    --autoSnapshotFrequency "week" \
+    --autoSnapshotSaveCount 4 \
+    --dynamicPublicIp true</code></pre>
+
+    <pre class="prettyprint"><code># HTTP request:
+https://api.paperspace.io
+POST /machines/ps123abc/updateMachinePublic {"machineId": "ps123abc", "machineName": "New Machine Name", "shutdownTimeoutInHours": 24, "shutdownTimeoutForces": true, "performAutoSnapshot": true, "autoSnapshotFrequency": "week", "autoSnapshotSaveCount": 4, "dynamicPublicIp": true}
+x-api-key: 1ba4f98e7c0...
+# Returns 204 on success</code></pre>
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>params</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Machine update parameters</p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>machineId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Id of the machine to update</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>machineName</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>New name for the machine</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>shutdownTimeoutInHours</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Number of hours before machine is shutdown if no one is logged in via the Paperspace client</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>shutdownTimeoutForces</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Force shutdown at shutdown timeout, even if there is a Paperspace client connection</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>autoSnapshotFrequency</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>One of 'hour', 'day', 'week', or null</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>autoSnapshotSaveCount</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Number of snapshots to save</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>performAutoSnapshot</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Perform auto snapshots</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>dynamicPublicIp</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>If true, assigns a new public ip address on machine start and releases it from the account on machine stop</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>cb</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Node-style error-first callback function</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".utilization"><span class="type-signature">(static) </span>utilization<span class="signature">(params, cb)</span><span class="type-signature"> &rarr; {object}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="machines_utilization.js.html">machines/utilization.js</a>, <a href="machines_utilization.js.html#line6">line 6</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Get machine utilization data for the machine with the given id. Machine upgrades are not represented in utilization data.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Examples</h5>
+    
+    <pre class="prettyprint"><code>paperspace.machines.utilization({
+  machineId: 'ps123abc',
+  billingMonth: '2017-08',
+}, function(err, res) {
+  // handle error or result
+});</code></pre>
+
+    <pre class="prettyprint"><code>$ paperspace machines utilization \
+    --machineId "ps123abc" \
+    --billingMonth "2017-08"</code></pre>
+
+    <pre class="prettyprint"><code># HTTP request:
+https://api.paperspace.io
+GET /machines/getUtilization?machineId=ps123abc&amp;billingMonth=2017-08
+x-api-key: 1ba4f98e7c0...
+# Returns 200 on success</code></pre>
+
+    <pre class="prettyprint"><code>//Example return value:
+{
+  "machineId": "ps123abc",
+  "utilization": {
+    "machineId": "ps123abc",
+    "secondsUsed": 37351.08562622,
+    "hourlyRate": "0.40",
+    "billingMonth": "2017-08",
+  },
+  "storageUtilization": {
+    "machineId": "ps123abc",
+    "secondsUsed": 678400,
+    "monthlyRate": "7.00",
+    "billingMonth": "2017-08",
+  }
+}</code></pre>
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>params</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Machine utilization parameters</p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>machineId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Id of the machine to get utilization data for</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>billingMonth</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Billing period to query in <code>YYYY-MM</code> format</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>cb</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Node-style error-first callback function</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>utilization - The utilization JSON object</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">object</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".waitfor"><span class="type-signature">(static) </span>waitfor<span class="signature">(params, cb)</span><span class="type-signature"> &rarr; {object}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="machines_waitfor.js.html">machines/waitfor.js</a>, <a href="machines_waitfor.js.html#line6">line 6</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Wait for the machine with the given id to enter a certain machine
+state. This action polls the server and returns only when we detect that the machine
+has transitioned into the given state. States available to check for are:</p>
+<ul>
+<li>off</li>
+<li>serviceready  - services are running on the machine but the Paperspace agent is not yet available</li>
+<li>ready  - services are running on machine and the Paperspace agent is ready to stream or accept logins</li>
+</ul>
+<p>When the callback is called, the returned object will be information about the machine.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Examples</h5>
+    
+    <pre class="prettyprint"><code>paperspace.machines.waitfor({
+  machineId: 'ps123abc',
+  state: 'off',
+}, function(err, res) {
+  // handle error or result
+});</code></pre>
+
+    <pre class="prettyprint"><code>$ paperspace machines waitfor \
+    --machineId "ps123abc" \
+    --state "off"</code></pre>
+
+    <pre class="prettyprint"><code># HTTP request:
+# The waitefor method is only available using the API client.
+# Use the show method to query the state of the machine via HTTP.</code></pre>
+
+    <pre class="prettyprint"><code>//Example return value:
+{
+  "id": "ps123abc",
+  "name": "My Machine",
+  "os": "Microsoft Windows Server 2016 Datacenter",
+  "ram": "8589938688",
+  "cpus": 4,
+  "gpu": "GRID K160Q (2GB)",
+  "storageTotal": "53687091200",
+  "storageUsed": "110080",
+  "usageRate": "Air monthly",
+  "shutdownTimeoutInHours": 168,
+  "shutdownTimeoutForces": false,
+  "performAutoSnapshot": false,
+  "autoSnapshotFrequency": null,
+  "autoSnapshotSaveCount": null,
+  "agentType": "WindowsDesktop",
+  "dtCreated": "2016-11-18T05:18:29.533Z",
+  "state": "ready",
+  "updatesPending": false,
+  "networkId": "n789ghi",
+  "privateIpAddress": "10.64.21.47",
+  "publicIpAddress": null,
+  "region": "East Coast (NY2)",
+  "userId": "u123abc",
+  "teamId": "te456def",
+  "scriptId": "sc123abc",
+  "dtLastRun": "2017-06-30T07:22:49.763Z",
+  "dynamicPublicIp": null
+}</code></pre>
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>params</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Machine waitfor parameters</p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>machineId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Id of the machine to wait for</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>state</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Name of the state to wait for, either 'off', 'serviceready', 'ready'</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>cb</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Node-style error-first callback function</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>machine - The machine JSON object</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">object</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+        
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Thu Apr 18 2019 15:04:12 GMT-0400 (EDT) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+</body>
+</html>
