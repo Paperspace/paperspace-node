@@ -13,6 +13,7 @@
     "test": "tape ./test/*.test.js | tap-spec",
     "lint": "eslint .",
     "docs": "jsdoc ./index.js -R README.md -c jsdoc.json && cp releasenotes.md scripts.md developers.md docs/.",
+    "release-docs": "yarn docs && yarn gh-pages --dotfiles --message \"[skip ci] Update Docs\" --dist docs",
     "prettier": "prettier --single-quote --trailing-comma es5 --use-tabs --write lib/**/*.js",
     "postversion": "git push origin refs/tags/v\"$npm_package_version\" && git push && echo \"✨ Successfully released version v$npm_package_version! The tag build process will publish it ✨\""
   },

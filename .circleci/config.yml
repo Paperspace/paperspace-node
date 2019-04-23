@@ -12,9 +12,7 @@ aliases:
     command: yarn test
   - &github_pages
     name: Deploy GitHub pages to gh-pages branch
-    command: |
-      yarn docs
-      yarn gh-pages --dotfiles --message "[skip ci] Update Docs" --dist docs
+    command: yarn release-docs
 
 version: 2
 jobs:
