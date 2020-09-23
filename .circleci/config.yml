@@ -70,6 +70,7 @@ jobs:
             git config user.name "${GITHUB_USER}"
       - add_ssh_keys:
           fingerprints: "ec:de:55:ff:b2:71:24:10:d5:52:1f:72:12:e5:1c:a6"
+      - run: *npm_secret
       - run: *install
       - run: *github_pages
 
