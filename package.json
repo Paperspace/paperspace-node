@@ -1,6 +1,6 @@
 {
   "name": "paperspace-node",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "Paperspace API for node",
   "main": "index.js",
   "repository": "https://github.com/Paperspace/paperspace-node",
