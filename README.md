@@ -1,18 +1,17 @@
-# Paperspace API (v0.1.17)
+# Paperspace CORE API (v0.1.17)
 
-![image](https://user-images.githubusercontent.com/585865/27562775-26b8acc6-5a9c-11e7-8270-2b80ca895bc5.png)
-
-- - - -
-
-**Heads up! This project is under construction!** We welcome your bug reports and suggestions via GitHub Issues!
+![image](https://gblobscdn.gitbook.com/assets%2F-MPHG6Ba26iNF13utTV6%2F-MPHYY90lGrr6EYQda2-%2F-MPHcBGaFsrMS4o3pK49%2FPaperspace-Core-API2.jpg?alt=media&token=68814ad8-5b9e-4e32-bc3e-0b7b0dc1aec8)
 
 - - - -
 
-The **Paperspace API** is the official devkit for automating your [Paperspace](https://www.paperspace.com) account. It is currently available in [JavaScript](#programmatic-access-via-paperspace-node) and [Python](https://github.com/Paperspace/paperspace-python), and we plan to offer other languages and integrations in the future. Currently we are offering basic actions such as creating Paperspace machines and Gradient jobs. This repository includes:
+**Heads up! This project is in beta!** We welcome your bug reports and suggestions via GitHub Issues!
 
-* [Paperspace CLI](#paperspace-cli) (command line interface)
+- - - -
+
+The **Paperspace CORE API** is the official devkit for automating your [Paperspace](https://www.paperspace.com) account. It is currently available through the use of standard HTTP requests as well as a [JavaScript client ](#programmatic-access-via-paperspace-node) for Node.js. We plan to offer other languages and integrations in the future. This repository includes:
+
 * [JavaScript API client](#programmatic-access-via-paperspace-node) (for Node.js)
-* [API documentation](https://paperspace.github.io/paperspace-node)
+* [API documentation](https://docs.paperspace.com/paperspace-core-api/)
 * [Script Guide](scripts.md) for creating and using startup scripts
 
 ## [Release Notes](releasenotes.md)
@@ -21,14 +20,7 @@ The **Paperspace API** is the official devkit for automating your [Paperspace](h
 
 ### Installation
 
-#### Option 1: Download the pre-built 'paperspace' binary for your plaftorm
-
-Head over to the [releases](https://github.com/Paperspace/paperspace-node/releases) section to download the latest version of the paperspace CLI for Linux, Mac, and Windows.
-
-After downloading, make sure the 'paperspace' binary is permitted to run on your system by marking its permissions appropriately.
-Also, add the directory containing the 'paperspace' binary to your path using a method appropriate for your platform.
-
-#### Option 2: Install the paperspace-node package from npm
+#### Install the paperspace-node package from npm
 
 For this option you will need [Node.js](https://nodejs.org) v8.12.0 or later. Check your Node.js version by running `node -v`. Node.js comes bundled with `npm`, the Node.js package management tool, which you'll use to install this package.  Install the package using the -g option as follows:
 
@@ -46,62 +38,33 @@ After creating your Paperspace account check your email to confirm your account 
 
 Once you have created a Paperspace Account you will need to obtain a API key.
 
-Your API key allows you to access the Paperspace APIs and Gradient features from the command line, or from within apps that you develop.  Each API key has an API Token name associated with it.
+Your API key allows you to access the Paperspace CORE API via conventional HTTP requests or from within apps that you develop.  
 
-There is currently only one way to create an API key: from within the [API](https://www.paperspace.com/console/account/api) section of your Paperspace console.
+There is currently only one way to create an API key: from within the section of your Paperspace [console](https://console.paperspace.com/).
 
 #### Obtain an API key via your Paperspace Console
 
-You can create an API key from within your Paperspace console under the [API](https://www.paperspace.com/console/account/api) section. Login to your [Paperspace console](https://www.paperspace.com/console), scroll to the API section in the left navigation bar, and click [CREATE AN API KEY](https://www.paperspace.com/console/account/api). Follow the instructions there.
+You can create an API key from within your Paperspace console under the API section. Login to your Paperspace [console](https://console.paperspace.com/), visit your team settings page, locate the API section, and follow the instructions to create a new API key.
 
-You will need to pick and API token name for your API key, and also provide a description.  You can copy actual the API key value associated with the API token name only at the time of initial creation.  If you need to access your API key in the future, you can instead access it by API token name using the 'paperspace login' command.
+![image](https://gblobscdn.gitbook.com/assets%2F-MPHG6Ba26iNF13utTV6%2F-MPHHhZfbOlON5PSGssR%2F-MPHQboL5Tb8LGmyElah%2Fimage.png?alt=media&token=2cbc4cc3-4982-483f-8b1a-c7adb961cb78)
 
-![image](https://user-images.githubusercontent.com/11018661/37693302-1f5d9100-2c95-11e8-9fa8-d000f1d40421.png)
-
-You'll use the API keys generate here to authenticate your requests.
+You'll use the API keys generated here to authenticate your requests.
 
 ## Usage
 
-You can interact with Paperspace's API in three ways: from the command line using the Paperspace CLI, programatically (from within a Javascript Nodejs application), or by using an HTTP client of your choice and the Paperspace API HTTP enpoints documented here.
+You can interact with CORE API in two ways: by using an HTTP client of your choice and the Paperspace API HTTP endpoints or programmatically from within a Javascript Node.js application.
 
 ### Authentication
 
-For authenticated requests, the Paperspace CLI and Paperspace-Node module will look in three places for an api key:
+For authenticated requests, the Paperspace-Node module will look for an api key:
 
-1) Locally in the file `~/.paperspace/config.json`, which can be created via the Paperspace CLI by executing:
-
-    $ paperspace login
-
-See the previous section on [Obtaining an API key](#obtaining-an-api-key) for more information.
-
-2) An environment variable: `PAPERSPACE_API_KEY`.  Example:
+An environment variable: `PAPERSPACE_API_KEY`.  Example:
 
     $ export PAPERSPACE_API_KEY=1ba4f98e7c0...
     $ paperspace machines show --machineId "ps123abc"
 
-3) A command argument: `--apiKey`.  Example:
+See the previous section on [Obtaining an API key](#obtaining-an-api-key) for more information.
 
-    $ paperspace machines show --apiKey "1ba4f98e7c0..." --machineId "ps123abc"
-
-
-
-### Paperspace CLI
-
-Assuming you've installed the `paperspace-node` package or downloaded one of the pre-built executables, you can invoke the Paperspace CLI with:
-
-    $ paperspace --help
-
-You can check the version of the Paperspace CLI with:
-
-    $ paperspace --version
-
-#### Calling methods with the Paperspace CLI
-
-The CLI provides all methods as subcommands, using this scheme: `paperspace <namespace> <subcommand>`. For example:
-
-    $ paperspace machines create --apiKey "1ba4f98e7c0..." --machineName "My Machine" --size 50 ...
-
-For information on all the methods available, see the [API documentation](https://paperspace.github.io/paperspace-node).
 
 ### Programmatic access via Paperspace-Node
 
@@ -127,7 +90,6 @@ Then create an instance of the client, optionally passing in your API key:
 
     var paperspace = paperspace_node();
 
-If you do not pass an apiKey parameter when creating the paperspace object the paperspace-node module will look for the environment variable value named`PAPERSPACE_API_KEY` for an API key, or in the cached api key location created by the `paperspace login` command, `~/.paperspace/config.json`.  See the [Authentication](#authentication) section above for more information.
 
 You can get the paperspace-node version programmatically via the VERSION attribute:
 
@@ -145,13 +107,11 @@ All of the methods are namespaced by category ("machines.create" or "invoices.sh
 
 That is, the first argument is parameters object, and the second is a error-first callback function.
 
-For information on all the methods available, see the [API documentation](https://paperspace.github.io/paperspace-node).
+For information on all the methods available, see the [API documentation](https://docs.paperspace.com/paperspace-core-api/).
 
 ## Paperspace API HTTP endpoints
 
-If you'd prefer to build your own client instead of using the Paperspace-Node library, you can use the Paperspace API HTTP endpoints directly, as described in the [API documentation](https://paperspace.github.io/paperspace-node).
-
-NOTE: the HTTP endpoints are subject to change in the future.  We recommend using one of the programmatic APIs whenever possible to maintain forward compatibility.
+If you'd prefer to build your own client instead of using the Paperspace-Node library, you can use the Paperspace API HTTP endpoints directly, as described in the [API documentation](https://docs.paperspace.com/paperspace-core-api/).
 
 ### Address for the Paperspace API HTTP endpoints
 
@@ -195,4 +155,4 @@ This project is open source, under the ISC license. See LICENSE.txt.
 
 ## Copyright
 
-Copyright 2018 Paperspace Co. - All Rights Reserved
+Copyright 2021 Paperspace Co. - All Rights Reserved
