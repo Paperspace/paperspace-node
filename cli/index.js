@@ -31,7 +31,7 @@ var pkginfo = require('pkginfo')(module, 'version'); // eslint-disable-line no-u
 // Ours
 var paperspace = require('./../lib/paperspace');
 
-var DEETS_NOTE = 'See https://paperspace.github.io/paperspace-node for details';
+var DEETS_NOTE = 'See https://docs.paperspace.com/core/api-reference for details';
 
 function methodHint(spec) {
 	return [
