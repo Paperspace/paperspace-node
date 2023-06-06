@@ -1,12 +1,14 @@
+- - - -
+> **Note**
+> **Heads up! This project has been deprecated. Please use our new [Paperspace CLI!](https://www.github.com/paperspace/cli)** !
+- - - -
+
+
+
 # Paperspace CORE API (v0.1.17)
 
 ![image](https://gblobscdn.gitbook.com/assets%2F-MPHG6Ba26iNF13utTV6%2F-MPHYY90lGrr6EYQda2-%2F-MPHcBGaFsrMS4o3pK49%2FPaperspace-Core-API2.jpg?alt=media&token=68814ad8-5b9e-4e32-bc3e-0b7b0dc1aec8)
 
-- - - -
-
-**Heads up! This project is in beta!** We welcome your bug reports and suggestions via GitHub Issues!
-
-- - - -
 
 The **Paperspace CORE API** is the official devkit for automating your [Paperspace](https://www.paperspace.com) account. It is currently available through the use of standard HTTP requests as well as a [JavaScript client ](#programmatic-access-via-paperspace-node) for Node.js. We plan to offer other languages and integrations in the future. This repository includes:
 
